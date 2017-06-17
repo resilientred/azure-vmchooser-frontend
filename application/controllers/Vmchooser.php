@@ -24,13 +24,13 @@ class Vmchooser extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('inputCores', 'inputCores', 'numeric');
-		$this->form_validation->set_rules('inputMemory', 'inputMemory', 'numeric');
-		$this->form_validation->set_rules('inputNics', 'inputNics', 'numeric');
-		$this->form_validation->set_rules('inputData', 'inputData', 'numeric');
-		$this->form_validation->set_rules('inputIops', 'inputIops', 'numeric');
-		$this->form_validation->set_rules('inputThroughput', 'inputThroughput', 'numeric');
-		$this->form_validation->set_rules('inputTemp', 'inputTemp', 'numeric');
+		$this->form_validation->set_rules('inputCores', 'Number of Cores', 'numeric');
+		$this->form_validation->set_rules('inputMemory', 'Amount of Memory', 'numeric');
+		$this->form_validation->set_rules('inputNics', 'Number of NICs', 'numeric');
+		$this->form_validation->set_rules('inputData', 'Minimum disk size', 'numeric');
+		$this->form_validation->set_rules('inputIops', 'IOPS', 'numeric');
+		$this->form_validation->set_rules('inputThroughput', 'Throughput', 'numeric');
+		$this->form_validation->set_rules('inputTemp', 'Minimum temp disk size', 'numeric');
 
 		if ($this->form_validation->run() == FALSE)
 		{

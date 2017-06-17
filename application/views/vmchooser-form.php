@@ -85,7 +85,7 @@ echo form_open(site_url('/'), $attributes);
       </div>
     </div>
 	<div class="form-group">
-      <label for="inputTemp" class="col-lg-2 control-label">Temp Disk</label>
+      <label for="inputTemp" class="col-lg-2 control-label">Minimum temp disk size</label>
       <div class="col-lg-10">
         <input type="text" class="form-control" name="inputTemp" id="inputTemp" value="<?php echo set_value('inputTemp[]'); ?>" placeholder="What's the minimum size for the temp disk?" autocomplete="off">
       </div>
