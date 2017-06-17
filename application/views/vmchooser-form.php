@@ -101,7 +101,7 @@ echo form_open(site_url('/'), $attributes);
 
 <?php
 
-if ($results <> "") { 
+if (isset($results)) { 
 
 	?>
 	
