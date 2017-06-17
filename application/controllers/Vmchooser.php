@@ -41,6 +41,10 @@ class Vmchooser extends CI_Controller {
 		{
 				// OK
 				$this->load->view('vmchooser-form');
+				
+				$api_url = getenv('VMCHOOSERAPI');
+				
+				echo "DEBUG : let's roll! Towards $api_url";
 		}
 }
 }
