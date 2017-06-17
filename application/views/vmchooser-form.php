@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
 
+<?php
+
 if (isset($results)) { 
 
 	?>
@@ -134,8 +136,6 @@ echo form_open(site_url('/'), $attributes);
     </div>
   </fieldset>
 </form>
-
-<?php
 
 <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds.</p>
 
