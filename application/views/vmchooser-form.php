@@ -25,6 +25,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
 
+if (isset($results)) { 
+
+	?>
+	
+	<div class="page-header">
+	  <h1 id="navbar">Results</h1>
+	</div>
+	
+	<?php
+
+	$CI =& get_instance();
+	$CI->load->library('table');
+
+	$template = array(
+			'table_open' => '<table class="table table-striped table-hover">'
+	);
+	$CI->table->set_template($template);
+
+	$first = true;
+	foreach ($results as $result) {
+		$data = array();
+		foreach($result as $key => $value) {
+			$header[] = str_replace("'", "", $key);;
+			$data[] = $value;
+		}
+		if ($first) {
+			$CI->table->set_heading($header);
+		}
+		$CI->table->add_row($data);
+		$first = false;
+	}
+	echo $CI->table->generate();
+
+}
+
+?>
+
 <?php 
 $attributes = array('class' => 'form-horizontal', 'id' => 'vmchooser');
 echo form_open(site_url('/'), $attributes);
@@ -93,50 +130,12 @@ echo form_open(site_url('/'), $attributes);
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
 	    <button type="submit" class="btn btn-primary">Let's try to match a VM t-shirt size for you!</button>
-        <button type="reset" class="btn btn-default">I messed up! Please clean this form for me...</button>
       </div>
     </div>
   </fieldset>
 </form>
 
 <?php
-
-if (isset($results)) { 
-
-	?>
-	
-	<div class="page-header">
-	  <h1 id="navbar">Results</h1>
-	</div>
-	
-	<?php
-
-	$CI =& get_instance();
-	$CI->load->library('table');
-
-	$template = array(
-			'table_open' => '<table class="table table-striped table-hover">'
-	);
-	$CI->table->set_template($template);
-
-	$first = true;
-	foreach ($results as $result) {
-		$data = array();
-		foreach($result as $key => $value) {
-			$header[] = str_replace("'", "", $key);;
-			$data[] = $value;
-		}
-		if ($first) {
-			$CI->table->set_heading($header);
-		}
-		$CI->table->add_row($data);
-		$first = false;
-	}
-	echo $CI->table->generate();
-
-}
-
-?>
 
 <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds.</p>
 
