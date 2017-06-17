@@ -66,7 +66,7 @@ if (isset($results)) {
 
 <?php 
 $attributes = array('class' => 'form-horizontal', 'id' => 'vmchooser');
-echo form_open(site_url('/'), $attributes);
+echo form_open(base_url(), $attributes);
 ?>
   <fieldset>
     <legend>Requirements for the virtual machine</legend>
