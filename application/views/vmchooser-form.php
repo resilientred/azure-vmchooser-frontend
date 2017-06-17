@@ -101,8 +101,11 @@ echo form_open(site_url('/'), $attributes);
 
 <?php 
 
+echo "results</br>";
 print_r($results);
 $data = var_dump(json_decode($results, true));
+echo "data</br>";
+print_r($data);
 $this->load->library('table');
 echo $this->table->generate($data); 
 
