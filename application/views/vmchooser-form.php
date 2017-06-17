@@ -104,7 +104,11 @@ print_r($results);
 
 $this->load->library('table');
 
-echo $this->table->generate($results);
+foreach ($array as $result) {
+	$this->table->add_row($result);
+}
+
+echo $this->table->generate();
 
 ?>
 
