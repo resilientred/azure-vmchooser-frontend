@@ -40,7 +40,7 @@ class Vmchooser extends CI_Controller {
 		else
 		{
 			// Generate Query
-			$this->load->library("security");
+			$this->load->helper('security');
 			$ssd = $this->security->xss_clean($_POST["ssd"]);
 			$inputCores = $this->security->xss_clean($_POST["inputCores"]);
 			$inputMemory = $this->security->xss_clean($_POST["inputMemory"]);
