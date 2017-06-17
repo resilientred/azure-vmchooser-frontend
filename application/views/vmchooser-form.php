@@ -104,10 +104,22 @@ print_r($results);
 
 $this->load->library('table');
 
+$this->load->library('table');
 foreach ($array as $result) {
-	$this->table->add_row($result);
+	$data = "";
+	$i = 0;
+	$first = true;
+	foreach($result as $key => $value) {
+		$header[$i] = $key;
+		$data[$i] = $value;
+		$i++;
+		if ($first) {
+			$this->table->set_heading($header);
+		}
+		$this->table->add_row($data);
+		$first = false;
+	}
 }
-
 echo $this->table->generate();
 
 ?>
