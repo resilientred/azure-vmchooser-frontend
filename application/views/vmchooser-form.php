@@ -100,7 +100,7 @@ echo form_open(site_url('/'), $attributes);
 </form>
 
 <?php 
-
+print_r($results);
 $data = var_dump(json_decode($results, true));
 echo "data</br>";
 print_r($data);
