@@ -100,11 +100,10 @@ echo form_open(site_url('/'), $attributes);
 </form>
 
 <?php 
-print_r($results);
 
 $this->load->library('table');
 foreach ($results as $result) {
-	$data = "";
+	$data = array();
 	$i = 0;
 	$first = true;
 	foreach($result as $key => $value) {
