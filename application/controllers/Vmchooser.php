@@ -39,6 +39,7 @@ class Vmchooser extends CI_Controller {
 		}
 		else
 		{
+				// Do API Call
 				$this->load->library('guzzle');
 				$api_url = getenv('VMCHOOSERAPI');
 				$client     = new GuzzleHttp\Client();
@@ -50,15 +51,25 @@ class Vmchooser extends CI_Controller {
 														=> [ 'processId' => '2' ] 
 												  ]
 												);
-					$data['results'] =  $response->getBody()->getContents();
+					$json =  $response->getBody()->getContents();
 				} catch (GuzzleHttp\Exception\BadResponseException $e) {
 					$response = $e->getResponse();
 					$responseBodyAsString = $response->getBody()->getContents();
 					//print_r($responseBodyAsString);
 					echo "Something went wrong :-(";
 				}
+				
+				// Prep Results
+				$array = json_decode($json);
+				$i=0;
+				foreach ($array as $result) {
+				  $temp = (array) $result;
+				  $results[$i] = $temp;
+				  $i++;
+				}
 			
 				// OK
+				$data['results'] = $results;
 				$this->load->view('vmchooser-form',$data);
 				
 				

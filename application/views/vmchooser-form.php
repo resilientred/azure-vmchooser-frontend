@@ -101,13 +101,10 @@ echo form_open(site_url('/'), $attributes);
 
 <?php 
 print_r($results);
-$data = var_dump(json_decode($results, true));
-echo "data</br>";
-print_r($data);
 
-foreach ($data as $i => $value) {
-    print_r($value);
-}
+$this->load->library('table');
+
+echo $this->table->generate($results);
 
 ?>
 
