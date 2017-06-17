@@ -73,13 +73,13 @@ echo form_open(site_url('/'), $attributes);
       <div class="col-lg-10">
         <div class="radio">
           <label>
-            <input type="radio" name="ssd" id="optionsRadios1" value="No" <?php if (set_value('ssd[]') = "No") { echo 'checked=""' } ?>>
+            <input type="radio" name="ssd" id="optionsRadios1" value="No" <?php if (set_value('ssd[]') = "No") { echo 'checked=""'; } ?>>
             Standard disks only
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="ssd" id="optionsRadios2" value="Yes" <?php if (set_value('ssd[]') = "Yes") { echo 'checked=""' } ?>>
+            <input type="radio" name="ssd" id="optionsRadios2" value="Yes" <?php if (set_value('ssd[]') = "Yes") { echo 'checked=""'; } ?>>
             I'll be needing Premiums disks (SSD)
           </label>
         </div>
