@@ -9,8 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<?php echo validation_errors(); ?>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -24,6 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
   </div>
 </nav>
+
+<?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
 
 <?php 
 $attributes = array('class' => 'form-horizontal', 'id' => 'vmchooser');
