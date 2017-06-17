@@ -46,7 +46,7 @@ class Vmchooser extends CI_Controller {
 				
 				try {
 					$response = $client->request( 'POST', 
-												   $url, 
+												   $api_url, 
 												  [ 'form_params' 
 														=> [ 'processId' => '2' ] 
 												  ]
