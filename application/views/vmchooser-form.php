@@ -9,6 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
+<?php echo validation_errors(); ?>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -23,7 +25,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </nav>
 
-<form class="form-horizontal">
+<?php 
+$attributes = array('class' => 'form-horizontal', 'id' => 'vmchooser');
+echo form_open('email/send', $attributes);
+?>
   <fieldset>
     <legend>Requirements for the virtual machine</legend>
     <div class="form-group">
@@ -87,8 +92,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">I messed up! Clean this form for me...</button>
-        <button type="submit" class="btn btn-primary">Find my VM!</button>
+	    <button type="submit" class="btn btn-primary">Let's try to match a VM t-shirt size for you!</button>
+        <button type="reset" class="btn btn-default">I messed up! Please clean this form for me...</button>
       </div>
     </div>
   </fieldset>
