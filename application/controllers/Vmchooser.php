@@ -20,6 +20,20 @@ class Vmchooser extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('vmchooser-form');
-	}
+		
+		$this->load->helper(array('form', 'url'));
+
+		$this->load->library('form_validation');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+				// NOK
+				$this->load->view('vmchooser-form');
+		}
+		else
+		{
+				// OK
+				$this->load->view('vmchooser-form');
+		}
+}
 }
