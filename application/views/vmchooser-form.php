@@ -107,9 +107,9 @@ $data = var_dump(json_decode($results, true));
 echo "data</br>";
 print_r($data);
 
-foreach ($data as &$row) {
-  echo "row</rw>";
-  print_r($row);
+foreach ($data as $i => $value) {
+    print_r($value);
+	echo "$i";
 }
 
 ?>
