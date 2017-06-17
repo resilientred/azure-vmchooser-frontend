@@ -101,17 +101,8 @@ echo form_open(site_url('/'), $attributes);
 
 <?php 
 
-$this->load->library('table');
-
-print_r($this->table);
-
-$this->table->set_heading('Name', 'Color', 'Size');
-
-$this->table->add_row('Fred', 'Blue', 'Small');
-$this->table->add_row('Mary', 'Red', 'Large');
-$this->table->add_row('John', 'Green', 'Medium');
-
-echo $this->table->generate();
+$CI =& get_instance();
+$CI->load->library('table');
 
 foreach ($results as $result) {
 	$data = array();
@@ -120,15 +111,13 @@ foreach ($results as $result) {
 		$header[] = $key;
 		$data[] = $value;
 	}
-	print_r($header);
-	print_r($data);
-	/*if ($first) {
-		$this->table->set_heading($header);
-	}*/
-	$this->table->add_row($data);
+	if ($first) {
+		$CI->table->set_heading($header);
+	}
+	$CI->table->add_row($data);
 	$first = false;
 }
-echo $this->table->generate();
+echo $CI->table->generate();
 
 ?>
 
