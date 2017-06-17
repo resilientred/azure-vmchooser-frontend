@@ -111,9 +111,9 @@ foreach ($results as $result) {
 	}
 	print_r($header);
 	print_r($data);
-	if ($first) {
+	/*if ($first) {
 		$this->table->set_heading($header);
-	}
+	}*/
 	$this->table->add_row($data);
 	$first = false;
 }
