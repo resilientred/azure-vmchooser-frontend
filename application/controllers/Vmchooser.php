@@ -56,9 +56,6 @@ class Vmchooser extends CI_Controller {
 			$api_url = getenv('VMCHOOSERAPI') . $querysuffix;
 			$client     = new GuzzleHttp\Client();
 			
-			echo $api_url;
-			exit();
-			
 			try {
 				$response = $client->request( 'POST', 
 											   $api_url, 
