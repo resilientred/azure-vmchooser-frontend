@@ -123,7 +123,7 @@ if (isset($results)) {
 	foreach ($results as $result) {
 		$data = array();
 		foreach($result as $key => $value) {
-			$header[] = $key;
+			$header[] = str_replace("'", "", $key);;
 			$data[] = $value;
 		}
 		if ($first) {
