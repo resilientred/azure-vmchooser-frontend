@@ -40,14 +40,15 @@ class Vmchooser extends CI_Controller {
 		else
 		{
 			// Generate Query
-			$ssd = xss_clean($_POST["ssd"]);
-			$inputCores = xss_clean($_POST["inputCores"]);
-			$inputMemory = xss_clean($_POST["inputMemory"]);
-			$inputNics = xss_clean($_POST["inputNics"]);
-			$inputData = xss_clean($_POST["inputData"]);
-			$inputIops = xss_clean($_POST["inputIops"]);
-			$inputThroughput = xss_clean($_POST["inputThroughput"]);
-			$inputTemp = xss_clean($_POST["inputTemp"]);
+			$this->load->library("security");
+			$ssd = $this->security->xss_clean($_POST["ssd"]);
+			$inputCores = $this->security->xss_clean($_POST["inputCores"]);
+			$inputMemory = $this->security->xss_clean($_POST["inputMemory"]);
+			$inputNics = $this->security->xss_clean($_POST["inputNics"]);
+			$inputData = $this->security->xss_clean($_POST["inputData"]);
+			$inputIops = $this->security->xss_clean($_POST["inputIops"]);
+			$inputThroughput = $this->security->xss_clean($_POST["inputThroughput"]);
+			$inputTemp = $this->security->xss_clean($_POST["inputTemp"]);
 			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd";
 			
 			// Do API Call
