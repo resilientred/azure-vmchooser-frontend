@@ -99,7 +99,14 @@ echo form_open(site_url('/'), $attributes);
   </fieldset>
 </form>
 
-<?php print_r($data); ?>
+<?php 
+
+print_r($results);
+$data = var_dump(json_decode($results, true));
+$this->load->library('table');
+echo $this->table->generate($data); 
+
+?>
 
 <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds.</p>
 
