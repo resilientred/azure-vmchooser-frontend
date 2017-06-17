@@ -39,12 +39,32 @@ class Vmchooser extends CI_Controller {
 		}
 		else
 		{
+				$this->load->library('guzzle');
+				$api_url = getenv('VMCHOOSERAPI');
+				echo "DEBUG : let's roll! Towards $api_url";
+				$client     = new GuzzleHttp\Client();
+				
+				try {
+					$response = $client->request( 'POST', 
+												   $url, 
+												  [ 'form_params' 
+														=> [ 'processId' => '2' ] 
+												  ]
+												);
+					echo $response->getStatusCode(); // 200
+					echo $response->getReasonPhrase(); // OK
+					echo $response->getProtocolVersion(); // 1.1
+					echo $response->getBody();
+				} catch (GuzzleHttp\Exception\BadResponseException $e) {
+					$response = $e->getResponse();
+					$responseBodyAsString = $response->getBody()->getContents();
+					print_r($responseBodyAsString);
+				}
+			
 				// OK
 				$this->load->view('vmchooser-form');
 				
-				$api_url = getenv('VMCHOOSERAPI');
 				
-				echo "DEBUG : let's roll! Towards $api_url";
 		}
 }
 }
