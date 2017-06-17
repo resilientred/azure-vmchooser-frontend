@@ -99,30 +99,42 @@ echo form_open(site_url('/'), $attributes);
   </fieldset>
 </form>
 
-<?php 
+<?php
 
-$CI =& get_instance();
-$CI->load->library('table');
+if ($results <> "") { 
 
-$template = array(
-        'table_open' => '<table class="table table-striped table-hover">'
-);
-$CI->table->set_template($template);
+	?>
+	
+	<div class="page-header">
+	  <h1 id="navbar">Results</h1>
+	</div>
+	
+	<?php
 
-$first = true;
-foreach ($results as $result) {
-	$data = array();
-	foreach($result as $key => $value) {
-		$header[] = $key;
-		$data[] = $value;
+	$CI =& get_instance();
+	$CI->load->library('table');
+
+	$template = array(
+			'table_open' => '<table class="table table-striped table-hover">'
+	);
+	$CI->table->set_template($template);
+
+	$first = true;
+	foreach ($results as $result) {
+		$data = array();
+		foreach($result as $key => $value) {
+			$header[] = $key;
+			$data[] = $value;
+		}
+		if ($first) {
+			$CI->table->set_heading($header);
+		}
+		$CI->table->add_row($data);
+		$first = false;
 	}
-	if ($first) {
-		$CI->table->set_heading($header);
-	}
-	$CI->table->add_row($data);
-	$first = false;
+	echo $CI->table->generate();
+
 }
-echo $CI->table->generate();
 
 ?>
 
