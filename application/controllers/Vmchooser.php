@@ -50,7 +50,7 @@ class Vmchooser extends CI_Controller {
 														=> [ 'processId' => '2' ] 
 												  ]
 												);
-					$results =  $response->getBody();
+					$data['results'] =  $response->getBody();
 				} catch (GuzzleHttp\Exception\BadResponseException $e) {
 					$response = $e->getResponse();
 					$responseBodyAsString = $response->getBody()->getContents();
@@ -59,7 +59,7 @@ class Vmchooser extends CI_Controller {
 				}
 			
 				// OK
-				$this->load->view('vmchooser-form',$results);
+				$this->load->view('vmchooser-form',$data);
 				
 				
 		}
