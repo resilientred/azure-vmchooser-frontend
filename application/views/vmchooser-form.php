@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php 
 $attributes = array('class' => 'form-horizontal', 'id' => 'vmchooser');
-echo form_open('/', $attributes);
+echo form_open(site_url('/'), $attributes);
 ?>
   <fieldset>
     <legend>Requirements for the virtual machine</legend>
@@ -51,43 +51,43 @@ echo form_open('/', $attributes);
 	<div class="form-group">
       <label for="inputCores" class="col-lg-2 control-label">Number of Cores</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputCores" id="inputCores" placeholder="What's the minimum of cores this VM needs?" autocomplete="off">
+        <input type="text" class="form-control" name="inputCores" id="inputCores"  value="<?php echo set_value('inputCores[]'); ?>" placeholder="What's the minimum of cores this VM needs?" autocomplete="off">
       </div>
     </div>
 	<div class="form-group">
       <label for="inputMemory" class="col-lg-2 control-label">Amount of Memory</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputMemory" id="inputMemory" placeholder="What's the minimum amount of memory (in MB) this VM needs?" autocomplete="off">
+        <input type="text" class="form-control" name="inputMemory" id="inputMemory" value="<?php echo set_value('inputMemory[]'); ?>" placeholder="What's the minimum amount of memory (in MB) this VM needs?" autocomplete="off">
       </div>
     </div>
 		<div class="form-group">
       <label for="inputNics" class="col-lg-2 control-label">Number of NICs</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputNics" id="inputNics" placeholder="What's the minimum number of network interfaces this this VM needs?" autocomplete="off">
+        <input type="text" class="form-control" name="inputNics" id="inputNics" value="<?php echo set_value('inputNics[]'); ?>" placeholder="What's the minimum number of network interfaces this this VM needs?" autocomplete="off">
       </div>
     </div>
 	<div class="form-group">
       <label for="inputData" class="col-lg-2 control-label">Minimum disk size</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputData" id="inputData" placeholder="What's the minimum disk size needed? (excluding the OS disk)" autocomplete="off">
+        <input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size needed? (excluding the OS disk)" autocomplete="off">
       </div>
     </div>
 	<div class="form-group">
       <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputIops" id="inputIops" placeholder="What's the minimum IOPS, for the non-OS disk(s), this VM needs?" autocomplete="off">
+        <input type="text" class="form-control" name="inputIops" id="inputIops" value="<?php echo set_value('inputIops[]'); ?>" placeholder="What's the minimum IOPS, for the non-OS disk(s), this VM needs?" autocomplete="off">
       </div>
     </div>
 	<div class="form-group">
       <label for="inputThroughput" class="col-lg-2 control-label">Throughput</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputThroughput" id="inputThroughput" placeholder="What's the minimum throughput (in MB), for the non-OS disk(s), this VM needs?" autocomplete="off">
+        <input type="text" class="form-control" name="inputThroughput" id="inputThroughput" value="<?php echo set_value('inputThroughput[]'); ?>" placeholder="What's the minimum throughput (in MB), for the non-OS disk(s), this VM needs?" autocomplete="off">
       </div>
     </div>
 	<div class="form-group">
       <label for="inputTemp" class="col-lg-2 control-label">Temp Disk</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputTemp" id="inputTemp" placeholder="What's the minimum size for the temp disk?" autocomplete="off">
+        <input type="text" class="form-control" name="inputTemp" id="inputTemp" value="<?php echo set_value('inputTemp[]'); ?>" placeholder="What's the minimum size for the temp disk?" autocomplete="off">
       </div>
     </div>
     <div class="form-group">
@@ -99,7 +99,7 @@ echo form_open('/', $attributes);
   </fieldset>
 </form>
 
-<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds.</p>
 
 </body>
 </html>
