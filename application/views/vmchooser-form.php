@@ -109,9 +109,9 @@ $template = array(
 );
 $CI->table->set_template($template);
 
+$first = true;
 foreach ($results as $result) {
 	$data = array();
-	$first = true;
 	foreach($result as $key => $value) {
 		$header[] = $key;
 		$data[] = $value;
