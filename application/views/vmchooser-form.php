@@ -103,9 +103,7 @@ echo form_open(site_url('/'), $attributes);
 print_r($results);
 
 $this->load->library('table');
-
-$this->load->library('table');
-foreach ($array as $result) {
+foreach ($results as $result) {
 	$data = "";
 	$i = 0;
 	$first = true;
