@@ -104,6 +104,11 @@ echo form_open(site_url('/'), $attributes);
 $CI =& get_instance();
 $CI->load->library('table');
 
+$template = array(
+        'table_open' => '<table class="table table-striped table-hover">'
+);
+$CI->table->set_template($template);
+
 foreach ($results as $result) {
 	$data = array();
 	$first = true;
