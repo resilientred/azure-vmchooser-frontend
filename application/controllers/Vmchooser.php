@@ -50,7 +50,7 @@ class Vmchooser extends CI_Controller {
 														=> [ 'processId' => '2' ] 
 												  ]
 												);
-					$data['results'] =  $response->getBody();
+					$data['results'] =  $response->getBody()->getContents();
 				} catch (GuzzleHttp\Exception\BadResponseException $e) {
 					$response = $e->getResponse();
 					$responseBodyAsString = $response->getBody()->getContents();
