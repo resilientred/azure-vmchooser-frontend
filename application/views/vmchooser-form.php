@@ -111,6 +111,8 @@ foreach ($results as $result) {
 		$header[$i] = $key;
 		$data[$i] = $value;
 		$i++;
+		print_r($header);
+		print_r($data);
 		if ($first) {
 			$this->table->set_heading($header);
 		}
