@@ -28,6 +28,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php 
 $attributes = array('class' => 'form-horizontal', 'id' => 'vmchooser');
 echo form_open(site_url('/'), $attributes);
+
+echo set_value('ssd[]');
 ?>
   <fieldset>
     <legend>Requirements for the virtual machine</legend>
@@ -36,13 +38,13 @@ echo form_open(site_url('/'), $attributes);
       <div class="col-lg-10">
         <div class="radio">
           <label>
-            <input type="radio" name="ssd" id="optionsRadios1" value="no" checked="">
+            <input type="radio" name="ssd" id="optionsRadios1" value="No" checked="">
             Standard disks only
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="ssd" id="optionsRadios2" value="yes">
+            <input type="radio" name="ssd" id="optionsRadios2" value="Yes">
             I'll be needing Premiums disks (SSD)
           </label>
         </div>
