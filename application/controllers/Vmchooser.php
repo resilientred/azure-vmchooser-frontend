@@ -39,13 +39,20 @@ class Vmchooser extends CI_Controller {
 		}
 		else
 		{
-			// Form Query
-			print_r($_POST);
-			// xss_clean();
+			// Generate Query
+			$ssd = xss_clean($_POST["ssd"]);
+			$inputCores = xss_clean($_POST["inputCores"]);
+			$inputMemory = xss_clean($_POST["inputMemory"]);
+			$inputNics = xss_clean($_POST["inputNics"]);
+			$inputData = xss_clean($_POST["inputData"]);
+			$inputIops = xss_clean($_POST["inputIops"]);
+			$inputThroughput = xss_clean($_POST["inputThroughput"]);
+			$inputTemp = xss_clean($_POST["inputTemp"]);
+			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd";
 			
 			// Do API Call
 			$this->load->library('guzzle');
-			$api_url = getenv('VMCHOOSERAPI');
+			$api_url = getenv('VMCHOOSERAPI') . $querysuffix;
 			$client     = new GuzzleHttp\Client();
 			
 			try {
