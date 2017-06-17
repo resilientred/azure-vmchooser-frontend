@@ -111,14 +111,14 @@ foreach ($results as $result) {
 		$header[$i] = $key;
 		$data[$i] = $value;
 		$i++;
-		print_r($header);
-		print_r($data);
-		if ($first) {
-			$this->table->set_heading($header);
-		}
-		$this->table->add_row($data);
-		$first = false;
 	}
+	print_r($header);
+	print_r($data);
+	if ($first) {
+		$this->table->set_heading($header);
+	}
+	$this->table->add_row($data);
+	$first = false;
 }
 echo $this->table->generate();
 
