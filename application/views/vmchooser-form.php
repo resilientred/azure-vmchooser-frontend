@@ -23,22 +23,78 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </nav>
 
-<div id="container">
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Requirements for the virtual machine</legend>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Disk Type</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="ssd" id="optionsRadios1" value="no" checked="">
+            Standard disks only
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="ssd" id="optionsRadios2" value="yes">
+            I'll be needing Premiums disks (SSD)
+          </label>
+        </div>
+      </div>
+    </div>
+	<div class="form-group">
+      <label for="inputCores" class="col-lg-2 control-label">Number of Cores</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputCores" placeholder="What's the minimum of cores this VM needs?" autocomplete="off">
+      </div>
+    </div>
+	<div class="form-group">
+      <label for="inputMemory" class="col-lg-2 control-label">Amount of Memory</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputMemory" placeholder="What's the minimum amount of memory (in MB) this VM needs?" autocomplete="off">
+      </div>
+    </div>
+		<div class="form-group">
+      <label for="inputNics" class="col-lg-2 control-label">Number of NICs</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputNics" placeholder="What's the minimum number of network interfaces this this VM needs?" autocomplete="off">
+      </div>
+    </div>
+	<div class="form-group">
+      <label for="inputData" class="col-lg-2 control-label">Minimum disk size</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputData" placeholder="What's the minimum disk size needed? (excluding the OS disk)" autocomplete="off">
+      </div>
+    </div>
+	<div class="form-group">
+      <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputIops" placeholder="What's the minimum IOPS, for the non-OS disk(s), this VM needs?" autocomplete="off">
+      </div>
+    </div>
+	<div class="form-group">
+      <label for="inputThroughput" class="col-lg-2 control-label">Throughput</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputThroughput" placeholder="What's the minimum throughput (in MB), for the non-OS disk(s), this VM needs?" autocomplete="off">
+      </div>
+    </div>
+	<div class="form-group">
+      <label for="inputTemp" class="col-lg-2 control-label">Temp Disk</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputTemp" placeholder="What's the minimum size for the temp disk?" autocomplete="off">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">I messed up! Clean this form for me...</button>
+        <button type="submit" class="btn btn-primary">Find my VM!</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
 
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
+<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 
 </body>
 </html>
