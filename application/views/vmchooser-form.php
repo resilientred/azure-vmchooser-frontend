@@ -104,12 +104,10 @@ echo form_open(site_url('/'), $attributes);
 $this->load->library('table');
 foreach ($results as $result) {
 	$data = array();
-	$i = 0;
 	$first = true;
 	foreach($result as $key => $value) {
-		$header[$i] = $key;
-		$data[$i] = $value;
-		$i++;
+		$header[] = $key;
+		$data[] = $value;
 	}
 	print_r($header);
 	print_r($data);
