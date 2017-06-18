@@ -63,7 +63,7 @@ class Vmchooser extends CI_Controller {
 			$inputTemp = $this->security->xss_clean($_POST["inputTemp"]);
 			$inputAvgcpupeak = $this->security->xss_clean($_POST["inputAvgcpupeak"]);
 			$inputAvgmempeak = $this->security->xss_clean($_POST["inputAvgmempeak"]);
-			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgmempeak=$inputAvgmempeak&avgmempeak=$inputAvgmempeak";
+			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
 			// Do API Call
 			$this->load->library('guzzle');
