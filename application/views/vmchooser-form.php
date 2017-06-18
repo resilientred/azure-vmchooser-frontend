@@ -88,7 +88,7 @@ echo form_open(base_url(), $attributes);
   <div class="tab-pane fade active in" id="basic">
   
 	<fieldset>
-		<legend>Requirements for the virtual machine</legend>
+		<legend>Basic requirements for your virtual machine</legend>
 		<div class="form-group">
 		  <label class="col-lg-2 control-label">Disk Type</label>
 		  <div class="col-lg-10">
@@ -142,7 +142,7 @@ echo form_open(base_url(), $attributes);
   <div class="tab-pane fade" id="advanced">
   
 	<fieldset>
-		<legend>Advanced requirements for the virtual machine</legend>
+		<legend>Advanced requirements for your virtual machine</legend>
 		<div class="form-group">
 		  <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
 		  <div class="col-lg-10">
@@ -167,7 +167,7 @@ echo form_open(base_url(), $attributes);
   <div class="tab-pane fade" id="rightsizing">
 
 	<fieldset>
-		<legend>Advanced requirements for the virtual machine</legend>
+		<legend>Rightsizing your virtual machine</legend>
 		<div class="form-group">
 		  <label for="inputAvgcpupeak" class="col-lg-2 control-label">Peak CPU</label>
 		  <div class="col-lg-10">
