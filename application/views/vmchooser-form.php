@@ -78,9 +78,9 @@ echo form_open(base_url(), $attributes);
 </fieldset>
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#basic" data-toggle="tab" aria-expanded="false">Requirements</a></li>
-  <li class=""><a href="#advanced" data-toggle="tab" aria-expanded="true">Advanced</a></li>
-  <li class=""><a href="#rightsizing" data-toggle="tab" aria-expanded="true">Rightsizing</a></li>
+  <li class="active"><a href="#basic" data-toggle="tab" aria-expanded="true">Requirements</a></li>
+  <li class=""><a href="#advanced" data-toggle="tab" aria-expanded="false">Advanced</a></li>
+  <li class=""><a href="#rightsizing" data-toggle="tab" aria-expanded="false">Rightsizing</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="basic">
@@ -137,7 +137,7 @@ echo form_open(base_url(), $attributes);
 	 </fieldset>
     
   </div>
-  <div class="tab-pane fade " id="advanced">
+  <div class="tab-pane fade" id="advanced">
   
 	<fieldset>
 		<legend>Advanced requirements for the virtual machine</legend>
@@ -162,7 +162,7 @@ echo form_open(base_url(), $attributes);
 	 </fieldset>
     
   </div>
-  <div class="tab-pane fade " id="rightsizing">
+  <div class="tab-pane fade" id="rightsizing">
   <p>Under construction...</p>
   </div>
 </div>
