@@ -68,79 +68,100 @@ if (isset($results)) {
 $attributes = array('class' => 'form-horizontal', 'id' => 'vmchooser');
 echo form_open(base_url(), $attributes);
 ?>
-  <fieldset>
-    <legend>Requirements for the virtual machine</legend>
-    <div class="form-group">
-      <label class="col-lg-2 control-label">Disk Type</label>
-      <div class="col-lg-10">
-        <div class="radio">
-          <label>
-            <input type="radio" name="ssd" id="optionsRadios1" value="No" <?php echo  set_radio('ssd', 'No', TRUE); ?>>
-            Standard disks only
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="ssd" id="optionsRadios2" value="Yes" <?php echo  set_radio('ssd', 'Yes', TRUE); ?>>
-            I'll be needing Premiums disks (SSD)
-          </label>
-        </div>
-		<div class="radio">
-          <label>
-            <input type="radio" name="ssd" id="optionsRadios2" value="All" <?php echo  set_radio('ssd', 'All', TRUE); ?>>
-            Doesn't matter... Just gimme all options available!
-          </label>
-        </div>
-      </div>
+
+<fieldset>
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+	  <button type="submit" class="btn btn-primary">Let's try to match a VM t-shirt size for you!</button>
     </div>
-	<div class="form-group">
-      <label for="inputCores" class="col-lg-2 control-label">Number of Cores</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputCores" id="inputCores"  value="<?php echo set_value('inputCores[]'); ?>" placeholder="What's the minimum of cores this VM needs?" autocomplete="off">
-      </div>
-    </div>
-	<div class="form-group">
-      <label for="inputMemory" class="col-lg-2 control-label">Amount of Memory</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputMemory" id="inputMemory" value="<?php echo set_value('inputMemory[]'); ?>" placeholder="What's the minimum amount of memory (in GB) this VM needs?" autocomplete="off">
-      </div>
-    </div>
+  </div>
+</fieldset>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#basic" data-toggle="tab" aria-expanded="false">Requirements</a></li>
+  <li class=""><a href="#advanced" data-toggle="tab" aria-expanded="true">Advanced</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="home">
+  
+	<fieldset>
+		<legend>Requirements for the virtual machine</legend>
 		<div class="form-group">
-      <label for="inputNics" class="col-lg-2 control-label">Number of NICs</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputNics" id="inputNics" value="<?php echo set_value('inputNics[]'); ?>" placeholder="What's the minimum number of network interfaces this this VM needs?" autocomplete="off">
-      </div>
-    </div>
-	<div class="form-group">
-      <label for="inputData" class="col-lg-2 control-label">Minimum disk size</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size (in TB) needed? (excluding the OS disk)" autocomplete="off">
-      </div>
-    </div>
-	<div class="form-group">
-      <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputIops" id="inputIops" value="<?php echo set_value('inputIops[]'); ?>" placeholder="What's the minimum IOPS, for the non-OS disk(s), this VM needs?" autocomplete="off">
-      </div>
-    </div>
-	<div class="form-group">
-      <label for="inputThroughput" class="col-lg-2 control-label">Throughput</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputThroughput" id="inputThroughput" value="<?php echo set_value('inputThroughput[]'); ?>" placeholder="What's the minimum throughput (in MB), for the non-OS disk(s), this VM needs?" autocomplete="off">
-      </div>
-    </div>
-	<div class="form-group">
-      <label for="inputTemp" class="col-lg-2 control-label">Minimum temp disk size</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputTemp" id="inputTemp" value="<?php echo set_value('inputTemp[]'); ?>" placeholder="What's the minimum size (in GB) for the temp disk?" autocomplete="off">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-	    <button type="submit" class="btn btn-primary">Let's try to match a VM t-shirt size for you!</button>
-      </div>
-    </div>
-  </fieldset>
+		  <label class="col-lg-2 control-label">Disk Type</label>
+		  <div class="col-lg-10">
+			<div class="radio">
+			  <label>
+				<input type="radio" name="ssd" id="optionsRadios1" value="No" <?php echo  set_radio('ssd', 'No', TRUE); ?>>
+				Standard disks only
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+				<input type="radio" name="ssd" id="optionsRadios2" value="Yes" <?php echo  set_radio('ssd', 'Yes', TRUE); ?>>
+				I'll be needing Premiums disks (SSD)
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+				<input type="radio" name="ssd" id="optionsRadios2" value="All" <?php echo  set_radio('ssd', 'All', TRUE); ?>>
+				Doesn't matter... Just gimme all options available!
+			  </label>
+			</div>
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputCores" class="col-lg-2 control-label">Number of Cores</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputCores" id="inputCores"  value="<?php echo set_value('inputCores[]'); ?>" placeholder="What's the minimum of cores this VM needs?" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputMemory" class="col-lg-2 control-label">Amount of Memory</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputMemory" id="inputMemory" value="<?php echo set_value('inputMemory[]'); ?>" placeholder="What's the minimum amount of memory (in GB) this VM needs?" autocomplete="off">
+		  </div>
+		</div>
+			<div class="form-group">
+		  <label for="inputNics" class="col-lg-2 control-label">Number of NICs</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputNics" id="inputNics" value="<?php echo set_value('inputNics[]'); ?>" placeholder="What's the minimum number of network interfaces this this VM needs?" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputData" class="col-lg-2 control-label">Minimum disk size</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size (in TB) needed? (excluding the OS disk)" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputIops" id="inputIops" value="<?php echo set_value('inputIops[]'); ?>" placeholder="What's the minimum IOPS, for the non-OS disk(s), this VM needs?" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputThroughput" class="col-lg-2 control-label">Throughput</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputThroughput" id="inputThroughput" value="<?php echo set_value('inputThroughput[]'); ?>" placeholder="What's the minimum throughput (in MB), for the non-OS disk(s), this VM needs?" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputTemp" class="col-lg-2 control-label">Minimum temp disk size</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputTemp" id="inputTemp" value="<?php echo set_value('inputTemp[]'); ?>" placeholder="What's the minimum size (in GB) for the temp disk?" autocomplete="off">
+		  </div>
+		</div>
+	 </fieldset>
+    
+  </div>
+  <div class="tab-pane fade " id="profile">
+    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+  </div>
+</div>
+
+
+
+
 </form>
 
 <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds.</p>
