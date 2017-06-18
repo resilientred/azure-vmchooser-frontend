@@ -31,6 +31,8 @@ class Vmchooser extends CI_Controller {
 		$this->form_validation->set_rules('inputIops', 'IOPS', 'numeric');
 		$this->form_validation->set_rules('inputThroughput', 'Throughput', 'numeric');
 		$this->form_validation->set_rules('inputTemp', 'Minimum temp disk size', 'numeric');
+		$this->form_validation->set_rules('inputAvgcpupeak', 'Peak CPU', 'numeric');
+		$this->form_validation->set_rules('inputAvgmempeak', 'Peak Memory Usage', 'numeric');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -59,7 +61,9 @@ class Vmchooser extends CI_Controller {
 			$inputIops = $this->security->xss_clean($_POST["inputIops"]);
 			$inputThroughput = $this->security->xss_clean($_POST["inputThroughput"]);
 			$inputTemp = $this->security->xss_clean($_POST["inputTemp"]);
-			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd";
+			$inputAvgcpupeak = $this->security->xss_clean($_POST["inputAvgcpupeak"]);
+			$inputAvgmempeak = $this->security->xss_clean($_POST["inputAvgmempeak"]);
+			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgmempeak=$inputAvgmempeak&avgmempeak=$inputAvgmempeak";
 			
 			// Do API Call
 			$this->load->library('guzzle');
