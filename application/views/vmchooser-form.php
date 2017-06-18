@@ -80,6 +80,7 @@ echo form_open(base_url(), $attributes);
 <ul class="nav nav-tabs">
   <li class="active"><a href="#basic" data-toggle="tab" aria-expanded="false">Requirements</a></li>
   <li class=""><a href="#advanced" data-toggle="tab" aria-expanded="true">Advanced</a></li>
+  <li class=""><a href="#rightsizing" data-toggle="tab" aria-expanded="true">Rightsizing</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="basic">
@@ -160,6 +161,9 @@ echo form_open(base_url(), $attributes);
 		</div>
 	 </fieldset>
     
+  </div>
+  <div class="tab-pane fade " id="rightsizing">
+  <p>Under construction...</p>
   </div>
 </div>
 
