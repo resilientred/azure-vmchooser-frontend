@@ -85,6 +85,12 @@ echo form_open(base_url(), $attributes);
             I'll be needing Premiums disks (SSD)
           </label>
         </div>
+		<div class="radio">
+          <label>
+            <input type="radio" name="ssd" id="optionsRadios2" value="All" <?php echo  set_radio('ssd', 'All', TRUE); ?>>
+            Doesn't matter... Just gimme all options
+          </label>
+        </div>
       </div>
     </div>
 	<div class="form-group">
