@@ -108,7 +108,7 @@ echo form_open(base_url(), $attributes);
 	<div class="form-group">
       <label for="inputData" class="col-lg-2 control-label">Minimum disk size</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size needed? (excluding the OS disk)" autocomplete="off">
+        <input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size (in GB) needed? (excluding the OS disk)" autocomplete="off">
       </div>
     </div>
 	<div class="form-group">
@@ -126,7 +126,7 @@ echo form_open(base_url(), $attributes);
 	<div class="form-group">
       <label for="inputTemp" class="col-lg-2 control-label">Minimum temp disk size</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputTemp" id="inputTemp" value="<?php echo set_value('inputTemp[]'); ?>" placeholder="What's the minimum size for the temp disk?" autocomplete="off">
+        <input type="text" class="form-control" name="inputTemp" id="inputTemp" value="<?php echo set_value('inputTemp[]'); ?>" placeholder="What's the minimum size (in GB) for the temp disk?" autocomplete="off">
       </div>
     </div>
     <div class="form-group">
