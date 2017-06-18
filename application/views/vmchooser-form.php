@@ -88,7 +88,7 @@ echo form_open(base_url(), $attributes);
 		<div class="radio">
           <label>
             <input type="radio" name="ssd" id="optionsRadios2" value="All" <?php echo  set_radio('ssd', 'All', TRUE); ?>>
-            Doesn't matter... Just gimme all options
+            Doesn't matter... Just gimme all options available!
           </label>
         </div>
       </div>
