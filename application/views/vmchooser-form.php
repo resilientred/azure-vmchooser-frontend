@@ -169,7 +169,7 @@ echo form_open(base_url(), $attributes);
 	<fieldset>
 		<legend>Rightsizing your virtual machine</legend>
 		<div class="form-group">
-		  <label for="inputAvgcpupeak" class="col-lg-2 control-label">Peak CPU</label>
+		  <label for="inputAvgcpupeak" class="col-lg-2 control-label">Peak CPU Usage</label>
 		  <div class="col-lg-10">
 			<input type="text" class="form-control" name="inputAvgcpupeak" id="inputAvgcpupeak" value="<?php echo set_value('inputAvgcpupeak[]'); ?>" placeholder="What's the peak CPU usage (in %) when checking the metrics of your VM on a 95pct curve?" autocomplete="off">
 		  </div>
