@@ -102,7 +102,7 @@ echo form_open(base_url(), $attributes);
 	<div class="form-group">
       <label for="inputMemory" class="col-lg-2 control-label">Amount of Memory</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputMemory" id="inputMemory" value="<?php echo set_value('inputMemory[]'); ?>" placeholder="What's the minimum amount of memory (in MB) this VM needs?" autocomplete="off">
+        <input type="text" class="form-control" name="inputMemory" id="inputMemory" value="<?php echo set_value('inputMemory[]'); ?>" placeholder="What's the minimum amount of memory (in GB) this VM needs?" autocomplete="off">
       </div>
     </div>
 		<div class="form-group">
@@ -114,7 +114,7 @@ echo form_open(base_url(), $attributes);
 	<div class="form-group">
       <label for="inputData" class="col-lg-2 control-label">Minimum disk size</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size (in GB) needed? (excluding the OS disk)" autocomplete="off">
+        <input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size (in TB) needed? (excluding the OS disk)" autocomplete="off">
       </div>
     </div>
 	<div class="form-group">
