@@ -82,7 +82,7 @@ echo form_open(base_url(), $attributes);
   <li class=""><a href="#advanced" data-toggle="tab" aria-expanded="true">Advanced</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade active in" id="home">
+  <div class="tab-pane fade active in" id="basic">
   
 	<fieldset>
 		<legend>Requirements for the virtual machine</legend>
@@ -133,6 +133,13 @@ echo form_open(base_url(), $attributes);
 			<input type="text" class="form-control" name="inputData" id="inputData" value="<?php echo set_value('inputData[]'); ?>" placeholder="What's the minimum disk size (in TB) needed? (excluding the OS disk)" autocomplete="off">
 		  </div>
 		</div>
+	 </fieldset>
+    
+  </div>
+  <div class="tab-pane fade " id="advanced">
+  
+	<fieldset>
+		<legend>Advanced requirements for the virtual machine</legend>
 		<div class="form-group">
 		  <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
 		  <div class="col-lg-10">
@@ -153,9 +160,6 @@ echo form_open(base_url(), $attributes);
 		</div>
 	 </fieldset>
     
-  </div>
-  <div class="tab-pane fade " id="profile">
-    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
   </div>
 </div>
 
