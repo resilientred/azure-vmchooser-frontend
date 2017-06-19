@@ -78,8 +78,7 @@ class Vmchooser extends CI_Controller {
 			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
 			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
-			if ($inputSaps2tier <> "" OR inputSaps3tier <> "") {
-				echo "$inputSaps2tier - $inputSaps2tier";
+			if (!empty($inputSaps2tier) AND !empty(inputSaps3tier)) {
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier";
 			}
 			
