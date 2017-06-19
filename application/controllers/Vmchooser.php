@@ -100,5 +100,10 @@ class Vmchooser extends CI_Controller {
 				
 				
 		}
-}
+	}
+	
+	public function sap()
+	{
+		echo "SAP placeholder";
+	}	
 }
