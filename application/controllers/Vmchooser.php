@@ -79,6 +79,7 @@ class Vmchooser extends CI_Controller {
 			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
 			if ($inputSaps2tier <> "" OR inputSaps3tier <> "") {
+				echo "$inputSaps2tier - $inputSaps2tier";
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier";
 			}
 			
