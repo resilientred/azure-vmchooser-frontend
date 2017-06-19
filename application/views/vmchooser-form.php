@@ -83,6 +83,7 @@ echo form_open(base_url(), $attributes);
   <li class="active"><a href="#basic" data-toggle="tab" aria-expanded="true">Requirements</a></li>
   <li class=""><a href="#advanced" data-toggle="tab" aria-expanded="false">Advanced</a></li>
   <li class=""><a href="#rightsizing" data-toggle="tab" aria-expanded="false">Rightsizing</a></li>
+  <li class=""><a href="#sap" data-toggle="tab" aria-expanded="false">SAP Specific</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="basic">
@@ -178,6 +179,42 @@ echo form_open(base_url(), $attributes);
 		  <label for="inputAvgmempeak" class="col-lg-2 control-label">Peak Memory Usage</label>
 		  <div class="col-lg-10">
 			<input type="text" class="form-control" name="inputAvgmempeak" id="inputAvgmempeak" value="<?php echo set_value('inputAvgmempeak[]'); ?>" placeholder="What's the peak Memory usage (in %) when checking the metrics of your VM on a 95pct curve?" autocomplete="off">
+		  </div>
+		</div>
+	 </fieldset>
+  
+  </div>
+  <div class="tab-pane fade" id="sap">
+
+	<fieldset>
+		<legend>SAP Parameters</legend>
+		<div class="form-group">
+		  <label for="inputSaps2tier" class="col-lg-2 control-label">SAPS 2-Tier</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputSaps2tier" id="inputSaps2tier" value="<?php echo set_value('inputSaps2tier[]'); ?>" placeholder="What's the minimum SAPS 2-tier benchmark value you need?" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputSaps3tier" class="col-lg-2 control-label">SAPS 2-Tier</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputSaps3tier" id="inputSaps3tier" value="<?php echo set_value('inputSaps3tier[]'); ?>" placeholder="What's the minimum SAPS 3-tier benchmark value you need?" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="col-lg-2 control-label">HANA Support</label>
+		  <div class="col-lg-10">
+			<div class="radio">
+			  <label>
+				<input type="radio" name="hana" id="optionsRadios2" value="Yes" <?php echo  set_radio('hana', 'Yes', TRUE); ?>>
+				Show me only the HANA supported devices!
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+				<input type="radio" name="hana" id="optionsRadios2" value="All" <?php echo  set_radio('hana', 'All', TRUE); ?>>
+				Doesn't matter... Just gimme all options available!
+			  </label>
+			</div>
 		  </div>
 		</div>
 	 </fieldset>

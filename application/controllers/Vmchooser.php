@@ -33,6 +33,8 @@ class Vmchooser extends CI_Controller {
 		$this->form_validation->set_rules('inputTemp', 'Minimum temp disk size', 'numeric');
 		$this->form_validation->set_rules('inputAvgcpupeak', 'Peak CPU Usage', 'numeric');
 		$this->form_validation->set_rules('inputAvgmempeak', 'Peak Memory Usage', 'numeric');
+		$this->form_validation->set_rules('inputSaps2tier', 'SAPS 2-Tier', 'numeric');
+		$this->form_validation->set_rules('inputSaps3tier', 'SAPS 3-Tier', 'numeric');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -63,11 +65,27 @@ class Vmchooser extends CI_Controller {
 			$inputTemp = $this->security->xss_clean($_POST["inputTemp"]);
 			$inputAvgcpupeak = $this->security->xss_clean($_POST["inputAvgcpupeak"]);
 			$inputAvgmempeak = $this->security->xss_clean($_POST["inputAvgmempeak"]);
+			$hana = $this->security->xss_clean($_POST["hana"]);
+			switch ($hana) {
+				case "Yes":
+					break;
+				case "All":
+					break;
+				default:
+				   echo "Something went wrong :-(";
+			}
+			$inputSaps2tier = $this->security->xss_clean($_POST["inputSaps2tier"]);
+			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
 			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
+			
+			if ($inputSaps2tier <> "" OR inputSaps3tier <> "") {
+				$sap = true;
+				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier";
+			}
 			
 			// Do API Call
 			$this->load->library('guzzle');
-			$api_url = getenv('VMCHOOSERAPI') . $querysuffix;
+			if ($sap) { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI') . $querysuffix; }
 			$client     = new GuzzleHttp\Client();
 			
 			try {
