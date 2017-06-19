@@ -79,13 +79,12 @@ class Vmchooser extends CI_Controller {
 			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
 			if ($inputSaps2tier <> "" OR inputSaps3tier <> "") {
-				$sap = true;
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier";
 			}
 			
 			// Do API Call
 			$this->load->library('guzzle');
-			if ($sap) { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI') . $querysuffix; }
+			if ($sapsuffix <> "") { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI') . $querysuffix; }
 			$client     = new GuzzleHttp\Client();
 			
 			try {
@@ -120,8 +119,4 @@ class Vmchooser extends CI_Controller {
 		}
 	}
 	
-	public function sap()
-	{
-		echo "SAP placeholder";
-	}	
 }
