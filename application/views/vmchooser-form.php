@@ -195,7 +195,7 @@ echo form_open(base_url(), $attributes);
 		  </div>
 		</div>
 		<div class="form-group">
-		  <label for="inputSaps3tier" class="col-lg-2 control-label">SAPS 2-Tier</label>
+		  <label for="inputSaps3tier" class="col-lg-2 control-label">SAPS 3-Tier</label>
 		  <div class="col-lg-10">
 			<input type="text" class="form-control" name="inputSaps3tier" id="inputSaps3tier" value="<?php echo set_value('inputSaps3tier[]'); ?>" placeholder="What's the minimum SAPS 3-tier benchmark value you need?" autocomplete="off">
 		  </div>
