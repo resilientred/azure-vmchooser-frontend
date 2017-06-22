@@ -237,5 +237,49 @@
             "rest",
             "web service"
         ]
+    },
+    {
+        "name": "svenkuegler/php-csv-validator",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/svenkuegler/php-csv-validator.git",
+            "reference": "cd5a95167dee11094663857fe025fc302800f857"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/svenkuegler/php-csv-validator/zipball/cd5a95167dee11094663857fe025fc302800f857",
+            "reference": "cd5a95167dee11094663857fe025fc302800f857",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "dev-master"
+        },
+        "time": "2016-03-31T14:35:04+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/PhpCsvValidator.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Sven Kuegler",
+                "email": "sven.kuegler@gmail.com",
+                "homepage": "http://www.sven-kuegler.de",
+                "role": "Developer"
+            }
+        ],
+        "description": "Simple PHP Class to validate CSV files / Single Rows",
+        "homepage": "https://github.com/svenkuegler/php-csv-validator"
     }
 ]

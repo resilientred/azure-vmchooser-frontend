@@ -44,11 +44,18 @@ class ComposerStaticInitabe98b680204b2013c984e569a7392a6
         ),
     );
 
+    public static $classMap = array (
+        'PhpCsvValidator' => __DIR__ . '/..' . '/svenkuegler/php-csv-validator/src/PhpCsvValidator.php',
+        'PhpCsvValidatorException' => __DIR__ . '/..' . '/svenkuegler/php-csv-validator/src/PhpCsvValidator.php',
+        'PhpCsvValidatorScheme' => __DIR__ . '/..' . '/svenkuegler/php-csv-validator/src/PhpCsvValidator.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitabe98b680204b2013c984e569a7392a6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitabe98b680204b2013c984e569a7392a6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitabe98b680204b2013c984e569a7392a6::$classMap;
 
         }, null, ClassLoader::class);
     }

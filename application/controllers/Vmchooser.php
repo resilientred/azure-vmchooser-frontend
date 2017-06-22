@@ -122,10 +122,11 @@ class Vmchooser extends CI_Controller {
 	public function csv() 
 	{
 		$this->load->helper(array('form', 'url'));
+		$this->load->library('guzzle');
 		
 		print_r($_FILES);
 		
-		$allowed =  strtolower(array('csv'));
+		$allowed =  array('csv');
 		$filename = strtolower($_FILES['csvfile']['name']);
 		echo "$allowed <=> $filename";
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
