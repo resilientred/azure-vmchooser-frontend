@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
 
 <?php 
-echo form_open_multipart(base_url()."vmchooser/csv"));
+echo form_open_multipart(base_url()."vmchooser/csv");
 ?>
 
 <fieldset>
