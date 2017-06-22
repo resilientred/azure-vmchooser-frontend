@@ -119,4 +119,23 @@ class Vmchooser extends CI_Controller {
 		}
 	}
 	
+	public function csv() 
+	{
+		$this->load->helper(array('form', 'url'));
+
+		$this->load->library('form_validation');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+				// NOK
+				$this->load->view('vmchooser-form-csv');
+		}
+		else
+		{
+			// OK
+			$data['results'] = $results;
+			$this->load->view('vmchooser-form-csv',$data);
+		}
+	}
+	
 }
