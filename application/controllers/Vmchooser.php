@@ -132,6 +132,7 @@ class Vmchooser extends CI_Controller {
 		}
 		else
 		{
+			print_r($_FILES);
 			// OK
 			$data['results'] = $results;
 			$this->load->view('vmchooser-form-csv',$data);
