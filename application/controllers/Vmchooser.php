@@ -127,6 +127,7 @@ class Vmchooser extends CI_Controller {
 		
 		$allowed =  strtolower(array('csv'));
 		$filename = strtolower($_FILES['csvfile']['name']);
+		echo "$allowed <=> $filename";
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
 		if(!in_array($ext,$allowed) ) {
 			echo "NOK";
