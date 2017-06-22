@@ -123,6 +123,8 @@ class Vmchooser extends CI_Controller {
 	{
 		$this->load->helper(array('form', 'url'));
 		
+		print_r($_FILES);
+		
 		$allowed =  strtolower(array('csv'));
 		$filename = strtolower($_FILES['csvfile']['name']);
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -133,7 +135,6 @@ class Vmchooser extends CI_Controller {
 		else
 		{
 			echo "OK";
-			print_r($_FILES);
 			$this->load->view('vmchooser-form-csv');
 		}
 	}
