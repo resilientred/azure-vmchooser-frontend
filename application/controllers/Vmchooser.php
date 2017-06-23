@@ -128,7 +128,7 @@ class Vmchooser extends CI_Controller {
 		
 		$allowed =  array('csv');
 		$filename = strtolower($_FILES['csvfile']['name']);
-		echo "$allowed <=> $filename";
+
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
 		if(!in_array($ext,$allowed) ) {
 			echo "NOK";
@@ -137,6 +137,18 @@ class Vmchooser extends CI_Controller {
 		else
 		{
 			echo "OK";
+			$validator = new PhpCsvValidator();
+			$tmpfile = $_FILES['csvfile']['tmp_name'];
+			$csvschema = "tests/files/example-scheme2.json";
+			
+			$validator->loadSchemeFromFile($csvschema);
+
+			if($validator->isValidFile($tmpfile")) {
+				echo "File is Valid";
+			} else {
+				echo "File is Invalid!";
+			}
+			
 			$this->load->view('vmchooser-form-csv');
 		}
 	}
