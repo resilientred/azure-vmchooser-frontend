@@ -143,7 +143,7 @@ class Vmchooser extends CI_Controller {
 			
 			$validator->loadSchemeFromFile($csvschema);
 
-			if($validator->isValidFile($tmpfile")) {
+			if($validator->isValidFile($tmpfile)) {
 				echo "File is Valid";
 			} else {
 				echo "File is Invalid!";
