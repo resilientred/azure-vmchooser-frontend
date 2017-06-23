@@ -141,8 +141,10 @@ class Vmchooser extends CI_Controller {
 			$tmpfile = $_FILES['csvfile']['tmp_name'];
 			$csvschema = "tests/files/example-scheme2.json";
 			
+			echo "validator";
 			$validator->loadSchemeFromFile($csvschema);
 
+			echo "isvalid";
 			if($validator->isValidFile($tmpfile)) {
 				echo "File is Valid";
 			} else {
