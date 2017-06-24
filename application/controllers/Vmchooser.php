@@ -122,7 +122,7 @@ class Vmchooser extends CI_Controller {
 	public function csv() 
 	{
 		$this->load->helper(array('form', 'url'));
-		$this->load->library('guzzle');
+		$this->load->library('azurestorage');
 		
 		
 		print_r($_FILES);
