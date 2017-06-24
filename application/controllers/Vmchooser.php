@@ -124,6 +124,7 @@ class Vmchooser extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('guzzle');
 		
+		
 		print_r($_FILES);
 		
 		$allowed =  array('csv');
@@ -135,12 +136,16 @@ class Vmchooser extends CI_Controller {
 			$this->load->view('vmchooser-form-csv');
 		}
 		else
-		{
+		{		
 			echo "OK";
 			$validator = new PhpCsvValidator();
 			$tmpfile = $_FILES['csvfile']['tmp_name'];
 			$csvschema = "tests/files/example-scheme2.json";
-			
+		
+			echo "test azurestorage";
+			$Azurestorage = new Azurestorage;
+			$connectionString = $Azurestorage->getConnectionString();
+		
 			echo "validator";
 			$validator->loadSchemeFromFile($csvschema);
 

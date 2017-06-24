@@ -17,6 +17,10 @@ class ComposerStaticInitabe98b680204b2013c984e569a7392a6
         array (
             'Psr\\Http\\Message\\' => 17,
         ),
+        'M' => 
+        array (
+            'MicrosoftAzure\\Storage\\' => 23,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -29,6 +33,10 @@ class ComposerStaticInitabe98b680204b2013c984e569a7392a6
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'MicrosoftAzure\\Storage\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/microsoft/azure-storage/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

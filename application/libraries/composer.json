@@ -1,6 +1,7 @@
 {
     "require": {
         "guzzlehttp/guzzle": "^6.2",
-        "svenkuegler/php-csv-validator": "^0.1.0"
+        "svenkuegler/php-csv-validator": "^0.1.0",
+        "microsoft/azure-storage": "^0.16.0"
     }
 }

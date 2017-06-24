@@ -281,5 +281,66 @@
         ],
         "description": "Simple PHP Class to validate CSV files / Single Rows",
         "homepage": "https://github.com/svenkuegler/php-csv-validator"
+    },
+    {
+        "name": "microsoft/azure-storage",
+        "version": "v0.16.0",
+        "version_normalized": "0.16.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Azure/azure-storage-php.git",
+            "reference": "f35df06025c2e114121e958a774bcaf0076ba6b3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Azure/azure-storage-php/zipball/f35df06025c2e114121e958a774bcaf0076ba6b3",
+            "reference": "f35df06025c2e114121e958a774bcaf0076ba6b3",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "~6.0",
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "mikey179/vfsstream": "~1.6",
+            "pdepend/pdepend": "~2.2",
+            "phpdocumentor/phpdocumentor": "dev-master",
+            "phploc/phploc": "~2.1",
+            "phpmd/phpmd": "@stable",
+            "phpunit/phpunit": "~4.0",
+            "sebastian/phpcpd": "~2.0",
+            "squizlabs/php_codesniffer": "2.*",
+            "theseer/phpdox": "~0.8"
+        },
+        "time": "2017-06-16T09:30:13+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.10.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "MicrosoftAzure\\Storage\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Azure Storage PHP SDK",
+                "email": "dmsh@microsoft.com"
+            }
+        ],
+        "description": "This project provides a set of PHP client libraries that make it easy to access Microsoft Azure storage APIs.",
+        "keywords": [
+            "azure",
+            "php",
+            "sdk",
+            "storage"
+        ]
     }
 ]
