@@ -145,8 +145,22 @@ class Vmchooser extends CI_Controller {
 			echo "test azurestorage";
 			$Azurestorage = new Azurestorage;
 			$connectionString = $Azurestorage->getConnectionString();
+			$blobClient = ServicesBuilder::getInstance()->createBlobService($connectionString);
+			
+			$content = fopen($tmpfile, "r");
+			$container_name = "input";
+			$blob_name = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));;
+			
+			try {
+				//Upload blob
+				$blobClient->createBlockBlob($container_name, $blob_name, $content);
+			} catch (ServiceException $e) {
+				$code = $e->getCode();
+				$error_message = $e->getMessage();
+				echo $code.": ".$error_message.PHP_EOL;
+			}
 		
-			echo "validator";
+			/*echo "validator";
 			$validator->loadSchemeFromFile($csvschema);
 
 			echo "isvalid";
@@ -155,6 +169,7 @@ class Vmchooser extends CI_Controller {
 			} else {
 				echo "File is Invalid!";
 			}
+			*/
 			
 			$this->load->view('vmchooser-form-csv');
 		}
