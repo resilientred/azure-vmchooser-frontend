@@ -143,7 +143,7 @@ class Vmchooser extends CI_Controller {
 			$Azurestorage = new Azurestorage;
 			echo "class loaded";
 			$connectionString = $Azurestorage->getConnectionString();
-			echo $connectionString
+			echo $connectionString;
 			$blobClient = ServicesBuilder::getInstance()->createBlobService($connectionString);
 			echo "blob client done";
 			
