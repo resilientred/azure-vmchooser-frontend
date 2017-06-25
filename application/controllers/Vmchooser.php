@@ -124,15 +124,12 @@ class Vmchooser extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('azurestorage');
 		
-		
-		print_r($_FILES);
-		
 		$allowed =  array('csv');
 		$filename = strtolower($_FILES['csvfile']['name']);
 
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
 		if(!in_array($ext,$allowed) ) {
-			echo "NOK";
+			$this->form_validation->set_message('Extension', 'Only csv files are accepted.');
 			$this->load->view('vmchooser-form-csv');
 		}
 		else
@@ -144,17 +141,24 @@ class Vmchooser extends CI_Controller {
 		
 			echo "test azurestorage";
 			$Azurestorage = new Azurestorage;
+			echo "class loaded";
 			$connectionString = $Azurestorage->getConnectionString();
+			echo $connectionString
 			$blobClient = ServicesBuilder::getInstance()->createBlobService($connectionString);
+			echo "blob client done";
 			
 			$content = fopen($tmpfile, "r");
 			$container_name = "input";
-			$blob_name = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));;
+			$blob_name = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535)).".csv";
+			
+			echo $blob_name;
 			
 			try {
 				//Upload blob
+				echo "try it";
 				$blobClient->createBlockBlob($container_name, $blob_name, $content);
 			} catch (ServiceException $e) {
+				echo "shit went wrong";
 				$code = $e->getCode();
 				$error_message = $e->getMessage();
 				echo $code.": ".$error_message.PHP_EOL;
