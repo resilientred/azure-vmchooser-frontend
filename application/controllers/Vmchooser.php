@@ -129,7 +129,7 @@ class Vmchooser extends CI_Controller {
 
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
 		if(!in_array($ext,$allowed) ) {
-			$this->form_validation->set_message('Extension', 'Only csv files are accepted.');
+			//$this->form_validation->set_message('Extension', 'Only csv files are accepted.');
 			$this->load->view('vmchooser-form-csv');
 		}
 		else
