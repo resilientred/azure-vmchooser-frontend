@@ -138,9 +138,9 @@ class Vmchooser extends CI_Controller {
 		else
 		{		
 			echo "OK";
-			$validator = new PhpCsvValidator();
+			//$validator = new PhpCsvValidator();
 			$tmpfile = $_FILES['csvfile']['tmp_name'];
-			$csvschema = "tests/files/example-scheme2.json";
+			//$csvschema = "tests/files/example-scheme2.json";
 		
 			echo "test azurestorage";
 			$Azurestorage = new Azurestorage;
