@@ -26,22 +26,22 @@ class Azurestorage
 		return "DefaultEndpointsProtocol=https;AccountName=$storageaccountname;AccountKey=$storageaccountkey";
 	}
 	
-	public function createTable($connectionString, $tableName)
+	public function uploadCsvFile($connectionString, $inputFile)
 	{
-		// Create table REST proxy.
-		$tableRestProxy = ServicesBuilder::getInstance()->createTableService($connectionString);
-		try    {
-			// Create table.
-			$tableRestProxy->createTable($tableName);
-		}
-		catch(ServiceException $e){
-			// Handle exception based on error codes and messages.
-			// Error codes and messages can be found here:
-			// http://msdn.microsoft.com/library/azure/dd179438.aspx
+		$blobClient = ServicesBuilder::getInstance()->createBlobService($connectionString);
+		$content = fopen($inputFile, "r");
+		$container_name = "input";
+		$blob_name = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535)).".csv";
+		try {
+			echo "try it";
+			$blobClient->createBlockBlob($container_name, $blob_name, $content);
+		} catch (ServiceException $e) {
+			echo "shit went wrong";
 			$code = $e->getCode();
 			$error_message = $e->getMessage();
-			log_message('error', "$code - $error_message");
+			echo $code.": ".$error_message.PHP_EOL;
 		}
+		return $blob_name;
 	}
 	
 }
