@@ -130,6 +130,7 @@ class Vmchooser extends CI_Controller {
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
 		if(!in_array($ext,$allowed) ) {
 			//$this->form_validation->set_message('Extension', 'Only csv files are accepted.');
+			echo "No file found";
 			$this->load->view('vmchooser-form-csv');
 		}
 		else
@@ -138,24 +139,21 @@ class Vmchooser extends CI_Controller {
 			$validator = new PhpCsvValidator();
 			$tmpfile = $_FILES['csvfile']['tmp_name'];
 			$csvschema = "tests/files/example-scheme2.json";
-		
-			echo "test azurestorage";
-			$Azurestorage = new Azurestorage;
-			echo "class loaded";
-			$connectionString = $Azurestorage->getConnectionString();
-			echo "blob name";
-			$blobName = $Azurestorage->uploadCsvFile($connectionString,$tmpfile);
 			
-			/*echo "validator";
+			echo "validator";
 			$validator->loadSchemeFromFile($csvschema);
 
 			echo "isvalid";
 			if($validator->isValidFile($tmpfile)) {
-				echo "File is Valid";
+				echo "test azurestorage";
+				$Azurestorage = new Azurestorage;
+				echo "class loaded";
+				$connectionString = $Azurestorage->getConnectionString();
+				echo "blob name";
+				$blobName = $Azurestorage->uploadCsvFile($connectionString,$tmpfile);
 			} else {
 				echo "File is Invalid!";
 			}
-			*/
 			
 			$this->load->view('vmchooser-form-csv');
 		}
