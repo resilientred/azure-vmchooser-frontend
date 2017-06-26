@@ -1,5 +1,7 @@
 <?php
   if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+  
+  require_once __DIR__ . '/vendor/autoload.php';
 
 use MicrosoftAzure\Storage\Common\ServicesBuilder;
 use MicrosoftAzure\Storage\Common\Models\Range;
@@ -21,9 +23,6 @@ use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesOptions;
   
 class Azurestorage
 {
-	public function Azurestorage() {
-		require 'vendor/autoload.php';
-	}
 	
 	public function __construct()
 	{
@@ -40,7 +39,6 @@ class Azurestorage
 	public function uploadCsvFile($connectionString, $inputFile)
 	{
 		echo "blob client";
-		echo $connectionString;
 		$blobClient = ServicesBuilder::getInstance()->createBlobService($connectionString);
 		echo "after";
 		$content = fopen($inputFile, "r");
