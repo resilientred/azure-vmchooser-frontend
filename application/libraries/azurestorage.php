@@ -28,10 +28,12 @@ class Azurestorage
 	
 	public function uploadCsvFile($connectionString, $inputFile)
 	{
+		echo "blob client";
 		$blobClient = ServicesBuilder::getInstance()->createBlobService($connectionString);
 		$content = fopen($inputFile, "r");
 		$container_name = "input";
 		$blob_name = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535)).".csv";
+		echo $blob_name;
 		try {
 			echo "try it";
 			$blobClient->createBlockBlob($container_name, $blob_name, $content);
