@@ -145,6 +145,7 @@ class Vmchooser extends CI_Controller {
 					$Azurestorage = new Azurestorage;
 					$connectionString = $Azurestorage->getConnectionString();
 					$blobName = $Azurestorage->uploadCsvFile($connectionString,$tmpfile);
+					echo "Uploaded as ". $blobName . " to the storage account!</br>";
 				} else {
 					echo "File is Invalid!";
 					$this->form_validation->set_message('CSV Format', 'Uploaded csv file did not match scheme');
