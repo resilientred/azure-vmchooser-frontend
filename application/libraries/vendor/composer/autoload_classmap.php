@@ -6,7 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PhpCsvValidator' => $vendorDir . '/svenkuegler/php-csv-validator/src/PhpCsvValidator.php',
-    'PhpCsvValidatorException' => $vendorDir . '/svenkuegler/php-csv-validator/src/PhpCsvValidator.php',
-    'PhpCsvValidatorScheme' => $vendorDir . '/svenkuegler/php-csv-validator/src/PhpCsvValidator.php',
 );
