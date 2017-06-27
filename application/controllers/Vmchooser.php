@@ -139,6 +139,7 @@ class Vmchooser extends CI_Controller {
 			$validator = new PhpCsvValidator();
 			$tmpfile = $_FILES['csvfile']['tmp_name'];
 			$csvschema = __DIR__ . '/vmchooser.json';
+			echo $csvschema;
 			
 			echo "validator";
 			$validator->loadSchemeFromFile($csvschema);
