@@ -29,6 +29,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ($message <> "") {
 	
+	echo $message;
+	
+} else {
+	
 	?>
 
 	<?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
@@ -52,8 +56,6 @@ if ($message <> "") {
 	<?php echo $error;?>
 
 <?php 
-} else {
-	echo $message;
 }
 ?>
 
