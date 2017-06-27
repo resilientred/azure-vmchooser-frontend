@@ -44,6 +44,10 @@ if ($message <> "") {
 		</div>
 	  </div>
 	</fieldset>
+	
+	<input type="file" name="csvfile" size="20" />
+
+	</form>
 
 	<?php echo $error;?>
 
@@ -53,9 +57,7 @@ if ($message <> "") {
 }
 ?>
 
-<input type="file" name="csvfile" size="20" />
 
-</form>
 
 <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds.</p>
 
