@@ -130,8 +130,8 @@ class Vmchooser extends CI_Controller {
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
 		if ($filename <> "") {
 			if(!in_array($ext,$allowed) ) {
-				$this->form_validation->set_message('Extension', 'Only csv files are accepted.');
-				$this->load->view('vmchooser-form-csv');
+				$data['message'] = "Only files with a .csv extension are accepted.";
+				$this->load->view('vmchooser-form-csv',$data);
 			}
 			else
 			{		
@@ -140,9 +140,9 @@ class Vmchooser extends CI_Controller {
 				$Azurestorage = new Azurestorage;
 				$connectionString = $Azurestorage->getConnectionString();
 				$blobName = $Azurestorage->uploadCsvFile($connectionString,$tmpfile);
-				echo "Uploaded as ". $blobName . " to the storage account!</br>";
+				$data['message'] = 'Uploaded as '. $blobName . ' to the storage account! In a few minutes you can find your output <a href="/vmchooser/results/'. $blobName . '/">here</a>.</br>';
 				
-				$this->load->view('vmchooser-form-csv');
+				$this->load->view('vmchooser-form-csv',$data);
 			}
 		} else {
 			$this->load->view('vmchooser-form-csv');
