@@ -52,22 +52,6 @@ class Azurestorage
 		return $blob_name;
 	}
 	
-	public function getCsvFile($connectionString, $blobName)
-	{
-		$blobClient = ServicesBuilder::getInstance()->createBlobService($connectionString);
-		$container_name = "output";
-		$blob_name = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535)).".csv";
-		try {
-			$getBlobUrl = $blobClient->_getBlobUrl($container_name, $blobName);
-		} catch (ServiceException $e) {
-			$code = $e->getCode();
-			$error_message = $e->getMessage();
-			echo $code.": ".$error_message.PHP_EOL;
-		}
-		
-		return $getBlobUrl;
-	}
-	
 }
 
 ?>  

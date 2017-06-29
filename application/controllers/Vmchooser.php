@@ -135,17 +135,9 @@ class Vmchooser extends CI_Controller {
 				$blobName = $this->uri->segment(3);
 		}
 		$blobName = $this->security->xss_clean($blobName);
-		$Azurestorage = new Azurestorage;
-		$connectionString = $Azurestorage->getConnectionString();
-		$getBlobUrl = $Azurestorage->getCsvFile($connectionString,$blobName);
-		echo $blobInfo;
-		
-		die();
-		
-		$this->load->helper(array('url'));
-		$this->load->view('tpl/header');	
-		$this->load->view('results',$data);
-		$this->load->view('tpl/footer');
+		$downloadurl = getenv("VMCHOOSERSTORAGEURL").$blobName;
+		header('Location: '.$downloadurl.');
+		exit;
 	}
 	
 	public function about() 
