@@ -199,7 +199,11 @@ echo form_open(base_url(), $attributes);
   </div>
 </div>
 
-
+<div class="alert alert-dismissible alert-info">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Please note...</strong> The <a href="https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux/" target="_blank" class="alert-link">pricing</a> is using the full flexible pricing for a Linux machine deployed in West Europe. It only represents the "compute" cost and does not include <a href="https://azure.microsoft.com/en-us/pricing/details/managed-disks/" target="_blank" class="alert-link">managed disks</a>.
+  Optimizations can be done by using <a href="https://azure.microsoft.com/en-us/overview/azure-for-microsoft-software/faq/" target="_blank" class="alert-link">CPP</a>. The details of the different VM sizes is based on the following <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes" target="_blank" class="alert-link">documentation</a>. 
+</div>
 
 
 </form>
