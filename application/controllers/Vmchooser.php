@@ -39,7 +39,9 @@ class Vmchooser extends CI_Controller {
 		if ($this->form_validation->run() == FALSE)
 		{
 				// NOK
-				$this->load->view('vmchooser-form');
+				$this->load->view('tpl/header');	
+				$this->load->view('vmchooser-form',$data);
+				$this->load->view('tpl/footer');
 		}
 		else
 		{
@@ -113,8 +115,9 @@ class Vmchooser extends CI_Controller {
 		
 			// OK
 			$data['results'] = $results;
+			$this->load->view('tpl/header');	
 			$this->load->view('vmchooser-form',$data);
-				
+			$this->load->view('tpl/footer');	
 				
 		}
 	}
@@ -131,7 +134,9 @@ class Vmchooser extends CI_Controller {
 		if ($filename <> "") {
 			if(!in_array($ext,$allowed) ) {
 				$data['message'] = "Only files with a .csv extension are accepted.";
+				$this->load->view('tpl/header');	
 				$this->load->view('vmchooser-form-csv',$data);
+				$this->load->view('tpl/footer');
 			}
 			else
 			{		
@@ -140,12 +145,16 @@ class Vmchooser extends CI_Controller {
 				$Azurestorage = new Azurestorage;
 				$connectionString = $Azurestorage->getConnectionString();
 				$blobName = $Azurestorage->uploadCsvFile($connectionString,$tmpfile);
-				$data['message'] = 'Uploaded as '. $blobName . ' to the storage account! In a few minutes you can find your output <a href="/vmchooser/results/'. $blobName . '/">here</a>.</br>';
+				$data['message'] = 'Uploaded! In a few minutes you can find your output <a href="/vmchooser/results/'. $blobName . '/">here</a>.</br>';
 				
+				$this->load->view('tpl/header');	
 				$this->load->view('vmchooser-form-csv',$data);
+				$this->load->view('tpl/footer');
 			}
 		} else {
-			$this->load->view('vmchooser-form-csv');
+			$this->load->view('tpl/header');	
+			$this->load->view('vmchooser-form-csv',$data);
+			$this->load->view('tpl/footer');
 		}
 	}
 	
