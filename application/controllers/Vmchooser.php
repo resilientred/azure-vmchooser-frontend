@@ -136,7 +136,7 @@ class Vmchooser extends CI_Controller {
 		}
 		$blobName = $this->security->xss_clean($blobName);
 		$downloadurl = getenv('VMCHOOSERSTORAGEURL').$blobName;
-		//header('Location: '.$downloadurl);
+		header('Location: '.$downloadurl);
 		exit;
 	}
 	
