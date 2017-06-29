@@ -122,6 +122,13 @@ class Vmchooser extends CI_Controller {
 		}
 	}
 	
+	public function about() 
+	{
+		$this->load->view('tpl/header');	
+		$this->load->view('about');
+		$this->load->view('tpl/footer');
+	}
+	
 	public function csv() 
 	{
 		$this->load->helper(array('form', 'url'));
