@@ -137,8 +137,8 @@ class Vmchooser extends CI_Controller {
 		$blobName = $this->security->xss_clean($blobName);
 		$Azurestorage = new Azurestorage;
 		$connectionString = $Azurestorage->getConnectionString();
-		$getBlobResult = $blobClient->getBlob("output", $blobName);
-		echo $getBlobResult->getName().": ".$getBlobResult->getUrl().PHP_EOL;
+		$blobInfo = $Azurestorage->getCsvFile($connectionString,$blobName);
+		print_r($blobInfo);
 		
 		die();
 		
