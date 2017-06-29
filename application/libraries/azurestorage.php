@@ -67,7 +67,7 @@ class Azurestorage
 		
 		try {
 			// List blobs.
-			$blob_list = $blobClient->listBlobs("mycontainer");
+			$blob_list = $blobClient->listBlobs("output");
 			$blobs = $blob_list->getBlobs();
 		
 			foreach ($blobs as $blob) {
