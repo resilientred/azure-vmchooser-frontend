@@ -64,7 +64,10 @@ class Azurestorage
 			$error_message = $e->getMessage();
 			echo $code.": ".$error_message.PHP_EOL;
 		}
-		return $blobInfo;
+		
+		$result = $blobClient->getBlobProperties($container, $blob);
+   		$props = $result->getProperties();
+		return $props;
 	}
 	
 }
