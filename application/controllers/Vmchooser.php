@@ -138,7 +138,7 @@ class Vmchooser extends CI_Controller {
 		$Azurestorage = new Azurestorage;
 		$connectionString = $Azurestorage->getConnectionString();
 		$blobInfo = $Azurestorage->getCsvFile($connectionString,$blobName);
-		print_r($blobInfo);
+		echo $blobInfo->getContentStream();
 		
 		die();
 		

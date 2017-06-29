@@ -65,19 +65,6 @@ class Azurestorage
 			echo $code.": ".$error_message.PHP_EOL;
 		}
 		
-		try {
-			// List blobs.
-			$blob_list = $blobClient->listBlobs("output");
-			$blobs = $blob_list->getBlobs();
-		
-			foreach ($blobs as $blob) {
-				echo $blob->getName().": ".$blob->getUrl().PHP_EOL;
-			}
-		} catch (ServiceException $e) {
-			$code = $e->getCode();
-			$error_message = $e->getMessage();
-			echo $code.": ".$error_message.PHP_EOL;
-		}
 		return $blobInfo;
 	}
 	
