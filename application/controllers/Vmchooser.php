@@ -122,6 +122,32 @@ class Vmchooser extends CI_Controller {
 		}
 	}
 	
+	public function results() 
+	{
+		$this->load->library('azurestorage','security');
+		if ($this->uri->segment(3) === FALSE)
+		{
+				echo "no file given";
+				die();
+		}
+		else
+		{
+				$blobName = $this->uri->segment(3);
+		}
+		$blobName = $this->security->xss_clean($blobName);
+		$Azurestorage = new Azurestorage;
+		$connectionString = $Azurestorage->getConnectionString();
+		$getBlobResult = $blobClient->getBlob("output", $blobName);
+		echo $getBlobResult->getName().": ".$getBlobResult->getUrl().PHP_EOL;
+		
+		die();
+		
+		$this->load->helper(array('url'));
+		$this->load->view('tpl/header');	
+		$this->load->view('results',$data);
+		$this->load->view('tpl/footer');
+	}
+	
 	public function about() 
 	{
 		$this->load->helper(array('url'));
@@ -153,7 +179,7 @@ class Vmchooser extends CI_Controller {
 				$Azurestorage = new Azurestorage;
 				$connectionString = $Azurestorage->getConnectionString();
 				$blobName = $Azurestorage->uploadCsvFile($connectionString,$tmpfile);
-				$data['message'] = 'Uploaded! In a few minutes you can find your output <a href="/vmchooser/results/'. $blobName . '/">here</a>.</br>';
+				$data['message'] = 'Uploaded! In a few minutes you can find your output <a href="/vmchooser/results/'. $blobName . '">here</a>.</br>';
 				
 				$this->load->view('tpl/header');	
 				$this->load->view('vmchooser-form-csv',$data);
