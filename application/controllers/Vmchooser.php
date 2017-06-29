@@ -124,7 +124,7 @@ class Vmchooser extends CI_Controller {
 	
 	public function results() 
 	{
-		$this->load->library('security');
+		$this->load->helper('security');
 		if ($this->uri->segment(3) === FALSE)
 		{
 				echo "no file given";
