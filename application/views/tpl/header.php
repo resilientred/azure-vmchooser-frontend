@@ -24,13 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<?php echo base_url()."/vmchooser/"; ?>">Search</a></li>
+        <li><a href="<?php echo base_url()."vmchooser/"; ?>">Search</a></li>
       </ul>
 	  <ul class="nav navbar-nav">
-        <li><a href="<?php echo base_url()."/vmchooser/csv/"; ?>">CSV Upload</a></li>
+        <li><a href="<?php echo base_url()."vmchooser/csv/"; ?>">CSV Upload</a></li>
       </ul>
 	  <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php echo base_url()."/vmchooser/about/"; ?>">About</a></li>
+        <li><a href="<?php echo base_url()."vmchooser/about/"; ?>">About</a></li>
       </ul>
     </div>
   </div>
