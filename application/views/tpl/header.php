@@ -22,5 +22,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </button>
       <a class="navbar-brand" href="<?php echo base_url(); ?>">Azure VM Chooser</a>
     </div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="<?php echo base_url()."/vmchooser/"; ?>">Search</a></li>
+      </ul>
+	  <ul class="nav navbar-nav">
+        <li><a href="<?php echo base_url()."/vmchooser/csv/"; ?>">CSV Upload</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
+
+
+        
