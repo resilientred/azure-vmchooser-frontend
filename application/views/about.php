@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
 <h2>About</h2>
 <p>"VMchooser" was created by <a href="https://about.kvaes.be/" target="_blank">Karim Vaes</a> to aid anyone in a quest to find the right VM size in Azure.</p>
 <p>Both the <a href="https://github.com/kvaes/azure-vmchooser-frontend" target="_blank">frontend</a> and <a href="https://github.com/kvaes/azure-vmchooser-backend" target="_blank">backend</a> are hosted on Github for the curious people out there. ;-)</p>
