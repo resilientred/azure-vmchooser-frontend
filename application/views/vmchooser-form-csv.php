@@ -3,31 +3,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ($message <> "") {
 	
-	echo $message;
+	?>
+	
+	
+	<div class="alert alert-dismissible alert-info">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <strong><?php echo $message; ?>
+	</div>
+	
+	<?php
 	
 } else {
 	
 	?>
 
-	<?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h1 id="containers">Containers</h1>
+            </div>
+            <div class="bs-component">
+              <div class="jumbotron">
+                <h1>CSV Upload</h1>
+                <p>
 
-	<?php 
-	echo form_open_multipart(base_url()."vmchooser/csv");
-	?>
+					<?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
 
-	<fieldset>
-	  <div class="form-group">
-		<div class="col-lg-10 col-lg-offset-2">
-		  <input type="submit" value="Upload the csv with the list of VMs to check!" class="btn btn-primary"/>
-		</div>
-	  </div>
-	</fieldset>
+					<?php 
+					echo form_open_multipart(base_url()."vmchooser/csv");
+					?>
+				
+					<fieldset>
+					  <div class="form-group">
+						<div class="col-lg-10 col-lg-offset-2">
+						  <input type="submit" value="Upload the csv with the list of VMs to check!" class="btn btn-primary"/>
+						</div>
+					  </div>
+					</fieldset>
+					
+					<input type="file" name="csvfile" size="20" />
+
+					</form>
+
+					<?php echo $error;?>
+				
+				</p>
+              </div>
+            </div>
+          </div>
+        </div>
 	
-	<input type="file" name="csvfile" size="20" />
 
-	</form>
-
-	<?php echo $error;?>
 
 <?php 
 }
