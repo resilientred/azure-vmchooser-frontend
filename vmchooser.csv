@@ -1,5 +1,5 @@
-VM Name;Cores;Memory (GB);SSD [Yes/No];NICs;Max Disk Size (TB);IOPS;Throughput (MB/s);Min Temp Disk Size (GB);Peak CPU Usage (%);Peak Memory Usage (%)
-My Little VM;2;4;No;1;1;500;30;5;100;100
-My Large VM;8;16;Yes;4;4;2500;160;250;100;100
-My Little Rightsized VM;2;4;No;1;1;500;30;5;100;65
-My Large Rightsized VM;8;16;Yes;4;4;2500;160;250;100;65
+VM Name,Cores,Memory (GB),SSD [Yes/No],NICs,Max Disk Size (TB),IOPS,Throughput (MB/s),Min Temp Disk Size (GB),Peak CPU Usage (%),Peak Memory Usage (%)
+My Little VM,2,4,No,1,1,500,30,5,100,100
+My Large VM,8,16,Yes,4,4,2500,160,250,100,100
+My Little Rightsized VM,2,4,No,1,1,500,30,5,100,65
+My Large Rightsized VM,8,16,Yes,4,4,2500,160,250,100,65
