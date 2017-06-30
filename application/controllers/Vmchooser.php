@@ -171,7 +171,7 @@ class Vmchooser extends CI_Controller {
 				$Azurestorage = new Azurestorage;
 				$connectionString = $Azurestorage->getConnectionString();
 				$blobName = $Azurestorage->uploadCsvFile($connectionString,$tmpfile);
-				$data['message'] = 'Uploaded! In a few minutes you can find your output <a href="/vmchooser/results/'. $blobName . '">here</a>.</br>';
+				$data['message'] = 'Uploaded! In a few minutes you can find your output <a href="/vmchooser/results/'. $blobName . '" target="_blank">here</a>.</br>';
 				
 				$this->load->view('tpl/header');	
 				$this->load->view('vmchooser-form-csv',$data);
