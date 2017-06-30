@@ -20,11 +20,10 @@ if ($message <> "") {
         <div class="row">
           <div class="col-lg-12">
             <div class="page-header">
-              <h1 id="containers">Containers</h1>
+              <h1 id="containers">CSV Upload</h1>
             </div>
             <div class="bs-component">
               <div class="jumbotron">
-                <h1>CSV Upload</h1>
                 <p>
 
 					<?php echo validation_errors('<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>'); ?>
