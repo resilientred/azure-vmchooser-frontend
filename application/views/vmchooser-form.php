@@ -161,7 +161,7 @@ echo form_open(base_url(), $attributes);
 	 </fieldset>
   
   </div>
-  <div class="tab-pane fade" id="sap">
+  <!--<div class="tab-pane fade" id="sap">
 
 	<fieldset>
 		<legend>SAP Parameters</legend>
@@ -197,6 +197,7 @@ echo form_open(base_url(), $attributes);
 	 </fieldset>
   
   </div>
+  -->
 </div>
 
 <div class="alert alert-dismissible alert-info">
