@@ -33,16 +33,15 @@ if ($message <> "") {
 					echo form_open_multipart(base_url()."vmchooser/csv");
 					?>
 				
-					<fieldset>
-					  <div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
-						  <input type="submit" value="Upload the csv with the list of VMs to check!" class="btn btn-primary"/>
-						</div>
-					  </div>
-					</fieldset>
+						<fieldset>
+						  <div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+							  <input type="submit" value="Upload the csv with the list of VMs to check!" class="btn btn-primary"/>
+							  <input type="file" name="csvfile" size="20" />
+							</div>
+						  </div>
+						</fieldset>
 					
-					<input type="file" name="csvfile" size="20" />
-
 					</form>
 
 					<?php echo $error;?>
