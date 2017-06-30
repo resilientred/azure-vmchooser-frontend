@@ -161,43 +161,7 @@ echo form_open(base_url(), $attributes);
 	 </fieldset>
   
   </div>
-  <!--<div class="tab-pane fade" id="sap">
 
-	<fieldset>
-		<legend>SAP Parameters</legend>
-		<div class="form-group">
-		  <label for="inputSaps2tier" class="col-lg-2 control-label">SAPS 2-Tier</label>
-		  <div class="col-lg-10">
-			<input type="text" class="form-control" name="inputSaps2tier" id="inputSaps2tier" value="<?php echo set_value('inputSaps2tier[]'); ?>" placeholder="What's the minimum SAPS 2-tier benchmark value you need?" autocomplete="off">
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label for="inputSaps3tier" class="col-lg-2 control-label">SAPS 3-Tier</label>
-		  <div class="col-lg-10">
-			<input type="text" class="form-control" name="inputSaps3tier" id="inputSaps3tier" value="<?php echo set_value('inputSaps3tier[]'); ?>" placeholder="What's the minimum SAPS 3-tier benchmark value you need?" autocomplete="off">
-		  </div>
-		</div>
-		<div class="form-group">
-		  <label class="col-lg-2 control-label">HANA Support</label>
-		  <div class="col-lg-10">
-			<div class="radio">
-			  <label>
-				<input type="radio" name="hana" id="optionsRadios2" value="Yes" <?php echo  set_radio('hana', 'Yes', TRUE); ?>>
-				Show me only the HANA supported devices!
-			  </label>
-			</div>
-			<div class="radio">
-			  <label>
-				<input type="radio" name="hana" id="optionsRadios2" value="All" <?php echo  set_radio('hana', 'All', TRUE); ?>>
-				Doesn't matter... Just gimme all options available!
-			  </label>
-			</div>
-		  </div>
-		</div>
-	 </fieldset>
-  
-  </div>
-  -->
 </div>
 
 <div class="alert alert-dismissible alert-info">
