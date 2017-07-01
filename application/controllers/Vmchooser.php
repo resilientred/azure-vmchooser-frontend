@@ -74,7 +74,7 @@ class Vmchooser extends CI_Controller {
 				case "All":
 					break;
 				default:
-				   echo "Something went wrong :-(";
+				   //echo "Something went wrong :-(";
 			}
 			$inputSaps2tier = $this->security->xss_clean($_POST["inputSaps2tier"]);
 			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
