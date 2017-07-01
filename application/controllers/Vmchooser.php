@@ -145,7 +145,7 @@ class Vmchooser extends CI_Controller {
 			exit;
 		} catch (GuzzleHttp\Exception\ClientException $e) {
 			$this->load->view('tpl/header');	
-			$this->load->view('vmchooser-downloadnotready',$data);
+			$this->load->view('vmchooser-downloadnotready';
 			$this->load->view('tpl/footer');
 		}
 	
