@@ -56,7 +56,7 @@ class Vmchooser extends CI_Controller {
 				case "All":
 					break;
 				default:
-				   echo "Something went wrong :-(";
+				   //echo "Something went wrong :-(";
 			}
 			$inputCores = $this->security->xss_clean($_POST["inputCores"]);
 			$inputMemory = $this->security->xss_clean($_POST["inputMemory"]);
