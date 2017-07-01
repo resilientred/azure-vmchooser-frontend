@@ -101,7 +101,7 @@ class Vmchooser extends CI_Controller {
 				$response = $e->getResponse();
 				$responseBodyAsString = $response->getBody()->getContents();
 				//print_r($responseBodyAsString);
-				echo "Something went wrong :-(";
+				//echo "Something went wrong :-(";
 			}
 			
 			// Prep Results
