@@ -136,8 +136,19 @@ class Vmchooser extends CI_Controller {
 		}
 		$blobName = $this->security->xss_clean($blobName);
 		$downloadurl = getenv('VMCHOOSERSTORAGEURL').$blobName;
-		header('Location: '.$downloadurl);
-		exit;
+		
+		$this->load->library('guzzle');
+		$client = new GuzzleHttp\Client;
+		try {
+			$client->head($downloadurl);
+			header('Location: '.$downloadurl);
+			exit;
+		} catch (GuzzleHttp\Exception\ClientException $e) {
+			$this->load->view('tpl/header');	
+			$this->load->view('vmchooser-downloadnotready',$data);
+			$this->load->view('tpl/footer');
+		}
+	
 	}
 	
 	public function about() 
