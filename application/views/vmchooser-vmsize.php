@@ -26,7 +26,10 @@ if (isset($results)) {
 	$first = true;
 
 	foreach ($results as $result) {
-		$CI->table->add_row($result);
+		$data = array();
+		foreach($result as $key => $value) {
+			$CI->table->add_row(array($key, $value));
+		}
 		$first = false;
 	}
 	echo $CI->table->generate();
