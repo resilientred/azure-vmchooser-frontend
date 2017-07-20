@@ -31,8 +31,7 @@ if (isset($results)) {
 			$header[] = str_replace("'", "", $key);
 			$key = str_replace("'", "", $key);
 			if ($key == "Name") {
-				echo "triggered";
-				$value = '<href="' . base_url() . 'vmchooser/vmsize/' . $value . '/">' . $value . '</a>';
+				$value = '<a href="' . base_url() . 'vmchooser/vmsize/' . $value . '/">' . $value . '</a>';
 			}
 			$data[] = $value;
 		}
