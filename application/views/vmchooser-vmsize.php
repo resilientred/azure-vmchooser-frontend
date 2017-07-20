@@ -5,10 +5,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php
 
+echo "results";
 print_r($results);
 
 if (isset($results)) { 
-
+  echo "start";
 	?>
 	
 	<div class="page-header">
