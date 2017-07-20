@@ -196,9 +196,8 @@ class Vmchooser extends CI_Controller {
 		}
 	
 		// OK
-		print_r($results);
 		$data['results'] = $results[0];
-		print_r($data);
+		$this->load->helper(array('url'));
 		$this->load->view('tpl/header');	
 		$this->load->view('vmchooser-vmsize',$data);
 		$this->load->view('tpl/footer');	
