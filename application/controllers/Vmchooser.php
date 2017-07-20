@@ -151,6 +151,58 @@ class Vmchooser extends CI_Controller {
 		}
 	
 	}
+
+	public function vmsize() 
+	{
+		$this->load->helper('security');
+		if ($this->uri->segment(3) === FALSE)
+		{
+				echo "no vmsize given";
+				die();
+		}
+		else
+		{
+				$vmsize = $this->uri->segment(3);
+		}
+		$vmsize = $this->security->xss_clean($vmsize);
+		
+		$querysuffix = "&vmsize=$vmsize";
+		$api_url = getenv('VMSIZECHOOSERAPI') . $querysuffix; }
+			
+		$this->load->library('guzzle');
+		$client     = new GuzzleHttp\Client();	
+		try {
+			$response = $client->request( 'POST', 
+											$api_url, 
+											[ 'form_params' 
+												=> [ 'processId' => '2' ] 
+											]
+										);
+			$json =  $response->getBody()->getContents();
+		} catch (GuzzleHttp\Exception\BadResponseException $e) {
+			$response = $e->getResponse();
+			$responseBodyAsString = $response->getBody()->getContents();
+			//print_r($responseBodyAsString);
+			//echo "Something went wrong :-(";
+		}
+		
+		// Prep Results
+		$array = json_decode($json);
+		$i=0;
+		foreach ($array as $result) {
+			$temp = (array) $result;
+			$results[$i] = $temp;
+			$i++;
+		}
+	
+		// OK
+		$data['results'] = $results;
+		$this->load->view('tpl/header');	
+		$this->load->view('vmchooser-vmsize',$data);
+		$this->load->view('tpl/footer');	
+		
+	
+	}
 	
 	public function about() 
 	{
