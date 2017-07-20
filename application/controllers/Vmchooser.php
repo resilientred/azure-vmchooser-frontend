@@ -167,7 +167,7 @@ class Vmchooser extends CI_Controller {
 		$vmsize = $this->security->xss_clean($vmsize);
 		
 		$querysuffix = "&vmsize=$vmsize";
-		$api_url = getenv('VMSIZECHOOSERAPI') . $querysuffix; }
+		$api_url = getenv('VMSIZECHOOSERAPI') . $querysuffix;
 			
 		$this->load->library('guzzle');
 		$client     = new GuzzleHttp\Client();	
