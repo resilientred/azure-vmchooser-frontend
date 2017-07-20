@@ -24,6 +24,9 @@ if (isset($results)) {
 	$CI->table->set_template($template);
 
 	$first = true;
+
+  print_r($results);
+
 	foreach ($results as $result) {
 		$data = array();
 		foreach($result as $key => $value) {
