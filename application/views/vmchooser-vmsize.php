@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php
 
+print_r($results);
+
 if (isset($results)) { 
 
 	?>
@@ -25,10 +27,9 @@ if (isset($results)) {
 
 	$first = true;
 
-  print_r($results);
-
 	foreach ($results as $result) {
 		$data = array();
+		print_r($result);
 		foreach($result as $key => $value) {
 			$header[] = str_replace("'", "", $key);;
 			$data[] = $value;
