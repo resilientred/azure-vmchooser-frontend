@@ -28,7 +28,10 @@ if (isset($results)) {
 	foreach ($results as $result) {
 		$data = array();
 		foreach($result as $key => $value) {
-			$header[] = str_replace("'", "", $key);;
+			$header[] = str_replace("'", "", $key);
+			if ($key == "Name") {
+				$value = '<href="' . base_url() . 'vmchooser/vmsize/' . $value . '/">' . $value . '</a>';
+			}
 			$data[] = $value;
 		}
 		if ($first) {

@@ -26,7 +26,6 @@ if (isset($results)) {
 
 	
 	foreach($results as $key => $value) {
-		echo "adding $key & $value";
 		$CI->table->add_row($key, $value);
 	}
 	echo $CI->table->generate();
