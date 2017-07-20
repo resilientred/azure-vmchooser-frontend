@@ -30,7 +30,8 @@ if (isset($results)) {
 		foreach($result as $key => $value) {
 			$header[] = str_replace("'", "", $key);
 			$key = str_replace("'", "", $key);
-			if ($key == "Name") {
+			echo "$key";
+			if ($key = "Name") {
 				$value = '<href="' . base_url() . 'vmchooser/vmsize/' . $value . '/">' . $value . '</a>';
 			}
 			$data[] = $value;
