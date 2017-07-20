@@ -28,7 +28,8 @@ if (isset($results)) {
 	foreach ($results as $result) {
 		$data = array();
 		foreach($result as $key => $value) {
-			$CI->table->add_row(array($key, $value));
+			echo "adding $key & $value";
+			$CI->table->add_row($key, $value);
 		}
 		$first = false;
 	}
