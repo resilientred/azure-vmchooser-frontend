@@ -22,8 +22,7 @@ if (isset($results)) {
 			'table_open' => '<table class="table table-striped table-hover">'
 	);
 	$CI->table->set_template($template);
-
-	$first = true;
+  $CI->table->set_heading('Attribute', 'Value');
 
 	foreach ($results as $result) {
 		$data = array();
@@ -31,7 +30,6 @@ if (isset($results)) {
 			echo "adding $key & $value";
 			$CI->table->add_row($key, $value);
 		}
-		$first = false;
 	}
 	echo $CI->table->generate();
 
