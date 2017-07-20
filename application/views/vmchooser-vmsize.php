@@ -10,7 +10,7 @@ if (isset($results)) {
 	?>
 	
 	<div class="page-header">
-	  <h1 id="navbar">Results</h1>
+	  <h1 id="navbar">VMsize Details</h1>
 	</div>
 	
 	<?php
@@ -24,12 +24,10 @@ if (isset($results)) {
 	$CI->table->set_template($template);
   $CI->table->set_heading('Attribute', 'Value');
 
-	foreach ($results as $result) {
-		$data = array();
-		foreach($result as $key => $value) {
-			echo "adding $key & $value";
-			$CI->table->add_row($key, $value);
-		}
+	
+	foreach($results as $key => $value) {
+		echo "adding $key & $value";
+		$CI->table->add_row($key, $value);
 	}
 	echo $CI->table->generate();
 
