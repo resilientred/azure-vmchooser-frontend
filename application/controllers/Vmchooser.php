@@ -80,13 +80,16 @@ class Vmchooser extends CI_Controller {
 			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
 			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
+			$querysuffix;
+			if ($inputCores <> "") { $querysuffix .= "&cores=$inputCores"; }
+			
 			if ((!empty($inputSaps2tier) AND !empty(inputSaps3tier)) OR ($hana == Yes)) {
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier&hana=$hana";
 			}
 			
 			// Do API Call
 			$this->load->library('guzzle');
-			if ($sapsuffix <> "") { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI'); }
+			if ($sapsuffix <> "") { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI').$querysuffix; }
 			
 			$vmchooserapikey = getenv('VMCHOOSERAPIKEY');
 			$client     = new GuzzleHttp\Client(['headers' => ['Ocp-Apim-Subscription-Key' => $vmchooserapikey]]);
