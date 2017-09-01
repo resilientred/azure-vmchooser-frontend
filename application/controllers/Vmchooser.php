@@ -91,6 +91,7 @@ class Vmchooser extends CI_Controller {
 			$vmchooserapikey = getenv('VMCHOOSERAPIKEY');
 			$client     = new GuzzleHttp\Client(['headers' => ['Ocp-Apim-Subscription-Key' => $vmchooserapikey]]);
 			print_r($client);
+			echo $api_url;
 			try {
 				$response = $client->request( 'POST', $api_url);
 				$json =  $response->getBody()->getContents();
