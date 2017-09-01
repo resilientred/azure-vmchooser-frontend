@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://azurevmchooser.kvaes.be/';
+$config['base_url'] = getenv('CI_BASE_URL');
 
 /*
 |--------------------------------------------------------------------------
