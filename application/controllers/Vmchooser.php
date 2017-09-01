@@ -93,11 +93,13 @@ class Vmchooser extends CI_Controller {
 			try {
 				$response = $client->request( 'POST', $api_url);
 				$json =  $response->getBody()->getContents();
+				echo "debug";
+				print_r($response);
 			} catch (GuzzleHttp\Exception\BadResponseException $e) {
 				$response = $e->getResponse();
 				$responseBodyAsString = $response->getBody()->getContents();
-				//print_r($responseBodyAsString);
-				//echo "Something went wrong :-(";
+				print_r($responseBodyAsString);
+				echo "Something went wrong :-(";
 			}
 			
 			// Prep Results
