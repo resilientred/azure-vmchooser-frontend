@@ -90,8 +90,10 @@ class Vmchooser extends CI_Controller {
 			
 			$vmchooserapikey = getenv('VMCHOOSERAPIKEY');
 			$client     = new GuzzleHttp\Client(['headers' => ['Ocp-Apim-Subscription-Key' => $vmchooserapikey]]);
+			print_r($client);
 			try {
 				$response = $client->request( 'POST', $api_url);
+				print_r($response);
 				$json =  $response->getBody()->getContents();
 			} catch (GuzzleHttp\Exception\BadResponseException $e) {
 				$response = $e->getResponse();
