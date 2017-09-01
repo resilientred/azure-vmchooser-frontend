@@ -80,7 +80,7 @@ class Vmchooser extends CI_Controller {
 			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
 			$querysuffix = "&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
-			$querysuffix;
+			$querysuffix="";
 			if ($inputCores <> "") { $querysuffix .= "&cores=$inputCores"; }
 			
 			if ((!empty($inputSaps2tier) AND !empty(inputSaps3tier)) OR ($hana == Yes)) {
