@@ -89,11 +89,14 @@ class Vmchooser extends CI_Controller {
 			if ($sapsuffix <> "") { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI') . $querysuffix; }
 			$client     = new GuzzleHttp\Client();
 			
+			$vmchooserapikey = getenv('VMCHOOSERAPIKEY');
 			try {
 				$response = $client->request( 'POST', 
 											   $api_url, 
 											  [ 'form_params' 
-													=> [ 'processId' => '2' ] 
+													=> [ 'processId' => '2' ],
+												'headers' 
+													=> [ 'Ocp-Apim-Subscription-Key' => $vmchooserapikey ]
 											  ]
 											);
 				$json =  $response->getBody()->getContents();
@@ -170,12 +173,15 @@ class Vmchooser extends CI_Controller {
 		$api_url = getenv('VMSIZECHOOSERAPI') . $querysuffix;
 			
 		$this->load->library('guzzle');
-		$client     = new GuzzleHttp\Client();	
+		$client     = new GuzzleHttp\Client();
+		$vmchooserapikey = getenv('VMCHOOSERAPIKEY');		
 		try {
 			$response = $client->request( 'POST', 
 											$api_url, 
 											[ 'form_params' 
-												=> [ 'processId' => '2' ] 
+												=> [ 'processId' => '2' ],
+											   'headers' 
+												=> [ 'Ocp-Apim-Subscription-Key' => $vmchooserapikey ] 
 											]
 										);
 			$json =  $response->getBody()->getContents();
