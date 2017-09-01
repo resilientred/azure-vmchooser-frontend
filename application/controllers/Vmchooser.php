@@ -87,18 +87,11 @@ class Vmchooser extends CI_Controller {
 			// Do API Call
 			$this->load->library('guzzle');
 			if ($sapsuffix <> "") { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI') . $querysuffix; }
-			$client     = new GuzzleHttp\Client();
 			
 			$vmchooserapikey = getenv('VMCHOOSERAPIKEY');
+			$client     = new GuzzleHttp\Client(['headers' => ['Ocp-Apim-Subscription-Key' => $vmchooserapikey]]);
 			try {
-				$response = $client->request( 'POST', 
-											   $api_url, 
-											  [ 'form_params' 
-													=> [ 'processId' => '2' ],
-												'headers' 
-													=> [ 'Ocp-Apim-Subscription-Key' => $vmchooserapikey ]
-											  ]
-											);
+				$response = $client->request( 'POST', $api_url);
 				$json =  $response->getBody()->getContents();
 			} catch (GuzzleHttp\Exception\BadResponseException $e) {
 				$response = $e->getResponse();
@@ -173,17 +166,10 @@ class Vmchooser extends CI_Controller {
 		$api_url = getenv('VMSIZECHOOSERAPI') . $querysuffix;
 			
 		$this->load->library('guzzle');
-		$client     = new GuzzleHttp\Client();
-		$vmchooserapikey = getenv('VMCHOOSERAPIKEY');		
+		$vmchooserapikey = getenv('VMCHOOSERAPIKEY');	
+		$client     = new GuzzleHttp\Client(['headers' => ['Ocp-Apim-Subscription-Key' => $vmchooserapikey]]);
 		try {
-			$response = $client->request( 'POST', 
-											$api_url, 
-											[ 'form_params' 
-												=> [ 'processId' => '2' ],
-											   'headers' 
-												=> [ 'Ocp-Apim-Subscription-Key' => $vmchooserapikey ] 
-											]
-										);
+			$response = $client->request( 'POST', $api_url);
 			$json =  $response->getBody()->getContents();
 		} catch (GuzzleHttp\Exception\BadResponseException $e) {
 			$response = $e->getResponse();
