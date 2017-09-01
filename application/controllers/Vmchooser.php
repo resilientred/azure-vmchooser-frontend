@@ -86,7 +86,7 @@ class Vmchooser extends CI_Controller {
 			
 			// Do API Call
 			$this->load->library('guzzle');
-			if ($sapsuffix <> "") { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI') . $querysuffix; }
+			if ($sapsuffix <> "") { $api_url = getenv('SAPCHOOSERAPI') . $querysuffix . $sapsuffix; } else { $api_url = getenv('VMCHOOSERAPI'); }
 			
 			$vmchooserapikey = getenv('VMCHOOSERAPIKEY');
 			$client     = new GuzzleHttp\Client(['headers' => ['Ocp-Apim-Subscription-Key' => $vmchooserapikey]]);
