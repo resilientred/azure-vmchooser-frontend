@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li><a href="<?php echo base_url()."vmchooser/csv/"; ?>">CSV Upload</a></li>
       </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php https://aka.ms/vmchooserdev"; ?>">Preview Edition</a></li>
+        <li><a href="https://aka.ms/vmchooserdev">Preview Edition</a></li>
     </ul>
 	  <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()."vmchooser/about/"; ?>">About</a></li>
