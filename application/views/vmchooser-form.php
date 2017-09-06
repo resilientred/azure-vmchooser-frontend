@@ -110,7 +110,7 @@ echo form_open(base_url(), $attributes);
 					'us-west-central' => 'US West Central', 
 					'all' => 'Just give me all options!'
 				);
-				echo form_dropdown('region', $regions, set_value('inputRegions[]'));
+				echo form_dropdown('inputRegion', $regions, set_value('inputRegions[]'), 'class="form-control" id="inputRegion"');
 				?>
 		  </div>
 		</div>
