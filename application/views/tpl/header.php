@@ -26,13 +26,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <ul class="nav navbar-nav">
         <li><a href="<?php echo base_url()."vmchooser/"; ?>">Search</a></li>
       </ul>
-	  <ul class="nav navbar-nav">
+	    <ul class="nav navbar-nav">
         <li><a href="<?php echo base_url()."vmchooser/csv/"; ?>">CSV Upload</a></li>
       </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://aka.ms/vmchooserdev">Preview Edition</a></li>
-    </ul>
-	  <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://vmchooser.portal.azure-api.net/">For Developers (API)</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://aka.ms/vmchooserdev">Preview Edition</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()."vmchooser/about/"; ?>">About</a></li>
       </ul>
     </div>
