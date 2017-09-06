@@ -74,10 +74,10 @@ echo form_open(base_url(), $attributes);
 		  <label class="col-lg-2 control-label">Region</label>
 		  <div class="col-lg-10">
 			
-			<?php foreach($regions as $region) {
-
+			<?php 
 				$regions = array('asia-pacific-east', 'asia-pacific-southeast', 'australia-east', 'australia-southeast',	'brazil-south',	'canada-central',	'canada-east', 'central-india', 'europe-north',	'europe-west', 'germany-central', 'germany-northeast', 'japan-east', 'japan-west', 'korea-central', 'korea-south', 'south-india', 'united-kingdom-south', 'united-kingdom-west', 'us-central', 'us-east', 'us-east-2', 'usgov-arizona', 'usgov-iowa', 'usgov-texas', 'usgov-virginia', 'us-north-central', 'us-south-central', 'us-west', 'us-west-2', 'us-west-central', 'west-india');
-				?>
+				foreach($regions as $region) {
+			?>
 				
 				<div class="radio">
 					<label>
