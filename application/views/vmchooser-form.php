@@ -71,6 +71,32 @@ echo form_open(base_url(), $attributes);
 	<fieldset>
 		<legend>Basic requirements for your virtual machine</legend>
 		<div class="form-group">
+		  <label class="col-lg-2 control-label">Region</label>
+		  <div class="col-lg-10">
+			
+			<?php foreach($regions as $region) {
+
+				$regions = array('asia-pacific-east', 'asia-pacific-southeast', 'australia-east', 'australia-southeast',	'brazil-south',	'canada-central',	'canada-east', 'central-india', 'europe-north',	'europe-west', 'germany-central', 'germany-northeast', 'japan-east', 'japan-west', 'korea-central', 'korea-south', 'south-india', 'united-kingdom-south', 'united-kingdom-west', 'us-central', 'us-east', 'us-east-2', 'usgov-arizona', 'usgov-iowa', 'usgov-texas', 'usgov-virginia', 'us-north-central', 'us-south-central', 'us-west', 'us-west-2', 'us-west-central', 'west-india');
+				?>
+				
+				<div class="radio">
+					<label>
+					<input type="radio" name="region" id="optionsRadios1" value="<?php echo $region; ?>No" <?php echo  set_radio('region', '<?php echo $region; ?>', TRUE); ?>>
+					<?php echo $region; ?>
+					</label>
+				</div>
+
+			<?PHP } ?>
+
+			<div class="radio">
+			  <label>
+				<input type="radio" name="region" id="optionsRadios2" value="All" <?php echo  set_radio('region', 'All', TRUE); ?>>
+				 Price is more important than region! Show me all regions...
+			  </label>
+			</div>
+		  </div>
+		</div>
+		<div class="form-group">
 		  <label class="col-lg-2 control-label">Disk Type</label>
 		  <div class="col-lg-10">
 			<div class="radio">

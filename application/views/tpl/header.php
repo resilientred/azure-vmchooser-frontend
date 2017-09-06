@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<?php echo base_url(); ?>">Azure VM Chooser (Preview)</a>
+      <a class="navbar-brand" href="<?php echo base_url(); ?>">Azure VM Chooser <?php echo getenv("VMCHOOSERTITLESUFFIX"); ?></a>
     </div>
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
@@ -29,6 +29,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	  <ul class="nav navbar-nav">
         <li><a href="<?php echo base_url()."vmchooser/csv/"; ?>">CSV Upload</a></li>
       </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?php https://aka.ms/vmchooserdev"; ?>">Preview Edition</a></li>
+    </ul>
 	  <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url()."vmchooser/about/"; ?>">About</a></li>
       </ul>
