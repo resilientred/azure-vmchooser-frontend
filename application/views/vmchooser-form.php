@@ -33,7 +33,7 @@ if (isset($results)) {
 			if ($key == "Name") {
 				$value = '<a href="' . base_url() . 'vmchooser/vmsize/' . $value . '/">' . $value . '</a>';
 			}
-			if (strpos($str, 'USD') !== FALSE) {
+			if (strpos($key, 'USD') !== FALSE) {
 				$value = '<a href="https://www.bing.com/search?q='.$value.'+USD+to+euro">'.$value.'</a>';
 			}
 			$data[] = $value;
