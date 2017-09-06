@@ -25,6 +25,7 @@ class Vmchooser extends CI_Controller {
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('inputRegion', 'Azure Region', 'alpha_dash');
+		$this->form_validation->set_rules('inputTier', 'VM Tier', 'alpha_dash');
 		$this->form_validation->set_rules('inputCores', 'Number of Cores', 'numeric');
 		$this->form_validation->set_rules('inputMemory', 'Amount of Memory', 'numeric');
 		$this->form_validation->set_rules('inputNics', 'Number of NICs', 'numeric');
@@ -60,6 +61,7 @@ class Vmchooser extends CI_Controller {
 				   //echo "Something went wrong :-(";
 			}
 			$inputRegion = $this->security->xss_clean($_POST["inputRegion"]);
+			$inputTier = $this->security->xss_clean($_POST["inputTier"]);
 			$inputCores = $this->security->xss_clean($_POST["inputCores"]);
 			$inputMemory = $this->security->xss_clean($_POST["inputMemory"]);
 			$inputNics = $this->security->xss_clean($_POST["inputNics"]);
@@ -80,7 +82,7 @@ class Vmchooser extends CI_Controller {
 			}
 			$inputSaps2tier = $this->security->xss_clean($_POST["inputSaps2tier"]);
 			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
-			$querysuffix = "?region=$inputRegion&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
+			$querysuffix = "?tier=$inputTier&region=$inputRegion&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
 			if ((!empty($inputSaps2tier) AND !empty(inputSaps3tier)) OR ($hana == Yes)) {
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier&hana=$hana";

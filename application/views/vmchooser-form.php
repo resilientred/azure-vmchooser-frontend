@@ -169,6 +169,29 @@ echo form_open(base_url(), $attributes);
 	<fieldset>
 		<legend>Advanced requirements for your virtual machine</legend>
 		<div class="form-group">
+		  <label class="col-lg-2 control-label">Tier</label>
+		  <div class="col-lg-10">
+			<div class="radio">
+			  <label>
+				<input type="radio" name="inputTier" id="optionsRadios1" value="standard" <?php echo  set_radio('inputTier', 'standard', TRUE); ?>>
+				Standard
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+				<input type="radio" name="inputTier" id="optionsRadios2" value="lowpriority" <?php echo  set_radio('inputTier', 'lowpriority', TRUE); ?>>
+				Low Priority
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+				<input type="radio" name="inputTier" id="optionsRadios2" value="basic" <?php echo  set_radio('inputTier', 'basic', TRUE); ?>>
+				Basic
+			  </label>
+			</div>
+		  </div>
+		</div>
+		<div class="form-group">
 		  <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
 		  <div class="col-lg-10">
 			<input type="text" class="form-control" name="inputIops" id="inputIops" value="<?php echo set_value('inputIops[]'); ?>" placeholder="What's the minimum IOPS, for the non-OS disk(s), this VM needs?" autocomplete="off">
