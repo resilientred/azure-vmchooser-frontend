@@ -173,13 +173,13 @@ echo form_open(base_url(), $attributes);
 		  <div class="col-lg-10">
 			<div class="radio">
 			  <label>
-				<input type="radio" name="inputTier" id="optionsRadios1" value="standard" <?php echo  set_radio('inputTier', 'standard', TRUE); ?>>
+				<input type="radio" name="inputTier" id="optionsRadios1" value="standard" <?php echo  set_radio('inputTier', 'standard', FALSE); ?>>
 				Standard
 			  </label>
 			</div>
 			<div class="radio">
 			  <label>
-				<input type="radio" name="inputTier" id="optionsRadios2" value="lowpriority" <?php echo  set_radio('inputTier', 'lowpriority', TRUE); ?>>
+				<input type="radio" name="inputTier" id="optionsRadios2" value="lowpriority" <?php echo  set_radio('inputTier', 'lowpriority', FALSE); ?>>
 				Low Priority
 			  </label>
 			</div>
