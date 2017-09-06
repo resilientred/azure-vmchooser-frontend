@@ -75,25 +75,43 @@ echo form_open(base_url(), $attributes);
 		  <div class="col-lg-10">
 			
 			<?php 
-				$regions = array('asia-pacific-east', 'asia-pacific-southeast', 'australia-east', 'australia-southeast',	'brazil-south',	'canada-central',	'canada-east', 'central-india', 'europe-north',	'europe-west', 'germany-central', 'germany-northeast', 'japan-east', 'japan-west', 'korea-central', 'korea-south', 'south-india', 'united-kingdom-south', 'united-kingdom-west', 'us-central', 'us-east', 'us-east-2', 'usgov-arizona', 'usgov-iowa', 'usgov-texas', 'usgov-virginia', 'us-north-central', 'us-south-central', 'us-west', 'us-west-2', 'us-west-central', 'west-india');
-				foreach($regions as $region) {
-			?>
-				
-				<div class="radio">
-					<label>
-					<input type="radio" name="region" id="optionsRadios1" value="<?php echo $region; ?>No" <?php echo  set_radio('region', '<?php echo $region; ?>', TRUE); ?>>
-					<?php echo $region; ?>
-					</label>
-				</div>
-
-			<?PHP } ?>
-
-			<div class="radio">
-			  <label>
-				<input type="radio" name="region" id="optionsRadios2" value="All" <?php echo  set_radio('region', 'All', TRUE); ?>>
-				 Price is more important than region! Show me all regions...
-			  </label>
-			</div>
+				$regions = array(
+					'asia-pacific-east' => 'Asia Pacific East', 
+					'asia-pacific-southeast' => 'Asia Pacific South-East', 
+					'australia-east' => 'Australia East', 
+					'australia-southeast' => 'Australia South East',	
+					'brazil-south' => 'Brazil South',	
+					'canada-central' => 'Canada Central',	
+					'canada-east' => 'Canada East', 
+					'central-india' => 'India Central', 
+					'west-india' => 'India West',
+					'south-india' => 'India South',
+					'europe-north' => 'Europe North',	
+					'europe-west' => 'Europe West', 
+					'germany-central' => 'Germany Central', 
+					'germany-northeast' => 'Germany North East', 
+					'japan-east' => 'Japan East', 
+					'japan-west' => 'Japan West', 
+					'korea-central' => 'Korea Central', 
+					'korea-south' => 'Korea South', 
+					'united-kingdom-south' => 'UK South', 
+					'united-kingdom-west' => 'UK West', 
+					'us-central' => 'US Central', 
+					'us-east' => 'US East', 
+					'us-east-2' => 'US East 2', 
+					'usgov-arizona' => 'US Gov Arizona', 
+					'usgov-iowa' => 'US Gov Iowa', 
+					'usgov-texas' => 'US Gov Texas', 
+					'usgov-virginia' => 'US Gov Virginia', 
+					'us-north-central' => 'US North Central', 
+					'us-south-central' => 'US South Central', 
+					'us-west' => 'US West', 
+					'us-west-2' => 'US West 2', 
+					'us-west-central' => 'US West Central', 
+					'all' => 'Just give me all options!'
+				);
+				echo form_dropdown('region', $regions, set_value('inputRegions[]'));
+				?>
 		  </div>
 		</div>
 		<div class="form-group">
