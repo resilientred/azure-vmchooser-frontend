@@ -39,6 +39,7 @@ class Vmchooser extends CI_Controller {
 		$this->form_validation->set_rules('inputAvgmempeak', 'Peak Memory Usage', 'numeric');
 		$this->form_validation->set_rules('inputSaps2tier', 'SAPS 2-Tier', 'numeric');
 		$this->form_validation->set_rules('inputSaps3tier', 'SAPS 3-Tier', 'numeric');
+		$this->form_validation->set_rules('inputResults', 'Max Results', 'less_than_equal_to[100]');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -86,7 +87,8 @@ class Vmchooser extends CI_Controller {
 			}
 			$inputSaps2tier = $this->security->xss_clean($_POST["inputSaps2tier"]);
 			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
-			$querysuffix = "?acu=$inputAcu&ht=$inputHt&tier=$inputTier&region=$inputRegion&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
+			$inputResults = $this->security->xss_clean($_POST["inputResults"]);
+			$querysuffix = "?maxresults=$inputResults&acu=$inputAcu&ht=$inputHt&tier=$inputTier&region=$inputRegion&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
 			if ((!empty($inputSaps2tier) AND !empty(inputSaps3tier)) OR ($hana == Yes)) {
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier&hana=$hana";
