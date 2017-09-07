@@ -220,7 +220,7 @@ echo form_open(base_url(), $attributes);
 		<div class="form-group">
 		  <label for="inputAcu" class="col-lg-2 control-label">ACU</label>
 		  <div class="col-lg-10">
-			<input type="text" class="form-control" name="inputIops" id="inputAcu" value="<?php echo set_value('inputAcu[]'); ?>" placeholder="What's the minimum ACU (azure compute unit) you expect for this VM?" autocomplete="off">
+			<input type="text" class="form-control" name="inputAcu" id="inputAcu" value="<?php echo set_value('inputAcu[]'); ?>" placeholder="What's the minimum ACU (azure compute unit) you expect for this VM?" autocomplete="off">
 		  </div>
 		</div>
 		<div class="form-group">
