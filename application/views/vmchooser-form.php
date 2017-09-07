@@ -195,6 +195,35 @@ echo form_open(base_url(), $attributes);
 		  </div>
 		</div>
 		<div class="form-group">
+		  <label class="col-lg-2 control-label">Hyperthreaded Core</label>
+		  <div class="col-lg-10">
+			<div class="radio">
+			  <label>
+				<input type="radio" name="inputHt" id="optionsRadios1" value="Yes" <?php echo  set_radio('inputHt', 'yes', FALSE); ?>>
+				Yes
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+				<input type="radio" name="inputHt" id="optionsRadios2" value="No" <?php echo  set_radio('inputHt', 'no', FALSE); ?>>
+				No
+			  </label>
+			</div>
+			<div class="radio">
+			  <label>
+				<input type="radio" name="inputHt" id="optionsRadios2" value="All" <?php echo  set_radio('inputHt', 'all', TRUE); ?>>
+				Don't care... 
+			  </label>
+			</div>
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputAcu" class="col-lg-2 control-label">ACU</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputIops" id="inputAcu" value="<?php echo set_value('inputAcu[]'); ?>" placeholder="What's the minimum ACU (azure compute unit) you expect for this VM?" autocomplete="off">
+		  </div>
+		</div>
+		<div class="form-group">
 		  <label for="inputIops" class="col-lg-2 control-label">IOPS</label>
 		  <div class="col-lg-10">
 			<input type="text" class="form-control" name="inputIops" id="inputIops" value="<?php echo set_value('inputIops[]'); ?>" placeholder="What's the minimum IOPS, for the non-OS disk(s), this VM needs?" autocomplete="off">
