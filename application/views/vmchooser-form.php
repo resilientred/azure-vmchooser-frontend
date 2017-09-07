@@ -268,7 +268,7 @@ echo form_open(base_url(), $attributes);
 	<div class="tab-pane fade" id="options">
 
 	<fieldset>
-		<legend>Results</legend>
+		<legend>Options to tweak the results</legend>
 		<div class="form-group">
 		  <label for="inputResults" class="col-lg-2 control-label">Maximum Results</label>
 		  <div class="col-lg-10">
