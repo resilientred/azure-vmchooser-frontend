@@ -199,19 +199,19 @@ echo form_open(base_url(), $attributes);
 		  <div class="col-lg-10">
 			<div class="radio">
 			  <label>
-				<input type="radio" name="inputHt" id="optionsRadios1" value="Yes" <?php echo  set_radio('inputHt', 'yes', FALSE); ?>>
+				<input type="radio" name="inputHt" id="optionsRadios1" value="Yes" <?php echo  set_radio('inputHt', 'Yes', FALSE); ?>>
 				Yes
 			  </label>
 			</div>
 			<div class="radio">
 			  <label>
-				<input type="radio" name="inputHt" id="optionsRadios2" value="No" <?php echo  set_radio('inputHt', 'no', FALSE); ?>>
+				<input type="radio" name="inputHt" id="optionsRadios2" value="No" <?php echo  set_radio('inputHt', 'No', FALSE); ?>>
 				No
 			  </label>
 			</div>
 			<div class="radio">
 			  <label>
-				<input type="radio" name="inputHt" id="optionsRadios2" value="All" <?php echo  set_radio('inputHt', 'all', TRUE); ?>>
+				<input type="radio" name="inputHt" id="optionsRadios2" value="All" <?php echo  set_radio('inputHt', 'All', TRUE); ?>>
 				Don't care... 
 			  </label>
 			</div>
