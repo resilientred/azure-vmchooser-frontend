@@ -272,7 +272,7 @@ echo form_open(base_url(), $attributes);
 		<div class="form-group">
 		  <label for="inputResults" class="col-lg-2 control-label">Maximum Results</label>
 		  <div class="col-lg-10">
-			<input type="text" class="form-control" name="inputResults" id="inputResults" value="<?php echo set_value('inputResults[5]'); ?>" placeholder="How many results do you want to see? (Default: 5)" autocomplete="off">
+			<input type="text" class="form-control" name="inputResults" id="inputResults" value="<?php echo set_value('inputResults[]'); ?>" placeholder="How many results do you want to see? (Default: 5)" autocomplete="off">
 		  </div>
 		</div>
 	 </fieldset>
