@@ -67,6 +67,7 @@ echo form_open(base_url(), $attributes);
   <li class="active"><a href="#basic" data-toggle="tab" aria-expanded="true">Requirements</a></li>
   <li class=""><a href="#advanced" data-toggle="tab" aria-expanded="false">Advanced</a></li>
   <li class=""><a href="#rightsizing" data-toggle="tab" aria-expanded="false">Rightsizing</a></li>
+	<li class=""><a href="#options" data-toggle="tab" aria-expanded="false">Options</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="basic">
