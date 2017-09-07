@@ -262,7 +262,7 @@ echo form_open(base_url(), $attributes);
 		</div>
 	 </fieldset>
 
-	 <div class="tab-pane fade" id="rightsizing">
+	 <div class="tab-pane fade" id="options">
 
 	<fieldset>
 		<legend>Results</legend>
