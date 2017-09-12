@@ -140,6 +140,9 @@ class Resources
     const FILE_SHARE_PROPERTIES_OPERATION_INVALID = "The operation is invalid. Can only be 'metadata' or 'properties'.";
     const RESOURCE_RANGE_LENGTH_MUST_SET = "The start and end/length of the range must be set.";
     const INVALID_ACCEPT_CONTENT_TYPE = "The given accept content type is not valid.";
+    const ERROR_CANNOT_PARSE_XML = "Cannot parse XML, reasons: %s";
+    const INVALID_SCHEME = 'HTTP scheme can only be string \'http\' or \'https\'.';
+    const CONTENT_SIZE_TOO_LARGE = 'The content is too large for the selected blob type.';
 
     // HTTP Headers
     const X_MS_HEADER_PREFIX                 = 'x-ms-';
@@ -184,6 +187,8 @@ class Resources
     const X_MS_LEASE_BREAK_PERIOD            = 'x-ms-lease-break-period';
     const X_MS_DELETE_SNAPSHOTS              = 'x-ms-delete-snapshots';
     const X_MS_PAGE_WRITE                    = 'x-ms-page-write';
+    const X_MS_REQUEST_SERVER_ENCRYPTED      = 'x-ms-request-server-encrypted';
+    const X_MS_SERVER_ENCRYPTED              = 'x-ms-server-encrypted';
     const X_MS_SNAPSHOT                      = 'x-ms-snapshot';
     const X_MS_SOURCE_IF_MODIFIED_SINCE      = 'x-ms-source-if-modified-since';
     const X_MS_SOURCE_IF_UNMODIFIED_SINCE    = 'x-ms-source-if-unmodified-since';
@@ -278,8 +283,13 @@ class Resources
     const MB_IN_BYTES_4       = 4194304;
     const MB_IN_BYTES_32      = 33554432;
     const MB_IN_BYTES_64      = 67108864;
+    const MB_IN_BYTES_128     = 134217728;
+    const MB_IN_BYTES_256     = 268435456;
+    const MB_IN_BYTES_100     = 104857600;
     const GB_IN_BYTES         = 1073741824;
+    const GB_IN_BYTES_200     = 214748364800;
     const MAX_BLOB_BLOCKS     = 50000;
+    const MAX_BLOCK_BLOB_SIZE = 5242880000000;
     const RETURN_CONTENT      = 'return-content';
 
     // Xml Namespaces
@@ -293,13 +303,11 @@ class Resources
     const DEAFULT_RETRY_INTERVAL = 1000;//Milliseconds
 
     // Header values
-    const SDK_VERSION                        = '0.16.0';
-    const STORAGE_API_LATEST_VERSION         = '2015-04-05';
+    const SDK_VERSION                        = '0.18.0';
+    const STORAGE_API_LATEST_VERSION         = '2016-05-31';
     const DATA_SERVICE_VERSION_VALUE         = '3.0';
     const MAX_DATA_SERVICE_VERSION_VALUE     = '3.0;NetFx';
-    const ACCEPT_HEADER_VALUE                = 'application/atom+xml,application/xml';
-    const ATOM_ENTRY_CONTENT_TYPE            = 'application/atom+xml;type=entry;charset=utf-8';
-    const ATOM_FEED_CONTENT_TYPE             = 'application/atom+xml;type=feed;charset=utf-8';
+    const ACCEPT_HEADER_VALUE                = 'application/json';
     const JSON_FULL_METADATA_CONTENT_TYPE    = 'application/json;odata=fullmetadata';
     const JSON_MINIMAL_METADATA_CONTENT_TYPE = 'application/json;odata=minimalmetadata';
     const JSON_NO_METADATA_CONTENT_TYPE      = 'application/json;odata=nometadata';
@@ -324,6 +332,7 @@ class Resources
     const QP_DELIMITER          = 'Delimiter';
     const QP_REST_TYPE          = 'restype';
     const QP_SNAPSHOT           = 'snapshot';
+    const QP_PRE_SNAPSHOT       = 'prevsnapshot';
     const QP_BLOCKID            = 'blockid';
     const QP_BLOCK_LIST_TYPE    = 'blocklisttype';
     const QP_SELECT             = '$select';
@@ -364,7 +373,6 @@ class Resources
     const XML_CONTENT_TYPE         = 'application/xml';
     const JSON_CONTENT_TYPE        = 'application/json';
     const BINARY_FILE_TYPE         = 'application/octet-stream';
-    const XML_ATOM_CONTENT_TYPE    = 'application/atom+xml';
     const HTTP_TYPE                = 'application/http';
     const MULTIPART_MIXED_TYPE     = 'multipart/mixed';
 
@@ -474,6 +482,10 @@ class Resources
     const XTAG_GEO_REPLICATION              = 'GeoReplication';
     const XTAG_LAST_SYNC_TIME               = 'LastSyncTime';
     const XTAG_SHARE_USAGE                  = 'ShareUsage';
+    const XTAG_PAGE_RANGE                   = 'PageRange';
+    const XTAG_CLEAR_RANGE                  = 'ClearRange';
+    const XTAG_RANGE_START                  = 'Start';
+    const XTAG_RANGE_END                    = 'End';
 
     //JSON Tags
     const JSON_TABLE_NAME        = 'TableName';

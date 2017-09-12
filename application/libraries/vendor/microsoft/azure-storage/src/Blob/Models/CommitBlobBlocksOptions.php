@@ -24,8 +24,6 @@
  
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-
 /**
  * Optional parameters for commitBlobBlocks
  *
@@ -45,7 +43,7 @@ class CommitBlobBlocksOptions extends BlobServiceOptions
     private $_cacheControl;
     private $_contentDisposition;
     private $_metadata;
-    
+
     /**
      * Gets ContentType.
      *

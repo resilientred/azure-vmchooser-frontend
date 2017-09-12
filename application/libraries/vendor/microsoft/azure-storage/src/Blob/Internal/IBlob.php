@@ -519,7 +519,7 @@ interface IBlob
      * @param string|resource|StreamInterface $content   The content of the blob.
      * @param BlobModels\CreateBlobOptions    $options   The optional parameters.
      *
-     * @return BlobModels\PutBlobResult
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179451.aspx
      */
@@ -762,10 +762,10 @@ interface IBlob
     * block list or from the uncommitted block list, or to commit the most recently
     * uploaded version of the block, whichever list it may belong to.
     *
-    * @param string                             $container name of the container
-    * @param string                             $blob      name of the blob
-    * @param BlobModels\BlockList|array         $blockList the block list entries
-    * @param BlobModels\CommitBlobBlocksOptions $options   optional parameters
+    * @param string                                  $container name of the container
+    * @param string                                  $blob      name of the blob
+    * @param BlobModels\BlockList|BlobModels\Block[] $blockList the block list entries
+    * @param BlobModels\CommitBlobBlocksOptions      $options   optional parameters
     *
     * @return BlobModels\PutBlobResult
     *
@@ -789,11 +789,11 @@ interface IBlob
      * block list or from the uncommitted block list, or to commit the most recently
      * uploaded version of the block, whichever list it may belong to.
      *
-     * @param string                             $container The container name.
-     * @param string                             $blob      The blob name.
-     * @param BlobModels\BlockList|array         $blockList The block entries.
-     * @param BlobModels\CommitBlobBlocksOptions $options   The optional
-     *                                                      parameters.
+     * @param string                                  $container name of the container
+     * @param string                                  $blob      name of the blob
+     * @param BlobModels\BlockList|BlobModels\Block[] $blockList the block list
+     *                                                           entries
+     * @param BlobModels\CommitBlobBlocksOptions      $options   optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      *
@@ -959,6 +959,63 @@ interface IBlob
     public function listPageBlobRangesAsync(
         $container,
         $blob,
+        BlobModels\ListPageBlobRangesOptions $options = null
+    );
+
+    /**
+     * Returns a list of page ranges that have been updated or cleared. 
+     *
+     * Returns a list of page ranges that have been updated or cleared since 
+     * the snapshot specified by `previousSnapshotTime`. Gets all of the page 
+     * ranges by default, or only the page ranges over a specific range of 
+     * bytes if `rangeStart` and `rangeEnd` in the `options` are specified.
+     *
+     * @param string                               $container             name of the container
+     * @param string                               $blob                  name of the blob
+     * @param string                               $previousSnapshotTime  previous snapshot time 
+     *                                                                    for comparison which
+     *                                                                    should be prior to the 
+     *                                                                    snapshot time defined
+     *                                                                    in `options`
+     * @param BlobModels\ListPageBlobRangesOptions $options               optional parameters
+     *
+     * @return BlobModels\ListPageBlobRangesDiffResult
+     *
+     * @see https://docs.microsoft.com/en-us/rest/api/storageservices/version-2015-07-08
+     */
+    public function listPageBlobRangesDiff(
+        $container,
+        $blob,
+        $previousSnapshotTime,
+        BlobModels\ListPageBlobRangesOptions $options = null
+    );
+
+    /**
+     * Creates promise to return a list of page ranges that have been updated
+     * or cleared. 
+     *
+     * Creates promise to return a list of page ranges that have been updated
+     * or cleared since the snapshot specified by `previousSnapshotTime`. Gets
+     * all of the page ranges by default, or only the page ranges over a specific
+     * range of bytes if `rangeStart` and `rangeEnd` in the `options` are specified.
+     *
+     * @param string                               $container               name of the container
+     * @param string                               $blob                    name of the blob
+     * @param string                               $previousSnapshotTime    previous snapshot time
+     *                                                                      for comparison which
+     *                                                                      should be prior to the
+     *                                                                      snapshot time defined
+     *                                                                      in `options`
+     * @param BlobModels\ListPageBlobRangesOptions $options                 optional parameters
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
+     * @see http://msdn.microsoft.com/en-us/library/windowsazure/ee691973.aspx
+     */
+    public function listPageBlobRangesDiffAsync(
+        $container,
+        $blob,
+        $previousSnapshotTime,
         BlobModels\ListPageBlobRangesOptions $options = null
     );
 

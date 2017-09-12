@@ -55,8 +55,6 @@ use MicrosoftAzure\Storage\File\Models\FileBlockType;
 use MicrosoftAzure\Storage\File\Models\GetFileOptions;
 use MicrosoftAzure\Storage\File\Models\Block;
 use MicrosoftAzure\Storage\File\Models\CopyFileOptions;
-use MicrosoftAzure\Storage\File\Models\CreateFileSnapshotOptions;
-use MicrosoftAzure\Storage\File\Models\CreateFileSnapshotResult;
 use MicrosoftAzure\Storage\File\Models\FileProperties;
 
 /**
@@ -213,6 +211,16 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         $result = $this->restProxy->getShareStats($share);
 
         $this->assertEquals(0, $result->getShareUsage());
+    }
+
+    /**
+     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::listDirectoriesAndFiles
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage can't be NULL.
+     */
+    public function testListDirectoriesAndFilesWithNull()
+    {
+        $this->restProxy->listDirectoriesAndFiles(null);
     }
 
     /**
@@ -481,16 +489,16 @@ class FileRestProxyTest extends FileServiceRestProxyTestBase
         }
     }
 
-     /**
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteShare
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteShareAsync
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createShare
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createShareAsync
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createFile
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createFileAsync
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteFile
-     * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteFileAsync
-     */
+    /**
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteShare
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteShareAsync
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createShare
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createShareAsync
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createFile
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::createFileAsync
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteFile
+    * @covers  \MicrosoftAzure\Storage\File\FileRestProxy::deleteFileAsync
+    */
     public function testCreateDeleteFile()
     {
         $share = 'createdeletefile' . $this->createSuffix();

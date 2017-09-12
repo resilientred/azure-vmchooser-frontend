@@ -26,7 +26,6 @@ namespace MicrosoftAzure\Storage\Common;
 
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\ConnectionStringSource;
 
 /**
@@ -80,7 +79,7 @@ class CloudConfigurationManager
      */
     public static function getConnectionString($key)
     {
-        Validate::isString($key, 'key');
+        Validate::canCastAsString($key, 'key');
         
         self::_init();
         $value = null;
@@ -110,7 +109,7 @@ class CloudConfigurationManager
      */
     public static function registerSource($name, $provider = null, $prepend = false)
     {
-        Validate::isString($name, 'name');
+        Validate::canCastAsString($name, 'name');
         Validate::notNullOrEmpty($name, 'name');
         
         self::_init();
@@ -140,7 +139,7 @@ class CloudConfigurationManager
      */
     public static function unregisterSource($name)
     {
-        Validate::isString($name, 'name');
+        Validate::canCastAsString($name, 'name');
         Validate::notNullOrEmpty($name, 'name');
         
         self::_init();

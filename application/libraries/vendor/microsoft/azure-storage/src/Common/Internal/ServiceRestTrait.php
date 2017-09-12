@@ -26,8 +26,6 @@
 namespace MicrosoftAzure\Storage\Common\Internal;
 
 use MicrosoftAzure\Storage\Common\LocationMode;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Models\ServiceOptions;
 use MicrosoftAzure\Storage\Common\Models\ServiceProperties;
 use MicrosoftAzure\Storage\Common\Models\GetServicePropertiesResult;
@@ -197,7 +195,7 @@ trait ServiceRestTrait
     }
 
     /**
-     * Retieves statistics related to replication for the service. The operation
+     * Retrieves statistics related to replication for the service. The operation
      * will only be sent to secondary location endpoint.
      *
      * @param  ServiceOptions|null $options The options this operation sends with.

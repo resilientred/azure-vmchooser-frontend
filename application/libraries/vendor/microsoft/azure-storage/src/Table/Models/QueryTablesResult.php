@@ -26,8 +26,6 @@ namespace MicrosoftAzure\Storage\Table\Models;
 
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Table\Models\TableContinuationToken;
-use MicrosoftAzure\Storage\Table\Models\TableContinuationTokenTrait;
 
 /**
  * QueryTablesResult
@@ -62,17 +60,21 @@ class QueryTablesResult
         
         $result->setTables($entries);
 
-        $result->setContinuationToken(
-            new TableContinuationToken(
-                Utilities::tryGetValue(
-                    $headers,
-                    Resources::X_MS_CONTINUATION_NEXTTABLENAME
-                ),
-                '',
-                '',
-                Utilities::getLocationFromHeaders($headers)
-            )
+        $nextTableName = Utilities::tryGetValue(
+            $headers,
+            Resources::X_MS_CONTINUATION_NEXTTABLENAME
         );
+
+        if ($nextTableName != null) {
+            $result->setContinuationToken(
+                new TableContinuationToken(
+                    $nextTableName,
+                    '',
+                    '',
+                    Utilities::getLocationFromHeaders($headers)
+                )
+            );
+        }
         
         return $result;
     }

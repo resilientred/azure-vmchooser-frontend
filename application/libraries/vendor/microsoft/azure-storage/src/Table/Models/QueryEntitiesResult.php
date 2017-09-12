@@ -26,8 +26,6 @@ namespace MicrosoftAzure\Storage\Table\Models;
 
 use MicrosoftAzure\Storage\Common\Internal\Utilities;
 use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Table\Models\TableContinuationToken;
-use MicrosoftAzure\Storage\Table\Models\TableContinuationTokenTrait;
 
 /**
  * Holds results of calling queryEntities API
@@ -68,14 +66,16 @@ class QueryEntitiesResult
             Resources::X_MS_CONTINUATION_NEXTROWKEY
         );
 
-        $result->setContinuationToken(
-            new TableContinuationToken(
-                '',
-                $nextPK,
-                $nextRK,
-                Utilities::getLocationFromHeaders($headers)
-            )
-        );
+        if ($nextRK != null && $nextPK != null) {
+            $result->setContinuationToken(
+                new TableContinuationToken(
+                    '',
+                    $nextPK,
+                    $nextRK,
+                    Utilities::getLocationFromHeaders($headers)
+                )
+            );
+        }
         
         $result->setEntities($entities);
         

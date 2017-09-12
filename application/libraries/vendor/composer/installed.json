@@ -240,17 +240,17 @@
     },
     {
         "name": "microsoft/azure-storage",
-        "version": "v0.16.0",
-        "version_normalized": "0.16.0.0",
+        "version": "v0.18.0",
+        "version_normalized": "0.18.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Azure/azure-storage-php.git",
-            "reference": "f35df06025c2e114121e958a774bcaf0076ba6b3"
+            "reference": "e3986ce5f868420c3f70fc011b69f58187b19c11"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Azure/azure-storage-php/zipball/f35df06025c2e114121e958a774bcaf0076ba6b3",
-            "reference": "f35df06025c2e114121e958a774bcaf0076ba6b3",
+            "url": "https://api.github.com/repos/Azure/azure-storage-php/zipball/e3986ce5f868420c3f70fc011b69f58187b19c11",
+            "reference": "e3986ce5f868420c3f70fc011b69f58187b19c11",
             "shasum": ""
         },
         "require": {
@@ -258,6 +258,7 @@
             "php": ">=5.5.0"
         },
         "require-dev": {
+            "friendsofphp/php-cs-fixer": "@stable",
             "mikey179/vfsstream": "~1.6",
             "pdepend/pdepend": "~2.2",
             "phpdocumentor/phpdocumentor": "dev-master",
@@ -265,10 +266,10 @@
             "phpmd/phpmd": "@stable",
             "phpunit/phpunit": "~4.0",
             "sebastian/phpcpd": "~2.0",
-            "squizlabs/php_codesniffer": "2.*",
+            "squizlabs/php_codesniffer": "@stable",
             "theseer/phpdox": "~0.8"
         },
-        "time": "2017-06-16T09:30:13+00:00",
+        "time": "2017-08-29T06:16:41+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {

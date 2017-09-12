@@ -67,7 +67,7 @@ class ListFileRangesResult
         $fileLength    = intval($headers[Resources::X_MS_CONTENT_LENGTH]);
         $rawRanges = array();
         if (!empty($parsed['Range'])) {
-                $rawRanges = Utilities::getArray($parsed['Range']);
+            $rawRanges = Utilities::getArray($parsed['Range']);
         }
         
         $ranges = array();
@@ -127,7 +127,7 @@ class ListFileRangesResult
      */
     protected function setETag($etag)
     {
-        Validate::isString($etag, 'etag');
+        Validate::canCastAsString($etag, 'etag');
         $this->etag = $etag;
     }
     

@@ -65,6 +65,7 @@ class TestResources
     const REQUEST_ID1   = 'f16b5298-0003-011e-0e70-83666b000000';
     const REQUEST_ID2   = 'c17dcd76-0003-0046-1c70-832445000000';
     const RESPONSE_BODY = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Error><Code>InvalidResourceName</Code><Message>The specifed resource name contains invalid characters.\nRequestId:f16b5298-0003-011e-0e70-83666b000000\nTime:2017-02-10T07:36:04.8329883Z</Message></Error>";
+    const RESPONSE_BODY_JSON = '{"odata.error":{"code":"ResourceNotFound","message":{"lang":"en-US","value":"Test"}}}';
     const ERROR_MESSAGE = "The specifed resource name contains invalid characters.\nRequestId:f16b5298-0003-011e-0e70-83666b000000\nTime:2017-02-10T07:36:04.8329883Z";
     const VALID_URL     = 'http://www.example.com';
     const HEADER1       = 'testheader1';
@@ -416,7 +417,7 @@ class TestResources
         $connectionString = getenv('AZURE_STORAGE_CONNECTION_STRING');
 
         if (empty($connectionString)) {
-            throw new \Exception('AZURE_STORAGE_CONNECTION_STRING envionment variable is missing');
+            throw new \Exception('AZURE_STORAGE_CONNECTION_STRING environment variable is missing');
         }
 
         return $connectionString;
@@ -438,6 +439,17 @@ class TestResources
                 Resources::X_MS_REQUEST_ID => self::REQUEST_ID1
             ),
             self::RESPONSE_BODY,
+            '1.1',
+            $reason
+        );
+    }
+
+    public static function getFailedResponseJson($statusCode, $reason)
+    {
+        return new Response(
+            $statusCode,
+            array(),
+            self::RESPONSE_BODY_JSON,
             '1.1',
             $reason
         );
@@ -1216,12 +1228,14 @@ class TestResources
                     'Cache-Control' => 'cachecontrol',
                     'x-ms-blob-sequence-number' => '0',
                     'x-ms-blob-type' => 'BlockBlob',
-                    'x-ms-lease-status' => 'locked'
+                    'x-ms-lease-status' => 'locked',
+                    'x-ms-server-encrypted' => 'false',
+                    'x-ms-request-server-encrypted' => 'true'
                 )
             )
         );
 
-        $sample['NextMarker'] = '';
+        $sample['NextMarker'] = 'abcdefg';
 
         return $sample;
     }
@@ -1332,7 +1346,19 @@ class TestResources
             0 => array('Start' => '0',        'End' => '4194303'),
             1 => array('Start' => '4194304',  'End' => '8388607'),
             2 => array('Start' => '8388608',  'End' => '12582911'),
-            3 => array('Start' => '12582911', 'End' => '13606911'),
+            3 => array('Start' => '12582912', 'End' => '13606911'),
+        ));
+    }
+
+    public static function listPageRangeDiffBodyInArray()
+    {
+        return array('PageRange' => array(
+            0 => array('Start' => '0',        'End' => '4194303'),
+            1 => array('Start' => '4194304',  'End' => '8388607'),
+            2 => array('Start' => '8388608',  'End' => '12582911'),
+            3 => array('Start' => '12582912', 'End' => '13606911'),
+        ), 'PageClear' => array(
+            0 => array('Start' => '13606912', 'End' => '17801215')
         ));
     }
 
@@ -1480,7 +1506,7 @@ class TestResources
         }
 
         if ($signedStart == "") {
-            $signedStart = (self::getRandomEarlierTime()->format('Y-m-d\TH:i:s\Z'));
+            $signedStart = (self::getRandomEarlierTime());
         }
 
         if ($signedIP == "") {
@@ -1518,7 +1544,7 @@ class TestResources
         }
 
         if ($signedStart == "") {
-            $signedStart = (self::getRandomEarlierTime()->format('Y-m-d\TH:i:s\Z'));
+            $signedStart = (self::getRandomEarlierTime());
         }
 
         if ($signedIP == "") {

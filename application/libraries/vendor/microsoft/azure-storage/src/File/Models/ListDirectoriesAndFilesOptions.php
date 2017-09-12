@@ -24,12 +24,8 @@
  
 namespace MicrosoftAzure\Storage\File\Models;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
-use MicrosoftAzure\Storage\File\Models\FileContinuationToken;
-use MicrosoftAzure\Storage\File\Models\FileContinuationTokenTrait;
+use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 
 /**
  * The options of listing directories and files.
@@ -43,7 +39,7 @@ use MicrosoftAzure\Storage\File\Models\FileContinuationTokenTrait;
  */
 class ListDirectoriesAndFilesOptions extends FileServiceOptions
 {
-    use FileContinuationTokenTrait;
+    use MarkerContinuationTokenTrait;
 
     private $maxResults;
 
@@ -76,7 +72,7 @@ class ListDirectoriesAndFilesOptions extends FileServiceOptions
      */
     public function setMaxResults($maxResults)
     {
-        Validate::isString($maxResults, 'maxResults');
+        Validate::canCastAsString($maxResults, 'maxResults');
         $this->maxResults = $maxResults;
     }
 }

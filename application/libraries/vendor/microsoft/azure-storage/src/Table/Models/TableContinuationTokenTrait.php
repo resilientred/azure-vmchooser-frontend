@@ -25,8 +25,6 @@
  
 namespace MicrosoftAzure\Storage\Table\Models;
 
-use MicrosoftAzure\Storage\Table\Models\TableContinuationToken;
-
 /**
  * Trait implementing logic for Table continuation tokens.
  *
@@ -69,7 +67,7 @@ trait TableContinuationTokenTrait
     public function getLocation()
     {
         if ($this->continuationToken == null) {
-            $this->setContinuationToken(new TableContinuationToken());
+            return null;
         }
         return $this->continuationToken->getLocation();
     }
@@ -77,9 +75,8 @@ trait TableContinuationTokenTrait
     public function getLocationMode()
     {
         if ($this->continuationToken == null) {
-            $this->setContinuationToken(new TableContinuationToken());
-        }
-        if ($this->continuationToken->getLocation() == '') {
+            return parent::getLocationMode();
+        } elseif ($this->continuationToken->getLocation() == '') {
             return parent::getLocationMode();
         } else {
             return $this->getLocation();
@@ -94,7 +91,7 @@ trait TableContinuationTokenTrait
     public function getNextTableName()
     {
         if ($this->continuationToken == null) {
-            $this->setContinuationToken(new TableContinuationToken());
+            return null;
         }
         return $this->continuationToken->getNextTableName();
     }
@@ -107,7 +104,7 @@ trait TableContinuationTokenTrait
     public function getNextPartitionKey()
     {
         if ($this->continuationToken == null) {
-            $this->setContinuationToken(new TableContinuationToken());
+            return null;
         }
         return $this->continuationToken->getNextPartitionKey();
     }
@@ -120,7 +117,7 @@ trait TableContinuationTokenTrait
     public function getNextRowKey()
     {
         if ($this->continuationToken == null) {
-            $this->setContinuationToken(new TableContinuationToken());
+            return null;
         }
         return $this->continuationToken->getNextRowKey();
     }

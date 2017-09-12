@@ -24,9 +24,7 @@
  
 namespace MicrosoftAzure\Storage\Blob\Models;
 
-use MicrosoftAzure\Storage\Blob\Models\BlobServiceOptions;
-use MicrosoftAzure\Storage\Blob\Models\BlobContinuationToken;
-use MicrosoftAzure\Storage\Blob\Models\BlobContinuationTokenTrait;
+use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
@@ -41,7 +39,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  */
 class ListContainersOptions extends BlobServiceOptions
 {
-    use BlobContinuationTokenTrait;
+    use MarkerContinuationTokenTrait;
 
     private $_prefix;
     private $_maxResults;
@@ -68,7 +66,7 @@ class ListContainersOptions extends BlobServiceOptions
      */
     public function setPrefix($prefix)
     {
-        Validate::isString($prefix, 'prefix');
+        Validate::canCastAsString($prefix, 'prefix');
         $this->_prefix = $prefix;
     }
 
@@ -99,7 +97,7 @@ class ListContainersOptions extends BlobServiceOptions
      */
     public function setMaxResults($maxResults)
     {
-        Validate::isString($maxResults, 'maxResults');
+        Validate::canCastAsString($maxResults, 'maxResults');
         $this->_maxResults = $maxResults;
     }
 

@@ -25,10 +25,7 @@
  
 namespace MicrosoftAzure\Storage\Common\Internal;
 
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
 use MicrosoftAzure\Storage\Common\Internal\IMiddleware;
-use MicrosoftAzure\Storage\Common\Middlewares\HistoryMiddleware;
 
 /**
  * Base class for all REST proxies.
@@ -102,8 +99,8 @@ class RestProxy
     protected function addOptionalQueryParam(array &$queryParameters, $key, $value)
     {
         Validate::isArray($queryParameters, 'queryParameters');
-        Validate::isString($key, 'key');
-        Validate::isString($value, 'value');
+        Validate::canCastAsString($key, 'key');
+        Validate::canCastAsString($value, 'value');
                 
         if (!is_null($value) && Resources::EMPTY_STRING !== $value) {
             $queryParameters[$key] = $value;
@@ -124,8 +121,8 @@ class RestProxy
     protected function addOptionalHeader(array &$headers, $key, $value)
     {
         Validate::isArray($headers, 'headers');
-        Validate::isString($key, 'key');
-        Validate::isString($value, 'value');
+        Validate::canCastAsString($key, 'key');
+        Validate::canCastAsString($value, 'value');
                 
         if (!is_null($value) && Resources::EMPTY_STRING !== $value) {
             $headers[$key] = $value;

@@ -25,9 +25,6 @@
 
 namespace MicrosoftAzure\Storage\Common\Internal;
 
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
 use MicrosoftAzure\Storage\Common\Models\AccessPolicy;
 use MicrosoftAzure\Storage\Common\Models\SignedIdentifier;
 use MicrosoftAzure\Storage\Common\Internal\Serialization\XmlSerializer;
@@ -185,12 +182,12 @@ abstract class ACLBase
         \DateTime $expiry,
         $permissions
     ) {
-        Validate::isString($id, 'id');
+        Validate::canCastAsString($id, 'id');
         if ($start != null) {
             Validate::isDate($start);
         }
         Validate::isDate($expiry);
-        Validate::isString($permissions, 'permissions');
+        Validate::canCastAsString($permissions, 'permissions');
 
         $accessPolicy = new AccessPolicy($this->getResourceType());
         $accessPolicy->setStart($start);
@@ -222,7 +219,7 @@ abstract class ACLBase
      */
     public function removeSignedIdentifier($id)
     {
-        Validate::isString($id, 'id');
+        Validate::canCastAsString($id, 'id');
         //var_dump($this->signedIdentifiers);
         for ($i = 0; $i < count($this->signedIdentifiers); ++$i) {
             if ($this->signedIdentifiers[$i]->getId() == $id) {

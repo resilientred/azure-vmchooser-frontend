@@ -15,58 +15,61 @@
  * PHP version 5
  *
  * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
+ * @package   MicrosoftAzure\Storage\Common\Models
  * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
  * @copyright 2017 Microsoft Corporation
  * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
  
-namespace MicrosoftAzure\Storage\File\Models;
-
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Models\ContinuationToken;
+namespace MicrosoftAzure\Storage\Common\Models;
 
 /**
- * Provides functionality and data structure for File continuation token.
+ * Holds info about page blob range diffs
  *
  * @category  Microsoft
- * @package   MicrosoftAzure\Storage\File\Models
+ * @package   MicrosoftAzure\Storage\Common\Models
  * @author    Azure Storage PHP SDK <dmsh@microsoft.com>
  * @copyright 2017 Microsoft Corporation
  * @license   https://github.com/azure/azure-storage-php/LICENSE
  * @link      https://github.com/azure/azure-storage-php
  */
-class FileContinuationToken extends ContinuationToken
+class RangeDiff extends Range
 {
-    private $nextMarker;
+    private $isClearedPageRange;
 
-    public function __construct(
-        $nextMarker = '',
-        $location = ''
-    ) {
-        parent::__construct($location);
-        $this->setNextMarker($nextMarker);
+    /**
+     * Constructor
+     *
+     * @param integer $start              the resource start value
+     * @param integer $end                the resource end value
+     * @param bool    $isClearedPageRange true if the page range is a cleared range, false otherwise.
+     */
+    public function __construct($start, $end = null, $isClearedPageRange = false)
+    {
+        parent::__construct($start, $end);
+        $this->isClearedPageRange = $isClearedPageRange;
     }
 
     /**
-     * Setter for nextMarker
+     * True if the page range is a cleared range, false otherwise
      *
-     * @param string $nextMarker the next marker to be set.
+     * @return bool
      */
-    public function setNextMarker($nextMarker)
+    public function isClearedPageRange()
     {
-        Validate::isString($nextMarker, 'nextMarker');
-        $this->nextMarker = $nextMarker;
+        return $this->isClearedPageRange;
     }
 
     /**
-     * Getter for nextMarker
+     * Sets the isClearedPageRange property
      *
-     * @return string
+     * @param bool $isClearedPageRange
+     *
+     * @return bool
      */
-    public function getNextMarker()
+    public function setIsClearedPageRange($isClearedPageRange)
     {
-        return $this->nextMarker;
+        $this->isClearedPageRange = $isClearedPageRange;
     }
 }

@@ -24,9 +24,7 @@
  
 namespace MicrosoftAzure\Storage\File\Models;
 
-use MicrosoftAzure\Storage\File\Models\FileServiceOptions;
-use MicrosoftAzure\Storage\File\Models\FileContinuationToken;
-use MicrosoftAzure\Storage\File\Models\FileContinuationTokenTrait;
+use MicrosoftAzure\Storage\Common\MarkerContinuationTokenTrait;
 use MicrosoftAzure\Storage\Common\Internal\Validate;
 
 /**
@@ -41,7 +39,7 @@ use MicrosoftAzure\Storage\Common\Internal\Validate;
  */
 class ListSharesOptions extends FileServiceOptions
 {
-    use FileContinuationTokenTrait;
+    use MarkerContinuationTokenTrait;
 
     private $prefix;
     private $maxResults;
@@ -68,7 +66,7 @@ class ListSharesOptions extends FileServiceOptions
      */
     public function setPrefix($prefix)
     {
-        Validate::isString($prefix, 'prefix');
+        Validate::canCastAsString($prefix, 'prefix');
         $this->prefix = $prefix;
     }
 
@@ -99,7 +97,7 @@ class ListSharesOptions extends FileServiceOptions
      */
     public function setMaxResults($maxResults)
     {
-        Validate::isString($maxResults, 'maxResults');
+        Validate::canCastAsString($maxResults, 'maxResults');
         $this->maxResults = $maxResults;
     }
 

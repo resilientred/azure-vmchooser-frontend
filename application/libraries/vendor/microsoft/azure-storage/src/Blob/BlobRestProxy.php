@@ -24,62 +24,60 @@
 
 namespace MicrosoftAzure\Storage\Blob;
 
-use MicrosoftAzure\Storage\Common\Internal\ServiceRestTrait;
-use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
-use MicrosoftAzure\Storage\Common\Internal\Utilities;
-use MicrosoftAzure\Storage\Common\Internal\Resources;
-use MicrosoftAzure\Storage\Common\Internal\Validate;
-use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
-use MicrosoftAzure\Storage\Common\LocationMode;
-use MicrosoftAzure\Storage\Common\Models\Range;
+use GuzzleHttp\Psr7;
 use MicrosoftAzure\Storage\Blob\Internal\IBlob;
 use MicrosoftAzure\Storage\Blob\Models\AppendBlockOptions;
 use MicrosoftAzure\Storage\Blob\Models\AppendBlockResult;
 use MicrosoftAzure\Storage\Blob\Models\BlobServiceOptions;
-use MicrosoftAzure\Storage\Blob\Models\ListContainersOptions;
-use MicrosoftAzure\Storage\Blob\Models\ListContainersResult;
-use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-use MicrosoftAzure\Storage\Blob\Models\GetContainerPropertiesResult;
-use MicrosoftAzure\Storage\Blob\Models\GetContainerACLResult;
-use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-use MicrosoftAzure\Storage\Blob\Models\ListBlobsResult;
 use MicrosoftAzure\Storage\Blob\Models\BlobType;
 use MicrosoftAzure\Storage\Blob\Models\Block;
+use MicrosoftAzure\Storage\Blob\Models\BlockList;
+use MicrosoftAzure\Storage\Blob\Models\BreakLeaseResult;
+use MicrosoftAzure\Storage\Blob\Models\CommitBlobBlocksOptions;
+use MicrosoftAzure\Storage\Blob\Models\CopyBlobOptions;
+use MicrosoftAzure\Storage\Blob\Models\CopyBlobResult;
+use MicrosoftAzure\Storage\Blob\Models\CreateBlobBlockOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
-use MicrosoftAzure\Storage\Blob\Models\BlobProperties;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobPropertiesOptions;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobPropertiesResult;
-use MicrosoftAzure\Storage\Blob\Models\SetBlobPropertiesOptions;
-use MicrosoftAzure\Storage\Blob\Models\SetBlobPropertiesResult;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataOptions;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataResult;
-use MicrosoftAzure\Storage\Blob\Models\SetBlobMetadataResult;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobOptions;
-use MicrosoftAzure\Storage\Blob\Models\GetBlobResult;
-use MicrosoftAzure\Storage\Blob\Models\DeleteBlobOptions;
-use MicrosoftAzure\Storage\Blob\Models\LeaseMode;
-use MicrosoftAzure\Storage\Blob\Models\LeaseResult;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobPagesResult;
-use MicrosoftAzure\Storage\Blob\Models\PageWriteOption;
-use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesOptions;
-use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesResult;
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobBlockOptions;
-use MicrosoftAzure\Storage\Blob\Models\CommitBlobBlocksOptions;
-use MicrosoftAzure\Storage\Blob\Models\BlockList;
-use MicrosoftAzure\Storage\Blob\Models\ListBlobBlocksOptions;
-use MicrosoftAzure\Storage\Blob\Models\ContainerACL;
-use MicrosoftAzure\Storage\Blob\Models\ListBlobBlocksResult;
-use MicrosoftAzure\Storage\Blob\Models\CopyBlobOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateBlobSnapshotResult;
-use MicrosoftAzure\Storage\Blob\Models\CopyBlobResult;
-use MicrosoftAzure\Storage\Blob\Models\BreakLeaseResult;
-use MicrosoftAzure\Storage\Blob\Models\PutBlockResult;
+use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+use MicrosoftAzure\Storage\Blob\Models\DeleteBlobOptions;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataOptions;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobMetadataResult;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobOptions;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobPropertiesOptions;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobPropertiesResult;
+use MicrosoftAzure\Storage\Blob\Models\GetBlobResult;
+use MicrosoftAzure\Storage\Blob\Models\GetContainerACLResult;
+use MicrosoftAzure\Storage\Blob\Models\GetContainerPropertiesResult;
+use MicrosoftAzure\Storage\Blob\Models\LeaseMode;
+use MicrosoftAzure\Storage\Blob\Models\LeaseResult;
+use MicrosoftAzure\Storage\Blob\Models\ListBlobBlocksOptions;
+use MicrosoftAzure\Storage\Blob\Models\ListBlobBlocksResult;
+use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+use MicrosoftAzure\Storage\Blob\Models\ListBlobsResult;
+use MicrosoftAzure\Storage\Blob\Models\ListContainersOptions;
+use MicrosoftAzure\Storage\Blob\Models\ListContainersResult;
+use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesDiffResult;
+use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesOptions;
+use MicrosoftAzure\Storage\Blob\Models\ListPageBlobRangesResult;
+use MicrosoftAzure\Storage\Blob\Models\PageWriteOption;
 use MicrosoftAzure\Storage\Blob\Models\PutBlobResult;
+use MicrosoftAzure\Storage\Blob\Models\PutBlockResult;
+use MicrosoftAzure\Storage\Blob\Models\SetBlobMetadataResult;
+use MicrosoftAzure\Storage\Blob\Models\SetBlobPropertiesOptions;
+use MicrosoftAzure\Storage\Blob\Models\SetBlobPropertiesResult;
+use MicrosoftAzure\Storage\Common\Internal\Http\HttpFormatter;
+use MicrosoftAzure\Storage\Common\Internal\Resources;
+use MicrosoftAzure\Storage\Common\Internal\ServiceRestProxy;
+use MicrosoftAzure\Storage\Common\Internal\ServiceRestTrait;
+use MicrosoftAzure\Storage\Common\Internal\Utilities;
+use MicrosoftAzure\Storage\Common\Internal\Validate;
+use MicrosoftAzure\Storage\Common\LocationMode;
+use MicrosoftAzure\Storage\Common\Models\Range;
 use Psr\Http\Message\StreamInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
 
 /**
  * This class constructs HTTP requests and receive HTTP responses for blob
@@ -96,7 +94,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
 {
     use ServiceRestTrait;
 
-    private $_SingleBlobUploadThresholdInBytes = Resources::MB_IN_BYTES_32;
+    private $singleBlobUploadThresholdInBytes = Resources::MB_IN_BYTES_32;
+    private $blockSize = Resources::MB_IN_BYTES_4;
 
     /**
      * Get the value for SingleBlobUploadThresholdInBytes
@@ -105,11 +104,21 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      */
     public function getSingleBlobUploadThresholdInBytes()
     {
-        return $this->_SingleBlobUploadThresholdInBytes;
+        return $this->singleBlobUploadThresholdInBytes;
     }
 
     /**
-     * Set the value for SingleBlobUploadThresholdInBytes, Max 64MB
+     * Get the value for blockSize
+     *
+     * @return int
+     */
+    public function getBlockSize()
+    {
+        return $this->blockSize;
+    }
+
+    /**
+     * Set the value for SingleBlobUploadThresholdInBytes, Max 256MB
      *
      * @param int $val The max size to send as a single blob block
      *
@@ -117,14 +126,81 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      */
     public function setSingleBlobUploadThresholdInBytes($val)
     {
-        if ($val > Resources::MB_IN_BYTES_64) {
+        if ($val > Resources::MB_IN_BYTES_256) {
             // What should the proper action here be?
-            $val = Resources::MB_IN_BYTES_64;
+            $val = Resources::MB_IN_BYTES_256;
         } elseif ($val < 1) {
             // another spot that could use looking at
             $val = Resources::MB_IN_BYTES_32;
         }
-        $this->_SingleBlobUploadThresholdInBytes = $val;
+        $this->singleBlobUploadThresholdInBytes = $val;
+        //If block size is larger than singleBlobUploadThresholdInBytes, honor
+        //threshold.
+        $this->blockSize = $val > $this->blockSize ? $this->blockSize : $val;
+    }
+
+    /**
+     * Set the value for block size, Max 100MB
+     *
+     * @param int $val The max size for each block to be sent.
+     *
+     * @return void
+     */
+    public function setBlockSize($val)
+    {
+        if ($val > Resources::MB_IN_BYTES_100) {
+            // What should the proper action here be?
+            $val = Resources::MB_IN_BYTES_100;
+        } elseif ($val < 1) {
+            // another spot that could use looking at
+            $val = Resources::MB_IN_BYTES_4;
+        }
+        //If block size is larger than singleBlobUploadThresholdInBytes, honor
+        //threshold.
+        $val = $val > $this->singleBlobUploadThresholdInBytes ?
+            $this->singleBlobUploadThresholdInBytes : $val;
+        $this->blockSize = $val;
+    }
+
+    /**
+     * Get the block size of multiple upload block size using the provided
+     * content
+     *
+     * @param  StreamInterface $content The content of the blocks.
+     *
+     * @return int
+     */
+    private function getMultipleUploadBlockSizeUsingContent($content)
+    {
+        //Default value is 100 MB.
+        $result = Resources::MB_IN_BYTES_100;
+        //PHP must be ran in 64bit environment so content->getSize() could
+        //return a guaranteed accurate size.
+        if (Utilities::is64BitPHP()) {
+            //Content must be seekable to determine the size.
+            if ($content->isSeekable()) {
+                $size = $content->getSize();
+                //When threshold is lower than 100MB, assume maximum number of
+                //block is used for the block blob, if the blockSize is still
+                //smaller than the assumed size, it means assumed size should
+                //be hornored, otherwise the blocks count will exceed maximum
+                //value allowed.
+                if ($this->blockSize < $result) {
+                    $assumedSize = ceil((float)$size /
+                        (float)(Resources::MAX_BLOB_BLOCKS));
+                    if ($this->blockSize <= $assumedSize) {
+                        $result = $assumedSize;
+                    } else {
+                        $result = $this->blockSize;
+                    }
+                }
+            }
+        } else {
+            // If not, we could only honor user's setting to determine
+            // chunk size.
+            $result = $this->blockSize;
+        }
+        return $result;
     }
 
     /**
@@ -136,12 +212,12 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @return string
      */
-    private function _getCopyBlobSourceName(
+    private function getCopyBlobSourceName(
         $containerName,
         $blobName,
         Models\CopyBlobOptions $options
     ) {
-        $sourceName = $this->_getBlobUrl($containerName, $blobName);
+        $sourceName = $this->getBlobUrl($containerName, $blobName);
 
         if (!is_null($options->getSourceSnapshot())) {
             $sourceName .= '?snapshot=' . $options->getSourceSnapshot();
@@ -158,7 +234,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @return string
      */
-    private function _createPath($container, $blob = '')
+    private function createPath($container, $blob = '')
     {
         if (empty($blob)) {
             if (!empty($container)) {
@@ -191,9 +267,9 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @return string
      */
-    private function _getBlobUrl($container, $blob)
+    private function getBlobUrl($container, $blob)
     {
-        $encodedBlob = $this->_createPath($container, $blob);
+        $encodedBlob = $this->createPath($container, $blob);
 
         return (string)($this->getPsrPrimaryUri()->withPath($encodedBlob));
     }
@@ -208,18 +284,18 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    private function _getContainerPropertiesAsyncImpl(
+    private function getContainerPropertiesAsyncImpl(
         $container,
         Models\BlobServiceOptions $options = null,
         $operation = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         
         $method      = Resources::HTTP_GET;
         $headers     = array();
         $queryParams = array();
         $postParams  = array();
-        $path        = $this->_createPath($container);
+        $path        = $this->createPath($container);
         
         if (is_null($options)) {
             $options = new BlobServiceOptions();
@@ -269,7 +345,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @return array
      */
-    private function _addCreateBlobOptionalHeaders(
+    private function addCreateBlobOptionalHeaders(
         CreateBlobOptions $options,
         array $headers
     ) {
@@ -342,7 +418,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @return array
      */
-    private function _addOptionalRangeHeader(array $headers, $start, $end)
+    private function addOptionalRangeHeader(array $headers, $start, $end)
     {
         if (!is_null($start) || !is_null($end)) {
             $range      = $start . '-' . $end;
@@ -396,7 +472,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    private function _putLeaseAsyncImpl(
+    private function putLeaseAsyncImpl(
         $leaseAction,
         $container,
         $blob,
@@ -408,8 +484,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Models\BlobServiceOptions $options,
         Models\AccessCondition $accessCondition = null
     ) {
-        Validate::isString($blob, 'blob');
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
         Validate::notNullOrEmpty($container, 'container');
         
         $method      = Resources::HTTP_PUT;
@@ -419,14 +495,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $path;
 
         if (empty($blob)) {
-            $path = $this->_createPath($container);
+            $path = $this->createPath($container);
             $this->addOptionalQueryParam(
                 $queryParams,
                 Resources::QP_REST_TYPE,
                 'container'
             );
         } else {
-            $path = $this->_createPath($container, $blob);
+            $path = $this->createPath($container, $blob);
         }
         $this->addOptionalQueryParam($queryParams, Resources::QP_COMP, 'lease');
         $this->addOptionalQueryParam(
@@ -482,13 +558,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                 $action    Either clear or create.
      * @param string                 $container The container name.
      * @param string                 $blob      The blob name.
-     * @param Range          $range     The page ranges.
+     * @param Range                  $range     The page ranges.
      * @param string                 $content   The content string.
      * @param CreateBlobPagesOptions $options   The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    private function _updatePageBlobPagesAsyncImpl(
+    private function updatePageBlobPagesAsyncImpl(
         $action,
         $container,
         $blob,
@@ -496,10 +572,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $content,
         CreateBlobPagesOptions $options = null
     ) {
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
-        Validate::isString($container, 'container');
-        Validate::isString($content, 'content');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($content, 'content');
         Validate::isTrue(
             $range instanceof Range,
             sprintf(
@@ -514,13 +590,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers     = array();
         $queryParams = array();
         $postParams  = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new CreateBlobPagesOptions();
         }
         
-        $headers = $this->_addOptionalRangeHeader(
+        $headers = $this->addOptionalRangeHeader(
             $headers,
             $range->getStart(),
             $range->getEnd()
@@ -685,14 +761,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $container,
         Models\CreateContainerOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         Validate::notNullOrEmpty($container, 'container');
         
         $method      = Resources::HTTP_PUT;
         $headers     = array();
         $postParams  = array();
         $queryParams = array(Resources::QP_REST_TYPE => 'container');
-        $path        = $this->_createPath($container);
+        $path        = $this->createPath($container);
         
         if (is_null($options)) {
             $options = new CreateContainerOptions();
@@ -749,14 +825,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $container,
         Models\BlobServiceOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         Validate::notNullOrEmpty($container, 'container');
         
         $method      = Resources::HTTP_DELETE;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container);
+        $path        = $this->createPath($container);
         
         if (is_null($options)) {
             $options = new BlobServiceOptions();
@@ -823,7 +899,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $container,
         Models\BlobServiceOptions $options = null
     ) {
-        return $this->_getContainerPropertiesAsyncImpl($container, $options);
+        return $this->getContainerPropertiesAsyncImpl($container, $options);
     }
     
     /**
@@ -858,7 +934,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $container,
         Models\BlobServiceOptions $options = null
     ) {
-        return $this->_getContainerPropertiesAsyncImpl($container, $options, 'metadata');
+        return $this->getContainerPropertiesAsyncImpl($container, $options, 'metadata');
     }
     
     /**
@@ -894,13 +970,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $container,
         Models\BlobServiceOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         
         $method      = Resources::HTTP_GET;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container);
+        $path        = $this->createPath($container);
         $statusCode  = Resources::STATUS_OK;
         
         if (is_null($options)) {
@@ -1001,14 +1077,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Models\ContainerACL $acl,
         Models\BlobServiceOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         Validate::notNullOrEmpty($acl, 'acl');
         
         $method      = Resources::HTTP_PUT;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container);
+        $path        = $this->createPath($container);
         $body        = $acl->toXml($this->dataSerializer);
         
         if (is_null($options)) {
@@ -1094,14 +1170,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         array $metadata,
         Models\BlobServiceOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         Utilities::validateMetadata($metadata);
         
         $method      = Resources::HTTP_PUT;
         $headers     = $this->generateMetadataHeaders($metadata);
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container);
+        $path        = $this->createPath($container);
         
         if (is_null($options)) {
             $options = new BlobServiceOptions();
@@ -1172,13 +1248,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $container,
         Models\ListBlobsOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::notNull($container, 'container');
+        Validate::canCastAsString($container, 'container');
         
         $method      = Resources::HTTP_GET;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container);
+        $path        = $this->createPath($container);
         
         if (is_null($options)) {
             $options = new ListBlobsOptions();
@@ -1311,8 +1388,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $length,
         Models\CreateBlobOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         Validate::isInteger($length, 'length');
         Validate::notNull($length, 'length');
@@ -1321,8 +1398,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
-        $statusCode  = Resources::STATUS_CREATED;
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new CreateBlobOptions();
@@ -1343,7 +1419,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             Resources::X_MS_BLOB_SEQUENCE_NUMBER,
             $options->getSequenceNumber()
         );
-        $headers = $this->_addCreateBlobOptionalHeaders($options, $headers);
+        $headers = $this->addCreateBlobOptionalHeaders($options, $headers);
         
         $options->setLocationMode(LocationMode::PRIMARY_ONLY);
 
@@ -1404,16 +1480,16 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\CreateBlobOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         Validate::notNullOrEmpty($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
 
         $method      = Resources::HTTP_PUT;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         $statusCode  = Resources::STATUS_CREATED;
 
         if (is_null($options)) {
@@ -1425,7 +1501,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             Resources::X_MS_BLOB_TYPE,
             BlobType::APPEND_BLOB
         );
-        $headers = $this->_addCreateBlobOptionalHeaders($options, $headers);
+        $headers = $this->addCreateBlobOptionalHeaders($options, $headers);
 
         $options->setLocationMode(LocationMode::PRIMARY_ONLY);
 
@@ -1493,7 +1569,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string|resource|StreamInterface $content   The content of the blob.
      * @param Models\CreateBlobOptions        $options   The optional parameters.
      *
-     * @return Models\PutBlobResult
+     * @return \GuzzleHttp\Promise\PromiseInterface
      *
      * @see http://msdn.microsoft.com/en-us/library/windowsazure/dd179451.aspx
      */
@@ -1506,11 +1582,11 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $body = Psr7\stream_for($content);
 
         //If the size of the stream is not seekable or larger than the single
-        //upload threashold then call concurrent upload. Otherwise call putBlob.
+        //upload threshold then call concurrent upload. Otherwise call putBlob.
         $promise = null;
         if (!Utilities::isStreamLargerThanSizeOrNotSeekable(
             $body,
-            $this->_SingleBlobUploadThresholdInBytes
+            $this->singleBlobUploadThresholdInBytes
         )) {
             $promise = $this->createBlockBlobBySingleUploadAsync(
                 $container,
@@ -1654,8 +1730,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $content,
         Models\CreateBlobOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         Validate::isTrue(
             $options == null ||
@@ -1671,14 +1747,13 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
 
         if (is_null($options)) {
             $options = new CreateBlobOptions();
         }
         
-        
-        $headers = $this->_addCreateBlobOptionalHeaders($options, $headers);
+        $headers = $this->addCreateBlobOptionalHeaders($options, $headers);
         
         $this->addOptionalHeader(
             $headers,
@@ -1725,8 +1800,15 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $content,
         Models\CreateBlobOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
+
+        if ($content->isSeekable() && Utilities::is64BitPHP()) {
+            Validate::isTrue(
+                $content->getSize() <= Resources::MAX_BLOCK_BLOB_SIZE,
+                Resources::CONTENT_SIZE_TOO_LARGE
+            );
+        }
 
         if (is_null($options)) {
             $options = new CreateBlobOptions();
@@ -1738,14 +1820,11 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $method      = Resources::HTTP_PUT;
         $headers     = $this->createBlobBlockHeader($createBlobBlockOptions);
         $postParams  = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
 
         $blockIds = array();
-        // if threshold is lower than 4mb, honor threshold, else use 4mb
-        $blockSize = (
-            $this->_SingleBlobUploadThresholdInBytes
-                < Resources::MB_IN_BYTES_4) ?
-            $this->_SingleBlobUploadThresholdInBytes : Resources::MB_IN_BYTES_4;
+        //Determine the block size according to the content and threshold.
+        $blockSize = $this->getMultipleUploadBlockSizeUsingContent($content);
         $counter = 0;
         //create the generator for requests.
         //this generator also constructs the blockId array on the fly.
@@ -1840,10 +1919,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $content,
         Models\CreateBlobOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         Validate::notNullOrEmpty($container, 'container');
 
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
 
         if (is_null($options)) {
@@ -1853,7 +1932,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $method      = Resources::HTTP_PUT;
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
 
         $this->addOptionalQueryParam($queryParams, Resources::QP_COMP, 'page');
         $this->addOptionalQueryParam(
@@ -1897,7 +1976,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             } while (Utilities::allZero($pageContent));
 
             $headers = array();
-            $headers = $this->_addOptionalRangeHeader(
+            $headers = $this->addOptionalRangeHeader(
                 $headers,
                 $start,
                 $end
@@ -1991,7 +2070,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         Range $range,
         Models\CreateBlobPagesOptions $options = null
     ) {
-        return $this->_updatePageBlobPagesAsyncImpl(
+        return $this->updatePageBlobPagesAsyncImpl(
             PageWriteOption::CLEAR_OPTION,
             $container,
             $blob,
@@ -2067,7 +2146,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             throw new \RuntimeException(Resources::ERROR_RANGE_NOT_ALIGN_TO_512);
         }
 
-        return $this->_updatePageBlobPagesAsyncImpl(
+        return $this->updatePageBlobPagesAsyncImpl(
             PageWriteOption::UPDATE_OPTION,
             $container,
             $blob,
@@ -2140,10 +2219,10 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $content,
         Models\CreateBlobBlockOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
-        Validate::isString($blockId, 'blockId');
+        Validate::canCastAsString($blockId, 'blockId');
         Validate::notNullOrEmpty($blockId, 'blockId');
 
         if (is_null($options)) {
@@ -2154,7 +2233,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers        = $this->createBlobBlockHeader($options);
         $postParams     = array();
         $queryParams    = $this->createBlobBlockQueryParams($options, $blockId);
-        $path           = $this->_createPath($container, $blob);
+        $path           = $this->createPath($container, $blob);
         $statusCode     = Resources::STATUS_CREATED;
         $contentStream  = Psr7\stream_for($content);
         $body           = $contentStream->getContents();
@@ -2222,9 +2301,9 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $content,
         Models\AppendBlockOptions $options = null
     ) {
-        Validate::isString($container, 'container');
+        Validate::canCastAsString($container, 'container');
         Validate::notNullOrEmpty($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
 
         if (is_null($options)) {
@@ -2235,7 +2314,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers        = array();
         $postParams     = array();
         $queryParams    = array();
-        $path           = $this->_createPath($container, $blob);
+        $path           = $this->createPath($container, $blob);
         $statusCode     = Resources::STATUS_CREATED;
 
         $contentStream  = Psr7\stream_for($content);
@@ -2377,7 +2456,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                         $container The container name.
      * @param string                         $blob      The blob name.
-     * @param Models\BlockList|array         $blockList The block entries.
+     * @param Models\BlockList|Block[]       $blockList The block entries.
      * @param Models\CommitBlobBlocksOptions $options   The optional parameters.
      *
      * @return Models\PutBlobResult
@@ -2411,7 +2490,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      *
      * @param string                         $container The container name.
      * @param string                         $blob      The blob name.
-     * @param Models\BlockList|array         $blockList The block entries.
+     * @param Models\BlockList|Block[]       $blockList The block entries.
      * @param Models\CommitBlobBlocksOptions $options   The optional parameters.
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2424,8 +2503,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blockList,
         Models\CommitBlobBlocksOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         Validate::isTrue(
             $blockList instanceof BlockList || is_array($blockList),
@@ -2440,7 +2519,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         $isArray     = is_array($blockList);
         $blockList   = $isArray ? BlockList::create($blockList) : $blockList;
         $body        = $blockList->toXml($this->dataSerializer);
@@ -2582,15 +2661,15 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\ListBlobBlocksOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         
         $method      = Resources::HTTP_GET;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new ListBlobBlocksOptions();
@@ -2676,15 +2755,15 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\GetBlobPropertiesOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         
         $method      = Resources::HTTP_HEAD;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new GetBlobPropertiesOptions();
@@ -2756,15 +2835,15 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\GetBlobMetadataOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         
         $method      = Resources::HTTP_HEAD;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new GetBlobMetadataOptions();
@@ -2848,15 +2927,115 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\ListPageBlobRangesOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        return $this->listPageBlobRangesAsyncImpl($container, $blob, null, $options);
+    }
+
+    /**
+     * Returns a list of page ranges that have been updated or cleared. 
+     *
+     * Returns a list of page ranges that have been updated or cleared since 
+     * the snapshot specified by `previousSnapshotTime`. Gets all of the page 
+     * ranges by default, or only the page ranges over a specific range of 
+     * bytes if `rangeStart` and `rangeEnd` in the `options` are specified.
+     *
+     * @param string                           $container             name of the container
+     * @param string                           $blob                  name of the blob
+     * @param string                           $previousSnapshotTime  previous snapshot time 
+     *                                                                for comparison which
+     *                                                                should be prior to the 
+     *                                                                snapshot time defined
+     *                                                                in `options`
+     * @param Models\ListPageBlobRangesOptions $options               optional parameters
+     *
+     * @return Models\ListPageBlobRangesDiffResult
+     *
+     * @see https://docs.microsoft.com/en-us/rest/api/storageservices/version-2015-07-08
+     */
+    public function listPageBlobRangesDiff(
+        $container,
+        $blob,
+        $previousSnapshotTime,
+        Models\ListPageBlobRangesOptions $options = null
+    ) {
+        return $this->listPageBlobRangesDiffAsync(
+            $container,
+            $blob,
+            $previousSnapshotTime,
+            $options
+        )->wait();
+    }
+
+    /**
+     * Creates promise to return a list of page ranges that have been updated
+     * or cleared. 
+     *
+     * Creates promise to return a list of page ranges that have been updated
+     * or cleared since the snapshot specified by `previousSnapshotTime`. Gets
+     * all of the page ranges by default, or only the page ranges over a specific
+     * range of bytes if `rangeStart` and `rangeEnd` in the `options` are specified.
+     *
+     * @param string                           $container             name of the container
+     * @param string                           $blob                  name of the blob
+     * @param string                           $previousSnapshotTime  previous snapshot time
+     *                                                                for comparison which
+     *                                                                should be prior to the
+     *                                                                snapshot time defined
+     *                                                                in `options`
+     * @param Models\ListPageBlobRangesOptions $options               optional parameters
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
+     * @see http://msdn.microsoft.com/en-us/library/windowsazure/ee691973.aspx
+     */
+    public function listPageBlobRangesDiffAsync(
+        $container,
+        $blob,
+        $previousSnapshotTime,
+        Models\ListPageBlobRangesOptions $options = null
+    ) {
+        return $this->listPageBlobRangesAsyncImpl(
+            $container,
+            $blob,
+            $previousSnapshotTime,
+            $options
+        );
+    }
+
+    /**
+     * Creates promise to return a list of page ranges. 
+     
+     * If `previousSnapshotTime` is specified, the response will include
+     * only the pages that differ between the target snapshot or blob and 
+     * the previous snapshot.
+     *
+     * @param string                           $container             name of the container
+     * @param string                           $blob                  name of the blob
+     * @param string                           $previousSnapshotTime  previous snapshot time 
+     *                                                                for comparison which
+     *                                                                should be prior to the 
+     *                                                                snapshot time defined
+     *                                                                in `options`
+     * @param Models\ListPageBlobRangesOptions $options               optional parameters
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *
+     * @see http://msdn.microsoft.com/en-us/library/windowsazure/ee691973.aspx
+     */
+    private function listPageBlobRangesAsyncImpl(
+        $container,
+        $blob,
+        $previousSnapshotTime = null,
+        Models\ListPageBlobRangesOptions $options = null
+    ) {
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         
         $method      = Resources::HTTP_GET;
         $headers     = array();
         $queryParams = array();
         $postParams  = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new ListPageBlobRangesOptions();
@@ -2867,7 +3046,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $options->getAccessConditions()
         );
         
-        $headers = $this->_addOptionalRangeHeader(
+        $headers = $this->addOptionalRangeHeader(
             $headers,
             $options->getRangeStart(),
             $options->getRangeEnd()
@@ -2888,7 +3067,12 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             Resources::QP_COMP,
             'pagelist'
         );
-        
+        $this->addOptionalQueryParam(
+            $queryParams,
+            Resources::QP_PRE_SNAPSHOT,
+            $previousSnapshotTime
+        );
+
         $dataSerializer = $this->dataSerializer;
 
         return $this->sendAsync(
@@ -2900,12 +3084,19 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             Resources::STATUS_OK,
             Resources::EMPTY_STRING,
             $options
-        )->then(function ($response) use ($dataSerializer) {
+        )->then(function ($response) use ($dataSerializer, $previousSnapshotTime) {
             $parsed = $dataSerializer->unserialize($response->getBody());
-            return ListPageBlobRangesResult::create(
-                HttpFormatter::formatHeaders($response->getHeaders()),
-                $parsed
-            );
+            if (is_null($previousSnapshotTime)) {
+                return ListPageBlobRangesResult::create(
+                    HttpFormatter::formatHeaders($response->getHeaders()),
+                    $parsed
+                );
+            } else {
+                return ListPageBlobRangesDiffResult::create(
+                    HttpFormatter::formatHeaders($response->getHeaders()),
+                    $parsed
+                );
+            }
         }, null);
     }
     
@@ -2948,15 +3139,15 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\SetBlobPropertiesOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         
         $method      = Resources::HTTP_PUT;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new SetBlobPropertiesOptions();
@@ -3093,8 +3284,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         array $metadata,
         Models\BlobServiceOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         Utilities::validateMetadata($metadata);
         
@@ -3102,7 +3293,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new BlobServiceOptions();
@@ -3251,14 +3442,14 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\GetBlobOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         
         $method      = Resources::HTTP_GET;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new GetBlobOptions();
@@ -3269,7 +3460,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $headers,
             $options->getAccessConditions()
         );
-        $headers = $this->_addOptionalRangeHeader(
+        $headers = $this->addOptionalRangeHeader(
             $headers,
             $options->getRangeStart(),
             $options->getRangeEnd()
@@ -3358,15 +3549,15 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\DeleteBlobOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         
         $method      = Resources::HTTP_DELETE;
         $headers     = array();
         $postParams  = array();
         $queryParams = array();
-        $path        = $this->_createPath($container, $blob);
+        $path        = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new DeleteBlobOptions();
@@ -3451,15 +3642,15 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $blob,
         Models\CreateBlobSnapshotOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
         Validate::notNullOrEmpty($blob, 'blob');
         
         $method             = Resources::HTTP_PUT;
         $headers            = array();
         $postParams         = array();
         $queryParams        = array();
-        $path               = $this->_createPath($container, $blob);
+        $path               = $this->createPath($container, $blob);
         
         if (is_null($options)) {
             $options = new CreateBlobSnapshotOptions();
@@ -3558,7 +3749,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers             = array();
         $postParams          = array();
         $queryParams         = array();
-        $destinationBlobPath = $this->_createPath(
+        $destinationBlobPath = $this->createPath(
             $destinationContainer,
             $destinationBlob
         );
@@ -3567,7 +3758,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $options = new CopyBlobOptions();
         }
         
-        $sourceBlobPath = $this->_getCopyBlobSourceName(
+        $sourceBlobPath = $this->getCopyBlobSourceName(
             $sourceContainer,
             $sourceBlob,
             $options
@@ -3665,9 +3856,9 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $copyId,
         Models\BlobServiceOptions $options = null
     ) {
-        Validate::isString($container, 'container');
-        Validate::isString($blob, 'blob');
-        Validate::isString($copyId, 'copyId');
+        Validate::canCastAsString($container, 'container');
+        Validate::canCastAsString($blob, 'blob');
+        Validate::canCastAsString($copyId, 'copyId');
         Validate::notNullOrEmpty($container, 'container');
         Validate::notNullOrEmpty($blob, 'blob');
         Validate::notNullOrEmpty($copyId, 'copyId');
@@ -3676,7 +3867,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $headers             = array();
         $postParams          = array();
         $queryParams         = array();
-        $destinationBlobPath = $this->_createPath(
+        $destinationBlobPath = $this->createPath(
             $container,
             $blob
         );
@@ -3734,9 +3925,12 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                     $container         name of the container
      * @param string                     $blob              name of the blob
      * @param string                     $proposedLeaseId   lease id when acquiring
-     * @param int                        $leaseDuration     the lease duration. A non-infinite
-     *                                                      lease can be between 15 and 60 seconds.
-     *                                                      Default is never to expire.
+     * @param int                        $leaseDuration     the lease duration.
+     *                                                      A non-infinite
+     *                                                      lease can be between
+     *                                                      15 and 60 seconds.
+     *                                                      Default is never
+     *                                                      to expire.
      * @param Models\BlobServiceOptions  $options           optional parameters
      *
      * @return Models\LeaseResult
@@ -3766,9 +3960,12 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
      * @param string                     $container         name of the container
      * @param string                     $blob              name of the blob
      * @param string                     $proposedLeaseId   lease id when acquiring
-     * @param int                        $leaseDuration     the lease duration. A non-infinite
-     *                                                      lease can be between 15 and 60 seconds.
-     *                                                      Default is never to expire.
+     * @param int                        $leaseDuration     the lease duration.
+     *                                                      A non-infinite
+     *                                                      lease can be between
+     *                                                      15 and 60 seconds.
+     *                                                      Default is never to
+     *                                                      expire.
      * @param Models\BlobServiceOptions  $options           optional parameters
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -3790,7 +3987,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
             $leaseDuration = -1;
         }
 
-        return $this->_putLeaseAsyncImpl(
+        return $this->putLeaseAsyncImpl(
             LeaseMode::ACQUIRE_ACTION,
             $container,
             $blob,
@@ -3857,7 +4054,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $proposedLeaseId,
         Models\BlobServiceOptions $options = null
     ) {
-        return $this->_putLeaseAsyncImpl(
+        return $this->putLeaseAsyncImpl(
             LeaseMode::CHANGE_ACTION,
             $container,
             $blob,
@@ -3918,7 +4115,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $leaseId,
         Models\BlobServiceOptions $options = null
     ) {
-        return $this->_putLeaseAsyncImpl(
+        return $this->putLeaseAsyncImpl(
             LeaseMode::RENEW_ACTION,
             $container,
             $blob,
@@ -3976,7 +4173,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $leaseId,
         Models\BlobServiceOptions $options = null
     ) {
-        return $this->_putLeaseAsyncImpl(
+        return $this->putLeaseAsyncImpl(
             LeaseMode::RELEASE_ACTION,
             $container,
             $blob,
@@ -4035,7 +4232,7 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
         $breakPeriod = null,
         Models\BlobServiceOptions $options = null
     ) {
-        return $this->_putLeaseAsyncImpl(
+        return $this->putLeaseAsyncImpl(
             LeaseMode::BREAK_ACTION,
             $container,
             $blob,
@@ -4089,8 +4286,8 @@ class BlobRestProxy extends ServiceRestProxy implements IBlob
     /**
      * Adds optional header to headers if set
      *
-     * @param array                  $headers         The array of request headers.
-     * @param array                  $accessCondition The access condition object.
+     * @param array $headers         The array of request headers.
+     * @param array $accessCondition The access condition object.
      *
      * @return array
      */

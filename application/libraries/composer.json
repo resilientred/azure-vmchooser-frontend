@@ -1,6 +1,6 @@
 {
     "require": {
-        "guzzlehttp/guzzle": "^6.2",
-        "microsoft/azure-storage": "^0.16.0"
+        "guzzlehttp/guzzle": "*",
+        "microsoft/azure-storage": "*"
     }
 }
