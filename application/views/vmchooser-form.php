@@ -153,7 +153,7 @@ echo form_open(base_url(), $attributes);
 			<input type="text" class="form-control" name="inputMemory" id="inputMemory" value="<?php echo set_value('inputMemory[]'); ?>" placeholder="What's the minimum amount of memory (in GB) this VM needs?" autocomplete="off">
 		  </div>
 		</div>
-			<div class="form-group">
+		<div class="form-group">
 		  <label for="inputNics" class="col-lg-2 control-label">Number of NICs</label>
 		  <div class="col-lg-10">
 			<input type="text" class="form-control" name="inputNics" id="inputNics" value="<?php echo set_value('inputNics[]'); ?>" placeholder="What's the minimum number of network interfaces this this VM needs?" autocomplete="off">
@@ -216,6 +216,12 @@ echo form_open(base_url(), $attributes);
 				Don't care... 
 			  </label>
 			</div>
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="inputPcores" class="col-lg-2 control-label">Number of "pCores"</label>
+		  <div class="col-lg-10">
+			<input type="text" class="form-control" name="inputPcores" id="inputPcores"  value="<?php echo set_value('inputPcores[]'); ?>" placeholder="What's the minimum equivalent of physical cores this VM needs?" autocomplete="off">
 		  </div>
 		</div>
 		<div class="form-group">

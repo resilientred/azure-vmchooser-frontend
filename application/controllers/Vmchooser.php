@@ -29,6 +29,7 @@ class Vmchooser extends CI_Controller {
 		$this->form_validation->set_rules('inputAcu', 'ACU Value', 'numeric');
 		$this->form_validation->set_rules('inputHt', 'Hyperthreaded', 'alpha_dash');
 		$this->form_validation->set_rules('inputCores', 'Number of Cores', 'numeric');
+		$this->form_validation->set_rules('inputPcores', 'Number of pCores', 'numeric');
 		$this->form_validation->set_rules('inputMemory', 'Amount of Memory', 'numeric');
 		$this->form_validation->set_rules('inputNics', 'Number of NICs', 'numeric');
 		$this->form_validation->set_rules('inputData', 'Minimum disk size', 'numeric');
@@ -68,6 +69,7 @@ class Vmchooser extends CI_Controller {
 			$inputAcu = $this->security->xss_clean($_POST["inputAcu"]);
 			$inputHt = $this->security->xss_clean($_POST["inputHt"]);
 			$inputCores = $this->security->xss_clean($_POST["inputCores"]);
+			$inputPcores = $this->security->xss_clean($_POST["inputPcores"]);
 			$inputMemory = $this->security->xss_clean($_POST["inputMemory"]);
 			$inputNics = $this->security->xss_clean($_POST["inputNics"]);
 			$inputData = $this->security->xss_clean($_POST["inputData"]);
@@ -88,7 +90,7 @@ class Vmchooser extends CI_Controller {
 			$inputSaps2tier = $this->security->xss_clean($_POST["inputSaps2tier"]);
 			$inputSaps3tier = $this->security->xss_clean($_POST["inputSaps3tier"]);
 			$inputResults = $this->security->xss_clean($_POST["inputResults"]);
-			$querysuffix = "?maxresults=$inputResults&acu=$inputAcu&ht=$inputHt&tier=$inputTier&region=$inputRegion&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
+			$querysuffix = "?maxresults=$inputResults&acu=$inputAcu&ht=$inputHt&tier=$inputTier&region=$inputRegion&pcores=$inputPcores&cores=$inputCores&memory=$inputMemory&iops=$inputIops&data=$inputData&temp=$inputTemp&throughput=$inputThroughput&nics=$inputNics&ssd=$ssd&avgcpupeak=$inputAvgcpupeak&avgmempeak=$inputAvgmempeak";
 			
 			if ((!empty($inputSaps2tier) AND !empty(inputSaps3tier)) OR ($hana == Yes)) {
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier&hana=$hana";
