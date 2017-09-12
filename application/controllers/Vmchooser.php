@@ -22,6 +22,11 @@ class Vmchooser extends CI_Controller {
 	{
 		
 		$this->load->helper(array('form', 'url'));
+		$this->load->library('appinsight');
+		$telemetryClient = new \ApplicationInsights\Telemetry_Client();
+		$telemetryClient->getContext()->setInstrumentationKey(getenv('APPINSIGHTS_INSTRUMENTATIONKEY'));
+
+		$telemetryClient->trackEvent('Index : Validation');
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('inputRegion', 'Azure Region', 'alpha_dash');
@@ -95,6 +100,8 @@ class Vmchooser extends CI_Controller {
 			if ((!empty($inputSaps2tier) AND !empty(inputSaps3tier)) OR ($hana == Yes)) {
 				$sapsuffix = "&saps2t=$inputSaps2tier&saps3t=$inputMemory&iops=$inputSaps3tier&hana=$hana";
 			}
+
+			$telemetryClient->trackEvent('Index : API Call');
 			
 			// Do API Call
 			$this->load->library('guzzle');
@@ -111,6 +118,8 @@ class Vmchooser extends CI_Controller {
 				print_r($responseBodyAsString);
 				echo "Something went wrong :-(";
 			}
+
+			$telemetryClient->trackEvent('Index : Prep Data');
 			
 			// Prep Results
 			$array = json_decode($json);
@@ -120,13 +129,16 @@ class Vmchooser extends CI_Controller {
 			  $results[$i] = $temp;
 			  $i++;
 			}
+
+			$telemetryClient->trackEvent('Index : Load Page');
 		
 			// OK
 			$data['results'] = $results;
 			$this->load->view('tpl/header');	
 			$this->load->view('vmchooser-form',$data);
-			$this->load->view('tpl/footer');	
-				
+			$this->load->view('tpl/footer');
+			
+			$telemetryClient->flush();
 		}
 	}
 	
