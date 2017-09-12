@@ -27,6 +27,10 @@ class ComposerStaticInitabe98b680204b2013c984e569a7392a6
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'A' => 
+        array (
+            'ApplicationInsights\\' => 20,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -49,6 +53,10 @@ class ComposerStaticInitabe98b680204b2013c984e569a7392a6
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'ApplicationInsights\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/microsoft/application-insights/ApplicationInsights',
         ),
     );
 

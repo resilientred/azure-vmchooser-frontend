@@ -1,6 +1,7 @@
 {
     "require": {
         "guzzlehttp/guzzle": "*",
-        "microsoft/azure-storage": "*"
+        "microsoft/azure-storage": "*",
+	"microsoft/application-insights": "*"
     }
 }
