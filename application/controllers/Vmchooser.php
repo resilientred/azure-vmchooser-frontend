@@ -36,8 +36,8 @@ class Vmchooser extends CI_Controller {
 		$this->form_validation->set_rules('inputIops', 'IOPS', 'numeric');
 		$this->form_validation->set_rules('inputThroughput', 'Throughput', 'numeric');
 		$this->form_validation->set_rules('inputTemp', 'Minimum temp disk size', 'numeric');
-		$this->form_validation->set_rules('inputAvgcpupeak', 'Peak CPU Usage', 'numeric');
-		$this->form_validation->set_rules('inputAvgmempeak', 'Peak Memory Usage', 'numeric');
+		$this->form_validation->set_rules('inputAvgcpupeak', 'Peak CPU Usage', 'less_than_equal_to[100]');
+		$this->form_validation->set_rules('inputAvgmempeak', 'Peak Memory Usage', 'less_than_equal_to[100]');
 		$this->form_validation->set_rules('inputSaps2tier', 'SAPS 2-Tier', 'numeric');
 		$this->form_validation->set_rules('inputSaps3tier', 'SAPS 3-Tier', 'numeric');
 		$this->form_validation->set_rules('inputResults', 'Max Results', 'less_than_equal_to[100]');
