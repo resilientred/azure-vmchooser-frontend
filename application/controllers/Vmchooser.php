@@ -185,8 +185,6 @@ class Vmchooser extends CI_Controller {
 			$results[$i] = $temp;
 			$i++;
 		}
-
-		print_r($results);
 	
 		// OK
 		$data['results'] = $results;

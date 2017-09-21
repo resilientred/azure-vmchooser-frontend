@@ -23,6 +23,14 @@ if (isset($results)) {
 	);
 	$CI->table->set_template($template);
 
+	$header = "";
+	$seperator = "";
+	foreach($results as $key => $value) {
+		$header .= $seperator."'".$key."'";
+		$seperator = ",";
+	}
+	$CI->table->set_heading($header);		
+
 	echo $CI->table->generate($results);
 
 }
