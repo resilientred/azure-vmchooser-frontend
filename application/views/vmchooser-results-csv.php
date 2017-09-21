@@ -27,7 +27,7 @@ if (isset($results)) {
 
 	$header = "";
 	$seperator = "";
-	foreach($results as $key => $value) {
+	foreach($results[0] as $key => $value) {
 		$header .= $seperator."'".$key."'";
 		$seperator = ",";
 	}
