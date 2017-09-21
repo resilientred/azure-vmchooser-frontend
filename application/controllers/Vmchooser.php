@@ -185,14 +185,22 @@ class Vmchooser extends CI_Controller {
 			$results[$i] = $temp;
 			$i++;
 		}
+
+		$format = $this->uri->segment(4);
+		$format = $this->security->xss_clean($format);
 	
 		// OK
 		$data['csvfile'] = $csvfile;
 		$data['results'] = $results;
 		$this->load->helper(array('url'));
-		$this->load->view('tpl/header');	
-		$this->load->view('vmchooser-results-csv',$data);
-		$this->load->view('tpl/footer');
+
+		if ($format == "") {
+			$this->load->view('tpl/header');	
+			$this->load->view('vmchooser-results-csv',$data);
+			$this->load->view('tpl/footer');
+		} else {
+			$this->load->view('vmchooser-results-export',$data);
+		}
 	}
 
 	public function vmsize() 
