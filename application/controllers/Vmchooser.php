@@ -156,6 +156,7 @@ class Vmchooser extends CI_Controller {
 				$csvfile = $this->uri->segment(3);
 		}
 		$csvfile = $this->security->xss_clean($csvfile);
+		print_r($csvfile);
 		
 		$api_url = getenv('VMCHOOSERCSVRESULTS');
 		$api_url = str_replace("{csvfile}", $csvfile, $api_url);
@@ -181,6 +182,8 @@ class Vmchooser extends CI_Controller {
 			$results[$i] = $temp;
 			$i++;
 		}
+
+		print_r($results);
 	
 		// OK
 		$data['results'] = $results[0];
