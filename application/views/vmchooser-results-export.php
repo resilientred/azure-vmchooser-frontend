@@ -1,4 +1,6 @@
 <?
+$CI =& get_instance();
+
 print_r($results;)
 
 if (isset($results)) {
