@@ -38,7 +38,7 @@ if (isset($results)) {
 		$header[] = $key;
 	}
 
-	foreach($results => $row) {
+	foreach($results as $row) {
 		print_r(arrayToCsv($row));
 	}
 
