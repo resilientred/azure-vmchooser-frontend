@@ -156,7 +156,10 @@ class Vmchooser extends CI_Controller {
 				$csvfile = $this->uri->segment(3);
 		}
 		$csvfile = $this->security->xss_clean($csvfile);
-		print_r($csvfile);
+		if ($csvfile <> "") {
+			echo "no csv file provided";
+			die();
+		}
 		
 		$api_url = getenv('VMCHOOSERCSVRESULTS');
 		$api_url = str_replace("{csvfile}", $csvfile, $api_url);
