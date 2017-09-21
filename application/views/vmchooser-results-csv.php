@@ -22,13 +22,8 @@ if (isset($results)) {
 			'table_open' => '<table class="table table-striped table-hover">'
 	);
 	$CI->table->set_template($template);
-  $CI->table->set_heading('Attribute', 'Value');
 
-	
-	foreach($results as $key => $value) {
-		$CI->table->add_row($key, $value);
-	}
-	echo $CI->table->generate();
+	echo $CI->table->generate($data);
 
 }
 

@@ -156,7 +156,7 @@ class Vmchooser extends CI_Controller {
 				$csvfile = $this->uri->segment(3);
 		}
 		$csvfile = $this->security->xss_clean($csvfile);
-		if ($csvfile <> "") {
+		if ($csvfile == "") {
 			echo "no csv file provided";
 			die();
 		}
@@ -189,7 +189,7 @@ class Vmchooser extends CI_Controller {
 		print_r($results);
 	
 		// OK
-		$data['results'] = $results[0];
+		$data['results'] = $results;
 		$this->load->helper(array('url'));
 		$this->load->view('tpl/header');	
 		$this->load->view('vmchooser-results-csv',$data);
