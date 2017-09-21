@@ -59,6 +59,7 @@ if ($message <> "") {
 
 <div class="alert alert-dismissible alert-info">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Please note...</strong> Please use the following <a href="<?php echo base_url()."vmchooser.csv"; ?>" target="_blank" class="alert-link">CSV format</a> when uploading. The process to parse the data can take a few minutes due to the async manner. So please be patient... ;-)
+  <strong>Please note...</strong> Please use the following <a href="<?php echo base_url()."vmchooser.csv"; ?>" target="_blank" class="alert-link">CSV format</a> when uploading. The process to parse the data can take a few minutes due to the async manner. So please be patient... ;-)</br>
+	<strong>FAQ : "The results will not show, even when I waited for X minutes?</strong> Re: "Make sure your CSV is using a comma as delimiter and not a semi-colon (or anything else)." 
 </div>
 

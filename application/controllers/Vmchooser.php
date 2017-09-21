@@ -144,32 +144,50 @@ class Vmchooser extends CI_Controller {
 	
 	public function results() 
 	{
+		//
 		$this->load->helper('security');
 		if ($this->uri->segment(3) === FALSE)
 		{
-				echo "no file given";
+				echo "no csv file provided";
 				die();
 		}
 		else
 		{
-				$blobName = $this->uri->segment(3);
+				$csvfile = $this->uri->segment(3);
 		}
-		$blobName = $this->security->xss_clean($blobName);
-		$downloadurl = getenv('VMCHOOSERSTORAGEURL').$blobName;
+		$csvfile = $this->security->xss_clean($csvfile);
 		
+		$api_url = getenv('VMCHOOSERCSVRESULTS');
+		$api_url = str_replace("{csvfile}", $csvfile, $api_url);
+			
 		$this->load->library('guzzle');
-		$client = new GuzzleHttp\Client;
+		$vmchooserapikey = getenv('VMCHOOSERAPIKEY');	
+		$client     = new GuzzleHttp\Client(['headers' => ['Ocp-Apim-Subscription-Key' => $vmchooserapikey]]);
 		try {
-			$client->head($downloadurl);
-			header('Location: '.$downloadurl);
-			exit;
-		} catch (GuzzleHttp\Exception\ClientException $e) {
-			$this->load->helper(array('url'));
-			$this->load->view('tpl/header');	
-			$this->load->view('vmchooser-downloadnotready');
-			$this->load->view('tpl/footer');
+			$response = $client->request( 'POST', $api_url);
+			$json =  $response->getBody()->getContents();
+		} catch (GuzzleHttp\Exception\BadResponseException $e) {
+			$response = $e->getResponse();
+			$responseBodyAsString = $response->getBody()->getContents();
+			//print_r($responseBodyAsString);
+			//echo "Something went wrong :-(";
+		}
+		
+		// Prep Results
+		$array = json_decode($json);
+		$i=0;
+		foreach ($array as $result) {
+			$temp = (array) $result;
+			$results[$i] = $temp;
+			$i++;
 		}
 	
+		// OK
+		$data['results'] = $results[0];
+		$this->load->helper(array('url'));
+		$this->load->view('tpl/header');	
+		$this->load->view('vmchooser-results-csv',$data);
+		$this->load->view('tpl/footer');
 	}
 
 	public function vmsize() 
