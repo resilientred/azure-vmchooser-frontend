@@ -25,7 +25,7 @@ if (isset($results)) {
 
 	print_r($results);
 
-	$header = "";
+	$header = array();
 	foreach($results[0] as $key => $value) {
 		$header[] = $key;
 	}
