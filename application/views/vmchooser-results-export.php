@@ -1,4 +1,5 @@
 <?php
+echo "loading view";
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $CI =& get_instance();

@@ -201,7 +201,9 @@ class Vmchooser extends CI_Controller {
 			$this->load->view('vmchooser-results-csv',$data);
 			$this->load->view('tpl/footer');
 		} else {
+			echo "$format";
 			$this->load->view('vmchooser-results-export',$data);
+			echo "view loading done";
 		}
 	}
 
