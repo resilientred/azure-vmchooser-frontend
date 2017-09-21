@@ -26,8 +26,6 @@ function arrayToCsv( array &$fields, $delimiter = ',', $enclosure = '"', $enclos
 }
 
 if (isset($results)) { 
-	
-	$CI =& get_instance();
 
 	$header = array();
 	foreach($results[0] as $key => $value) {
