@@ -38,8 +38,11 @@ if (isset($results)) {
 		$header[] = $key;
 	}
 
+	print_r(arrayToCsv($header));
+	echo PHP_EOL;
 	foreach($results as $row) {
 		print_r(arrayToCsv($row));
+		echo PHP_EOL;
 	}
 
 }
