@@ -25,6 +25,8 @@ if (isset($results)) {
 
 	echo $CI->table->generate($results);
 
+	print_r($results);
+
 }
 
 ?>
