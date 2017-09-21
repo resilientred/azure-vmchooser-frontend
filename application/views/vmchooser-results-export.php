@@ -1,4 +1,5 @@
 <?
+print_r($results;)
 
 if (isset($results)) {
 
@@ -8,8 +9,6 @@ if (isset($results)) {
 	}
 	
 	print_r($header);
-	print_r($results;)
-
 }
 
 ?>
