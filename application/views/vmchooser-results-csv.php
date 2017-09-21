@@ -23,12 +23,11 @@ if (isset($results)) {
 	);
 	$CI->table->set_template($template);
 
-	print_r($results);
-
 	$header = array();
 	foreach($results[0] as $key => $value) {
 		$header[] = $key;
 	}
+
 	$CI->table->set_heading($header);		
 
 	echo $CI->table->generate($results);
