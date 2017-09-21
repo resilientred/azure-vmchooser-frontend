@@ -7,13 +7,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 if (isset($results)) { 
-	?>
-	
-	<div class="page-header">
-	  <h1 id="navbar">CSV Parser Results</h1>
-	</div>
-	
-	<?php
 
 	$CI =& get_instance();
 	$CI->load->library('table');
@@ -36,7 +29,3 @@ if (isset($results)) {
 
 ?>
 
-<div class="alert alert-dismissible alert-info">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Export : </strong> Download results as <a href="<?php echo base_url()."/vmchooser/results/".$csvfile."/csv/"; ?>" target="_blank" class="alert-link">CSV</a> .</br>
-</div>
