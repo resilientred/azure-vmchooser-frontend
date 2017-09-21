@@ -23,7 +23,7 @@ if (isset($results)) {
 	);
 	$CI->table->set_template($template);
 
-	echo $CI->table->generate($data);
+	echo $CI->table->generate($results);
 
 }
 
