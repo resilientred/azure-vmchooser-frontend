@@ -194,6 +194,8 @@ class Vmchooser extends CI_Controller {
 		$data['results'] = $results;
 		$this->load->helper(array('url'));
 
+		print_r($data);
+
 		if ($format == "") {
 			$this->load->view('tpl/header');	
 			$this->load->view('vmchooser-results-csv',$data);
