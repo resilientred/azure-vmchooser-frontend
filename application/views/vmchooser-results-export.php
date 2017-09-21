@@ -34,7 +34,7 @@ if (isset($results)) {
 	}
 
 	header('Content-type: text/csv');
-	header("content-disposition", "attachment; filename=\"" + $csvfile +"\"");
+	header("Content-Disposition: attachment; filename=\"" + $csvfile +"\"");
 	print_r(arrayToCsv($header));
 	echo PHP_EOL;
 	foreach($results as $row) {
