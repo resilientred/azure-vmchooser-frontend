@@ -26,10 +26,8 @@ if (isset($results)) {
 	print_r($results);
 
 	$header = "";
-	$seperator = "";
 	foreach($results[0] as $key => $value) {
-		$header .= $seperator."'".$key."'";
-		$seperator = ",";
+		$header[] = $key;
 	}
 	$CI->table->set_heading($header);		
 
