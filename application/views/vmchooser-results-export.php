@@ -34,7 +34,8 @@ if (isset($results)) {
 	}
 
 	header('Content-type: text/csv');
-	header("Content-Disposition: attachment; filename=\"" + $csvfile +"\"");
+	//header("Content-Disposition: attachment; filename=\"" + $csvfile +"\"");
+	header('Content-Disposition: attachment; filename="vmchooser_parsed.csv"');
 	print_r(arrayToCsv($header));
 	echo PHP_EOL;
 	foreach($results as $row) {
