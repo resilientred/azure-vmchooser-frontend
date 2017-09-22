@@ -33,11 +33,20 @@ if (isset($results)) {
 
 	echo $CI->table->generate($results);
 
+	?>
+
+	<div class="alert alert-dismissible alert-info">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Export : </strong> Download results as <a href="<?php echo base_url()."/vmchooser/results/".$csvfile."/csv/"; ?>" target="_blank" class="alert-link">CSV</a> .</br>
+	</div>
+
+	<?php
+
 } else {
 
 	?>
 
-	<div class="alert alert-dismissible alert-info">
+	<div class="alert alert-dismissible alert-warning">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<strong>Loading...</strong> No results yet... Refresh again in a bit.</br>
 	</div>
@@ -47,8 +56,3 @@ if (isset($results)) {
 }
 
 ?>
-
-<div class="alert alert-dismissible alert-info">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Export : </strong> Download results as <a href="<?php echo base_url()."/vmchooser/results/".$csvfile."/csv/"; ?>" target="_blank" class="alert-link">CSV</a> .</br>
-</div>
