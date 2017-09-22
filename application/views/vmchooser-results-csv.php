@@ -7,6 +7,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 if (isset($results)) { 
+
+	if ($results == "") {
+	?>
+
+	<div class="alert alert-dismissible alert-info">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Loading...</strong> No results yet... Refresh again in a bit.</br>
+	</div>
+
+	<?php
+
+	}
+
 	?>
 	
 	<div class="page-header">
