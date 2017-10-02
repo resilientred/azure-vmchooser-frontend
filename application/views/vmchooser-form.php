@@ -36,6 +36,8 @@ if (isset($results)) {
 			if (strpos($key, 'USD') !== FALSE) {
 				$value = '<a href="https://www.bing.com/search?q='.$value.'+USD+to+euro">'.$value.'</a>';
 			}
+			$value = str_replace("-1", "n/a", $value);
+			$value = str_replace("-2", "Not Supported", $value);
 			$data[] = $value;
 		}
 		if ($first) {
