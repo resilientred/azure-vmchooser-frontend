@@ -26,6 +26,8 @@ if (isset($results)) {
 
 	
 	foreach($results as $key => $value) {
+		$value = str_replace("-1", "n/a", $value);
+		$value = str_replace("-2", "Not Supported", $value);
 		$CI->table->add_row($key, $value);
 	}
 	echo $CI->table->generate();
